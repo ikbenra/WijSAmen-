@@ -11,6 +11,7 @@ Dit overzicht bewaart richting zonder te doen alsof alle ideeën al volledig beo
 | Autonoompje | Bewaarfase | minimale veilige demonstrator afbakenen |
 | Nevel-, laser- en dronebeelden | Concept | technisch haalbare kleine proef beschrijven |
 | HypnoTTS | Prototype | code, sessieformat en veiligheidsgrenzen documenteren |
+| Persoonlijke 0–3 uur weernowcast | Prototype | actuele KNMI-file op Termux valideren en radar-verificatie toevoegen |
 
 ## Statuswoorden
 
