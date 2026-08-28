@@ -2,6 +2,8 @@
 
 Eerste werkende kern voor een gratis, lokale **0–3 uur neerslag-nowcast** op Android/Termux.
 
+De [Evidence Passport](EVIDENCE_PASSPORT.md) scheidt aanwezige code, bronfeiten, nog onbewezen uitvoering, privacygrenzen en de goedkoopste falsifieerbare validatiecyclus.
+
 ## Waarom deze bron
 
 De kern gebruikt KNMI `seamless_precipitation_ensemble_forecast_probabilities/1.0`: een 1×1 km probabilistische neerslagverwachting met stappen van 5 minuten tot 6 uur vooruit. De eerste appversie toont maximaal 3 uur.
