@@ -1,28 +1,12 @@
-# Projectenoverzicht
+# PROJECTS
 
-Dit overzicht bewaart richting zonder te doen alsof alle ideeën al volledig beoordeeld zijn.
+Dit bestand is de **routekaart** van de repository. De primaire projectkennis blijft in de aangewezen projectmap en in de canonical Google Docs/corpusbron.
 
-| Richting | Fase | Eerstvolgende bewijsstap |
+| Project | Fase | Eerstvolgende bewijsstap |
 |---|---|---|
-| CareCommons en zorgrobots | Verkenning | concrete samenwerkingskans en gesprek vastleggen |
-| Brugconcept | Conceptontwikkeling | eisen, mechanica en kostenhypothesen scheiden |
-| OctoScript en soft robotics | Onderzoek | kernhypothesen koppelen aan recente literatuur |
-| Materiaalbesparing met interne holtes | Verkenning | maakbaarheid en eigenschappen met Holit bespreken |
-| Autonoompje | Bewaarfase | minimale veilige demonstrator afbakenen |
-| Nevel-, laser- en dronebeelden | Concept | technisch haalbare kleine proef beschrijven |
-| HypnoTTS | Prototype | code, sessieformat en veiligheidsgrenzen documenteren |
-| Persoonlijke 0–3 uur weernowcast | Prototype | actuele KNMI-file op Termux valideren en radar-verificatie toevoegen |
-
-## Statuswoorden
-
-- **Inbox** — nog niet beoordeeld.
-- **Verkenning** — waarde en haalbaarheid worden onderzocht.
-- **Conceptontwikkeling** — architectuur en aannames worden uitgewerkt.
-- **Prototype** — er bestaat of komt een kleine testbare uitvoering.
-- **Bewaarfase** — bewust geparkeerd zonder kennisverlies.
-- **Actief** — heeft een eigenaar en concrete volgende stap.
-- **Afgerond** — resultaat en lessen zijn vastgelegd.
-
-## Selectieregel
-
-Een project wordt actief wanneer het een helder gewenst resultaat, een veilige eerstvolgende stap en voldoende verwachte waarde heeft. Urgent financieel of praktisch resultaat mag daarbij zwaarder wegen dan theoretische aantrekkelijkheid.
+| AquaLattice | Realisatie / validatie | actuele geometry/serviceability claim brongekoppeld toetsen |
+| WijSAmen Brugregisseur | Modellering / validatie | begrensde modelcyclus afronden en stop/go vastleggen |
+| CareCommons | PARKED_HEALTHY_WAIT | alleen herstarten bij materieel extern antwoord |
+| What a Mesh | PARKED_WITH_CAPSULE | hervatten vanuit capsule wanneer slotwaarde stijgt |
+| [OctoScript / OctoCorpus](projects/octocorpus/README.md) | Onderzoek — evolutionary provenance V0.1 | eerste chemotactiele feature-passport vullen, fylogenie/syntenie reproduceren en laten tegenspreken |
+| [Weather nowcast](weather-nowcast/README.md) | Evidence-interface prototype | actuele KNMI-file in Termux openen; daarna forecast aan RTCOR-5m koppelen |
