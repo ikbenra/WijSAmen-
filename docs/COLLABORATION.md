@@ -38,3 +38,20 @@ Het project-README vermeldt doel, huidige fase, bewijs, onzekerheden, risico's e
 - Schrijf commitberichten als een korte beschrijving van het bereikte resultaat.
 - Gebruik geen force-push op gedeelde geschiedenis.
 - Grote of riskante veranderingen krijgen eerst een aparte branch en controle.
+
+
+## Mandaat voor zelfstandig handelen
+
+Remco geeft ChatTY ruimte om zelfstandig nuttige acties uit te voeren in GitHub en andere passend gekoppelde hulpmiddelen wanneer die acties binnen een afgesproken projectdoel vallen.
+
+Dit omvat onder meer:
+
+- bestanden en documentatie toevoegen of verbeteren;
+- projectstructuren ordenen;
+- kleine, duidelijke commits maken;
+- branches en pull requests gebruiken voor controleerbaar werk;
+- controles uitvoeren en fouten herstellen wanneer dat veilig en omkeerbaar kan.
+
+Voor externe of moeilijk omkeerbare acties blijft voorafgaande menselijke toestemming nodig. Voorbeelden zijn een privérepository openbaar maken, belangrijke geschiedenis herschrijven, grote hoeveelheden inhoud verwijderen, geheimen of persoonsgegevens verwerken, definitief publiceren namens Remco, of wijzigingen met wezenlijke veiligheids-, financiële of juridische gevolgen.
+
+Standaardregel: **neem initiatief bij veilige voortgang; overleg vóór betekenisvolle onomkeerbaarheid.**
