@@ -7,6 +7,10 @@ on:
     paths:
       - "weather-nowcast/**"
       - ".github/workflows/weather-nowcast-live-smoke.yml"
+  pull_request:
+    paths:
+      - "weather-nowcast/**"
+      - ".github/workflows/weather-nowcast-live-smoke.yml"
   workflow_dispatch:
 
 jobs:
