@@ -4,11 +4,29 @@ Eerste werkende kern voor een gratis, lokale **0–3 uur neerslag-nowcast** op A
 
 De [Evidence Passport](EVIDENCE_PASSPORT.md) scheidt aanwezige code, bronfeiten, nog onbewezen uitvoering, privacygrenzen en de goedkoopste falsifieerbare validatiecyclus.
 
-## Waarom deze bron
+## Eerste mijlpaal
 
-De kern gebruikt KNMI `seamless_precipitation_ensemble_forecast_probabilities/1.0`: een 1×1 km probabilistische neerslagverwachting met stappen van 5 minuten tot 6 uur vooruit. De eerste appversie toont maximaal 3 uur.
+De eerste mijlpaal is bewust kleiner dan een volledige weerapp:
 
-De voorspelling bevat kansen op overschrijding van neerslagdrempels. Dat is nuttiger dan één schijnbaar exact getal: bij buien wil je weten *hoe zeker* regen en zwaardere regen zijn.
+> Een telefoon kan zonder handmatige databewerking een actuele KNMI-file ophalen, een 0–180 minutenforecast voor één locatie produceren en het resultaat lokaal als JSONL loggen.
+
+**Android Studio komt pas daarna.** Eerst moet de forecastkern op een echte telefoon bewezen werken.
+
+## Snelste validatie op de telefoon
+
+Na installatie:
+
+```bash
+cd ~/WijSAmen-/weather-nowcast
+bash validate_live.sh
+```
+
+`validate_live.sh` doet twee dingen:
+
+1. draait de synthetische coretests;
+2. draait `python nowcast.py --validate-live`, dat GPS gebruikt, de actuele NetCDF-structuur toont, +0 t/m +180 minuten controleert en alleen `LIVE VALIDATION: PASS` toont wanneer ook een JSONL-snapshot is geschreven.
+
+Voor de live-validatie is naast het Termux-pakket `termux-api` ook de **Android-app Termux:API** nodig, met locatiepermissie.
 
 ## Termux: eerste installatie
 
@@ -20,46 +38,61 @@ cd WijSAmen-/weather-nowcast
 bash termux_setup.sh
 ```
 
-Als Termux:API en de `termux-location` opdracht beschikbaar zijn:
+Daarna is de voorkeursroute:
+
+```bash
+bash validate_live.sh
+```
+
+Losse opdrachten blijven beschikbaar.
+
+Met Termux GPS:
 
 ```bash
 python nowcast.py --gps --hours 3
 ```
 
-Zonder GPS-koppeling:
+Met een expliciete locatie:
 
 ```bash
 python nowcast.py --lat 52.1561 --lon 5.3878 --hours 3
 ```
 
-Alleen om de actuele KNMI NetCDF-structuur te inspecteren:
+Actuele KNMI NetCDF-structuur inspecteren:
 
 ```bash
 python nowcast.py --lat 52.1561 --lon 5.3878 --diagnose
 ```
 
-## Wat v0.1 al doet
+## Wat v0.2 doet
 
 - haalt automatisch het nieuwste KNMI seamless probability-bestand op;
-- kiest het dichtstbijzijnde 1 km-rasterpunt;
-- toont de komende 3 uur in stappen van 5 minuten;
+- gebruikt KNMI's `created desc` sortering om de nieuwste file te kiezen;
+- registreert bestandsnaam, KNMI-created/last-modified metadata, bronouderdom en eventuele `X-KNMI-Deprecation` melding;
+- kiest het dichtstbijzijnde rasterpunt;
+- leidt de horizon af uit de **werkelijke tijdas** in het NetCDF-bestand in plaats van een vast aantal regels aan te nemen;
+- vereist bij de milestonevalidatie dekking t/m **+180 minuten**;
+- toont neerslagkansen per drempel;
 - bewaart iedere voorspelling als JSONL in `logs/forecast_history.jsonl`;
-- ondersteunt `termux-location` indien geïnstalleerd;
+- ondersteunt `termux-location` via Termux:API;
+- faalt expliciet wanneer `--gps` gevraagd is maar geen GPS-locatie beschikbaar is, in plaats van stil op de defaultlocatie verder te gaan;
 - gebruikt de door KNMI gepubliceerde anonieme Open Data API-key (geldig t/m 1 augustus 2027), met `KNMI_API_KEY` als override.
 
 ## Waarom logging vanaf dag 1
 
-We willen niet alleen een app bouwen maar aantoonbaar leren wanneer de forecast goed of slecht is. De opgeslagen snapshots worden later tegen echte radarwaarnemingen gelegd. Daarna kunnen we per lead time, weertype en lokale situatie kalibreren.
+We willen niet alleen een app bouwen maar aantoonbaar leren wanneer de forecast goed of slecht is. Iedere snapshot bewaart daarom bronmetadata, locatiebron, rasterpunt, lead time en de voorspelde kansen. Exacte GPS-logs blijven lokaal en `logs/` staat in `.gitignore`.
+
+De volgende meetstap is om iedere uitgegeven forecast te koppelen aan onafhankelijke RTCOR-5m-radarwaarnemingen. Daarna kunnen we per lead time en drempel Brier score, reliability en regen-start/stopfout berekenen.
 
 ## Volgende stappen
 
-1. v0.1 op een echte telefoon en actuele KNMI-file valideren.
-2. Werkelijke RTCOR-5m radarwaarden automatisch naast iedere voorspelling bewaren.
+1. `bash validate_live.sh` op een echte Android/Termux-installatie laten eindigen met `LIVE VALIDATION: PASS`.
+2. Werkelijke `nl_rdr_data_rtcor_5m`-waarnemingen automatisch naast iedere voorspelling bewaren.
 3. Brier score, reliability en timingfout berekenen.
 4. Ensembleleden toevoegen voor mediaan en onzekerheidsband van intensiteit.
 5. Bewolking/satelliet en zonkans toevoegen.
 6. Kern achter een eenvoudige lokale JSON-interface zetten.
-7. Android Studio UI bouwen op dezelfde kern.
+7. Android Studio UI bouwen op dezelfde bewezen kern.
 
 ## Bron / licentie
 
