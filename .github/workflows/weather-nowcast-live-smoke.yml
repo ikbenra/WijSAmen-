@@ -1,12 +1,6 @@
 name: Weather nowcast live smoke
 
 on:
-  push:
-    branches:
-      - weather-nowcast-live-validation
-    paths:
-      - "weather-nowcast/**"
-      - ".github/workflows/weather-nowcast-live-smoke.yml"
   pull_request:
     paths:
       - "weather-nowcast/**"
