@@ -20,3 +20,18 @@ Deze repository mag kennis bewaren, maar geen geheimen of onnodig gevoelige pers
 ## Technische experimenten
 
 Leg vooraf de veiligheidsgrens, stopvoorwaarde en verwachte waarneming vast. Experimenten die mensen, dieren, infrastructuur, accounts of onvervangbare gegevens kunnen schaden worden niet zonder passende deskundigheid en beheersmaatregelen uitgevoerd.
+
+## Misbruikbestendig ontwerpen
+
+Bij nieuwe projectfuncties hoort vóór uitvoering een korte misbruik- en hersteltoets:
+
+- geef iedere component alleen de minimaal noodzakelijke bevoegdheid;
+- scheid voorbereiden, simuleren, uitvoeren en extern verzenden als afzonderlijke staten;
+- leg bron, actor, toestemming, uitvoering, fout en rollback controleerbaar vast;
+- ontwerp veilige standaardinstellingen, begrensde invoer en een duidelijke stopmogelijkheid;
+- test ten minste één plausibel misbruikscenario en één fout- of herstelpad;
+- bewaar geen gevoelige gegevens alleen omdat dat technisch mogelijk is;
+- laat onzekere of onbevoegde acties eindigen in `ABSTAIN / NOT_EXECUTED`;
+- maak geen functie breder of autonomer voordat de bestaande grens aantoonbaar werkt.
+
+Veiligheidsmaatregelen moeten legitiem nuttig gebruik ondersteunen, terwijl ongewenste bevoegdheidsuitbreiding vroeg zichtbaar en omkeerbaar blijft.
