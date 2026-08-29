@@ -31,7 +31,7 @@ jobs:
 
       - name: Validate current KNMI file
         working-directory: weather-nowcast
-        run: python nowcast.py --validate-live --lat 52.1561 --lon 5.3878
+        run: bash validate_live.sh --lat 52.1561 --lon 5.3878
 
       - name: Preserve validation evidence
         if: always()
