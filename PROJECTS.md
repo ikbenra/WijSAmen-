@@ -8,5 +8,6 @@ Dit bestand is de **routekaart** van de repository. De primaire projectkennis bl
 | WijSAmen Brugregisseur | Modellering / validatie | begrensde modelcyclus afronden en stop/go vastleggen |
 | CareCommons | PARKED_HEALTHY_WAIT | alleen herstarten bij materieel extern antwoord |
 | What a Mesh | PARKED_WITH_CAPSULE | hervatten vanuit capsule wanneer slotwaarde stijgt |
+| [Evidence Passport Quick Audit](projects/evidence-passport-quick-audit/README.md) | Inkomstenproef — intern voorbereid | na Remco-goedkeuring één begrensde vraagtest; geen massabenadering |
 | [OctoScript / OctoCorpus](projects/octocorpus/README.md) | Onderzoek — evolutionary provenance V0.1 | eerste chemotactiele feature-passport vullen, fylogenie/syntenie reproduceren en laten tegenspreken |
 | [Weather nowcast](weather-nowcast/README.md) | Evidence-interface prototype | actuele KNMI-file in Termux openen; daarna forecast aan RTCOR-5m koppelen |
