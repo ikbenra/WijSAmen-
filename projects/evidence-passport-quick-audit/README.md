@@ -1,8 +1,14 @@
 # Evidence Passport Quick Audit
 
-**Status:** INTERNAL OFFER DRAFT — PREPARED / NOT SENT  
-**Canonical basis:** Google Doc `WijSAmen Corpus Intelligence — Portfolio Hunter`, markers PH-013 through PH-016.  
+**Status:** INTERNAL PILOT PACKET — READY FOR HUMAN REVIEW / NOT SENT  
+**Canonical basis:** Google Doc `WijSAmen Corpus Intelligence — Portfolio Hunter`, markers PH-013 through PH-025.  
 **Commercial status:** price, demand and willingness to pay are hypotheses; no sale or external communication has occurred.
+
+## Ready artifacts
+
+- [Fictional worked example](SAMPLE.md) — invented GreenSeat case, explicitly not real evidence.
+- [93-word offer draft](OFFER_DRAFT.md) — internal and not sent.
+- [Pilot runbook](PILOT_RUNBOOK.md) — approval, intake, acceptance, execution, effort and stop gates.
 
 ## Outcome
 
@@ -75,7 +81,7 @@ Before delivery:
 
 ## Cheapest demand test
 
-Prepare one anonymised fictional example and a 100-word offer. After Remco approves the exact wording and recipient, send it to **one** suitable warm contact or post it in **one** appropriate place. Do not mass-message, imply certification or expose WijSAmen IP.
+After Remco approves the exact wording, recipient and channel, send the prepared offer and fictional sample to **one** suitable warm contact or place it in **one** appropriate location. Do not mass-message, imply certification or expose WijSAmen IP.
 
 ### Success criterion
 
@@ -104,4 +110,4 @@ Pause or redesign if:
 
 ## Portfolio role
 
-This is an embedded realisation test for the Project Passport—not a sixth autonomous research project. It can be handed to `WijSAmen Eerste Inkomsten` for conversion testing while Intelligence & Steward protects evidence quality.
+This is an embedded realisation test for the Project Passport—not a sixth autonomous research project. It belongs inside `WijSAmen Eerste Inkomsten` for conversion testing while Intelligence & Steward protects evidence quality.
