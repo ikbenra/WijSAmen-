@@ -11,3 +11,4 @@ Dit bestand is de **routekaart** van de repository. De primaire projectkennis bl
 | [Evidence Passport Quick Audit](projects/evidence-passport-quick-audit/README.md) | Inkomstenproef — intern voorbereid | na Remco-goedkeuring één begrensde vraagtest; geen massabenadering |
 | [OctoScript / OctoCorpus](projects/octocorpus/README.md) | Onderzoek — evolutionary provenance V0.1 | eerste chemotactiele feature-passport vullen, fylogenie/syntenie reproduceren en laten tegenspreken |
 | [Weather nowcast](weather-nowcast/README.md) | Evidence-interface prototype | actuele KNMI-file in Termux openen; daarna forecast aan RTCOR-5m koppelen |
+| [Field / phase / spacetime research map](ideas/field-phase-research-map.md) | Onderzoek — gescheiden sporen V0.1 | low-energy numerical baseline voor programmeerbare magnetic field shaping maken |
