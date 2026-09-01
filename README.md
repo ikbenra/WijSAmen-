@@ -15,6 +15,7 @@
 - [Projectenoverzicht](PROJECTS.md) — actieve richtingen en hun status
 - [Ideeën-inbox](ideas/README.md) — nieuwe ingevingen eerst veilig vastleggen
 - [Samenwerkingswijze](docs/COLLABORATION.md) — hoe we besluiten en voortgang bewaren
+- [Continuity Proxy](docs/CONTINUITY_PROXY.md) — veilige projectcontinuïteit wanneer Remco tijdelijk niet beschikbaar is
 - [Veiligheid](SECURITY.md) — geen geheimen of gevoelige persoonsgegevens committen
 
 ## Eenvoudige workflow
