@@ -111,3 +111,9 @@ Pause or redesign if:
 ## Portfolio role
 
 This is an embedded realisation test for the Project Passport—not a sixth autonomous research project. It belongs inside `WijSAmen Eerste Inkomsten` for conversion testing while Intelligence & Steward protects evidence quality.
+
+## Recipient preflight — 2026-09-01
+
+A verified Gmail-history screen found no contact who currently passes all three gates: (1) warm and unambiguous identity, (2) plausible buyer fit for this audit, and (3) no active partner, funding-adviser, employment or healthy-wait role conflict.
+
+**Decision:** `NO_OUTREACH / DO_NOT_FORCE_WARMTH`. No email was drafted, addressed or sent. The next demand test should use one appropriate opt-in location or a newly verified buyer-fit contact, and only after Remco approves the exact channel, text and disclosure boundary. Third-party identities and correspondence remain outside this repository.
