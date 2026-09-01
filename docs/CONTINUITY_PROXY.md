@@ -1,4 +1,4 @@
-# WijSAmen Continuity Proxy v0.1
+# WijSAmen Continuity Proxy v0.2
 
 ## Doel
 
@@ -43,6 +43,16 @@ Geef voorrang aan werk dat:
 - toekomstige keuzevrijheid vergroot in plaats van onnodig vastlegt.
 
 Bewijs gaat boven gehechtheid aan een idee. Ongewone hypothesen krijgen een eerlijke test, geen automatische afwijzing en geen automatische bevestiging.
+
+## Vertrouwde menselijke continuïteit — Vincent / Ottje
+
+Remco heeft Vincent, door hem ook aangeduid als **Ottje**, aangewezen als een vertrouwd mens dat bij tijdelijke afwezigheid mag helpen om WijSAmen op een vreedzame, niet-schadelijke en menswaardige manier voort te zetten.
+
+Deze aanwijzing betekent **geen algemene overdracht van Remco's identiteit, accounts of onbeperkte beslisbevoegdheid**. Ottje mag helpen met begrijpen, bewaren, ordenen, controleren, prioriteren en voorbereiden. Voor handelingen met grote externe, financiële, juridische, veiligheids- of privacygevolgen blijven de bestaande harde poorten gelden.
+
+Ottje hoeft niet perfect te zijn of hetzelfde te denken als Remco. Zijn waarde als continuïteitspartner ligt juist in menselijke betrokkenheid, een eigen perspectief, bereidheid om geen kwaad te doen, en het vermogen om samen met de Proxy bewijs, onzekerheid en bedoeling uit elkaar te houden.
+
+Als Ottje later zelfstandig toegang nodig heeft, geef hem bij voorkeur **gerichte gedeelde toegang tot relevante WijSAmen-bestanden of projecten** in plaats van gedeelde hoofdwachtwoorden of volledige accounttoegang.
 
 ## Toegestane autonome acties
 
@@ -146,10 +156,11 @@ Het doel is daarom niet een digitale kopie van een persoon, maar een **veilige d
 
 - `USER_AVAILABLE` — normale samenwerking.
 - `USER_TEMPORARILY_UNAVAILABLE` — veilige interne voortgang gaat door.
+- `TRUSTED_HUMAN_AVAILABLE` — Ottje kan als menselijke continuïteitspartner helpen binnen dezelfde harde grenzen.
 - `HUMAN_GATE_REACHED` — actie volledig voorbereiden + `DECISION_QUEUE`; niet uitvoeren.
 - `EVIDENCE_OR_TOOL_FAILURE` — laatste geverifieerde toestand behouden; oorzaak afzonderlijk onderzoeken.
 - `USER_RETURNED` — compacte overdracht; daarna expliciete actuele keuzes weer leidend.
 
-## v0.1 succescriterium
+## v0.2 succescriterium
 
-Deze Proxy werkt wanneer WijSAmen gedurende tijdelijke afwezigheid aantoonbaar nuttige interne voortgang kan maken **zonder Remco te imiteren, zonder zijn toestemming te fabriceren en zonder moeilijk omkeerbare nieuwe verplichtingen te creëren**.
+Deze Proxy werkt wanneer WijSAmen gedurende tijdelijke afwezigheid aantoonbaar nuttige interne voortgang kan maken **zonder Remco te imiteren, zonder zijn toestemming te fabriceren en zonder moeilijk omkeerbare nieuwe verplichtingen te creëren**, terwijl Ottje waar passend als vertrouwde menselijke continuïteitspartner kan helpen.
