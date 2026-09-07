@@ -1,6 +1,6 @@
 # SPARC baseline benchmark v0.1
 
-Smallest reproducible implementation of issue #3. It downloads the pinned SPARC mass-model table, verifies the published MD5 checksum, checks the committed 35/140 galaxy split, fits the single universal RAR acceleration scale on training galaxies only, and writes test predictions and residuals.
+Smallest reproducible implementation of issue #3. It downloads the pinned SPARC mass-model table, verifies both the dataset-published MD5 checksum and a recorded SHA-256 digest over the exact bytes, checks the committed 35/140 galaxy split, fits the single universal RAR acceleration scale on training galaxies only, and writes test predictions and residuals.
 
 No WijSAmen correction is implemented here.
 
