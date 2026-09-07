@@ -16,6 +16,7 @@ from scipy.optimize import least_squares, minimize_scalar
 
 DATA_URL = "https://zenodo.org/records/16284118/files/MassModels_Lelli2016c.mrt?download=1"
 DATA_MD5 = "fe6188538c3f5504f70f486ff6b4d29c"
+DATA_SHA256 = "9108994b12cc401b94a1768beca61c53ec354779385c9c9cc571049f3043244c"
 KPC_M = 3.085677581491367e19
 G_KPC = 4.30091e-6  # kpc (km/s)^2 / Msun
 UPS_DISK, UPS_BULGE = 0.5, 0.7
@@ -25,9 +26,15 @@ def download_checked(path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     if not path.exists():
         urllib.request.urlretrieve(DATA_URL, path)
-    digest = hashlib.md5(path.read_bytes()).hexdigest()  # dataset-published checksum
-    if digest != DATA_MD5:
-        raise RuntimeError(f"SPARC checksum mismatch: {digest}; expected {DATA_MD5}")
+    payload = path.read_bytes()
+    md5 = hashlib.md5(payload).hexdigest()  # dataset-published checksum
+    sha256 = hashlib.sha256(payload).hexdigest()  # stronger local provenance pin
+    if md5 != DATA_MD5 or sha256 != DATA_SHA256:
+        raise RuntimeError(
+            "SPARC checksum mismatch: "
+            f"md5={md5} (expected {DATA_MD5}); "
+            f"sha256={sha256} (expected {DATA_SHA256})"
+        )
 
 
 def load_sparc(path: Path) -> pd.DataFrame:
@@ -147,7 +154,7 @@ def main() -> None:
         galaxies=("galaxy", "count"), median_rmse_kms=("rmse_kms", "median"), median_mae_kms=("mae_kms", "median"), total_chi2=("chi2", "sum"))
     summary.to_csv(args.out / "summary.csv", index=False)
     (args.out / "run.json").write_text(json.dumps({"data_url": DATA_URL, "data_md5": DATA_MD5,
-        "disk_ml": UPS_DISK, "bulge_ml": UPS_BULGE, "rar_a0_m_s2_fitted_train_only": a0,
+        "data_sha256": DATA_SHA256, "disk_ml": UPS_DISK, "bulge_ml": UPS_BULGE, "rar_a0_m_s2_fitted_train_only": a0,
         "warning": "NFW/Burkert use two parameters fitted to each galaxy and are not blind test predictions."}, indent=2) + "\n")
 
     test = galaxies[galaxies.split == "test"]
