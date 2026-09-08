@@ -73,3 +73,8 @@ Een compact GO/NO-GO-pakket met:
 - drie concrete maar nog niet benaderde partners/routes;
 - gelabelde campagneconcepten;
 - één kritische test en een heldere voorlopige beslissing.
+
+
+## Visuele intentie
+
+De actuele regenbooglint-intentie, eerdere renderfouten en de fysieke couponfalsificatie staan in [DESIGN_INTENT_V01.md](./DESIGN_INTENT_V01.md). Gebruik dit bestand als bron vóór nieuwe beeldgeneratie of materiaalvertaling; vervang de gedeeltelijk herstelde ontwerpwoorden niet door generiek glittermateriaal.
