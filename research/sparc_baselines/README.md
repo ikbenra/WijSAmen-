@@ -25,3 +25,9 @@ Outputs in `results/`: `summary.csv`, `galaxy_metrics.csv`, `point_predictions.c
 The deterministic split ranks galaxy identifiers by SHA-256 of `WijSAmen-SPARC-v0.1:<ID>` and assigns exactly 35 galaxies to training. `split.csv` is committed so model development cannot silently reshuffle it.
 
 Dataset: Lelli, McGaugh & Schombert, SPARC mass models, DOI `10.5281/zenodo.16284118`.
+
+## Candidate admission
+
+Before evaluating any WijSAmen/0Veld correction, follow the [candidate admission gate](./CANDIDATE_ADMISSION_GATE.md). It requires a numerically distinct training-set prediction, at most two universal parameters, a commit-bound pre-evaluation freeze, one-shot procedural holdout, explicit disconfirmation criteria, and an external-constraint route.
+
+The currently documented local 0Veld response is algebraically identical to the RAR baseline and is therefore classified `ALIAS_OF_RAR`, not as a separate candidate result.
