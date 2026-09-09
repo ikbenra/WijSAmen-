@@ -6,6 +6,10 @@ Onderzoeken of een hoogwaardige kunststof/composiet gedenksteen met een diepe zw
 
 Multimedia is onderdeel van het productbewijs en de verkoopstrategie, niet alleen decoratie: één sterk hero-beeld, één korte video en later echte prototypebeelden moeten het optische verschil binnen enkele seconden zichtbaar maken.
 
+## Platformgrens
+
+Opal Memorial is de eerste commerciële toepassing van een mogelijk breder optisch materiaal-/oppervlakteplatform, niet de definitie van de kerninnovatie. Houd algemene techniek, toepassingsvarianten, vertrouwelijke proceskennis en ontwerp/merk afzonderlijk. De brongebonden afbakening, veilige vroege openbaarmakingsgrens en contractuele rode vlaggen staan in [PLATFORM_BOUNDARY_V01.md](./PLATFORM_BOUNDARY_V01.md).
+
 ## Huidige bewijsstatus
 
 `CONCEPT`
