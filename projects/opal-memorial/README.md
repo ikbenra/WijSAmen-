@@ -19,7 +19,7 @@ Luciform3D heeft op 10 september 2026 concrete belangstelling bevestigd om samen
 `CONCEPT`
 
 - De gebruikersrichting, eerste sprint en commerciële intentie zijn vastgelegd.
-- Er is nog geen materiaalroute, fysiek prototype, buitenbestendigheidstest, klantvraag, partnerinteresse, pre-order of ontvangen betaling geverifieerd.
+- Luciform3D heeft partnerinteresse in een transparante prototyperoute bevestigd. Er is nog geen materiaalroute, fysiek prototype, buitenbestendigheidstest, klantvraag, offerte, opdracht, pre-order of ontvangen betaling geverifieerd.
 - Renders moeten zichtbaar als concept worden gelabeld totdat echte prototypebeelden bestaan.
 - Financieel succes telt pas als `BETALING_ONTVANGEN`.
 
@@ -44,7 +44,7 @@ Luciform3D heeft op 10 september 2026 concrete belangstelling bevestigd om samen
    - Eén materiaal-/oppervlakte- of productiepartner.
    - Eén memorialbedrijf met klanten en distributie.
    - Eén crowdfunding-/launch- of commerciële route voor ná overtuigend prototypebewijs.
-   - Bereid fit, wederzijdse waarde, bezwaar en conceptbenadering voor; nog niets verzenden.
+   - Leg per poort fit, wederzijdse waarde, bezwaar en bewijsstatus vast. Luciform3D is reeds benaderd; vervolg blijft concept totdat Remco expliciet verzending goedkeurt.
 
 5. **Visuele verkooptest**
    - Eén hero-beeld, één video van 10–20 seconden en één korte productbelofte.
