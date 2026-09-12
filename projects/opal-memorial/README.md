@@ -12,14 +12,14 @@ Opal Memorial is de eerste commerciële toepassing van een mogelijk breder optis
 
 ## Partnerpoort
 
-Luciform3D heeft op 10 september 2026 concrete belangstelling bevestigd om samen een snelle transparante prototyperoute te onderzoeken; letters en inlays op bepaalde dieptes zijn volgens de reactie mogelijk. Dit is partnerinteresse, geen technische validatie of offerte. Het geverifieerde feiten-/beslisdossier staat in [PARTNER_GATE_LUCIFORM3D.md](./PARTNER_GATE_LUCIFORM3D.md); het vervolgantwoord is nog uitsluitend een concept en niet verzonden.
+Luciform3D heeft op 10 september 2026 concrete belangstelling bevestigd om samen een snelle transparante prototyperoute te onderzoeken; letters en inlays op bepaalde dieptes zijn volgens de reactie mogelijk. Dit is partnerinteresse, geen technische validatie of offerte. Het geverifieerde feiten-/beslisdossier staat in [PARTNER_GATE_LUCIFORM3D.md](./PARTNER_GATE_LUCIFORM3D.md); het vervolgantwoord is nog uitsluitend een concept en niet verzonden. De brongebonden routevergelijking en gedeelde transparante coupon staan in [TECHNICAL_ROUTE_MATRIX_V01.md](./TECHNICAL_ROUTE_MATRIX_V01.md).
 
 ## Huidige bewijsstatus
 
 `CONCEPT`
 
 - De gebruikersrichting, eerste sprint en commerciële intentie zijn vastgelegd.
-- Luciform3D heeft partnerinteresse in een transparante prototyperoute bevestigd. Er is nog geen materiaalroute, fysiek prototype, buitenbestendigheidstest, klantvraag, offerte, opdracht, pre-order of ontvangen betaling geverifieerd.
+- Luciform3D heeft partnerinteresse in een transparante prototyperoute bevestigd. Een eerste vergelijking — continue dichroïsche inlay naast hoogdicht interferentiepigment, met gekleurde/lege controles — is brongebonden voorbereid maar niet vervaardigd. Er is nog geen definitieve materiaalroute, fysiek prototype, buitenbestendigheidstest, klantvraag, offerte, opdracht, pre-order of ontvangen betaling geverifieerd.
 - Renders moeten zichtbaar als concept worden gelabeld totdat echte prototypebeelden bestaan.
 - Financieel succes telt pas als `BETALING_ONTVANGEN`.
 
@@ -78,7 +78,7 @@ Een compact GO/NO-GO-pakket met:
 - één voorkeursmateriaalroute en één reserve;
 - één betaalbaar prototypepad;
 - een marktvergelijking met tien producten;
-- drie concrete maar nog niet benaderde partners/routes;
+- één actieve maar nog onbeantwoorde productiecouponpoort en twee nog niet benaderde markt-/lanceringspoorten;
 - gelabelde campagneconcepten;
 - één kritische test en een heldere voorlopige beslissing.
 
