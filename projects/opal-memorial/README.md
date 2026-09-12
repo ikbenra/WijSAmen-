@@ -10,6 +10,10 @@ Multimedia is onderdeel van het productbewijs en de verkoopstrategie, niet allee
 
 Opal Memorial is de eerste commerciële toepassing van een mogelijk breder optisch materiaal-/oppervlakteplatform, niet de definitie van de kerninnovatie. Houd algemene techniek, toepassingsvarianten, vertrouwelijke proceskennis en ontwerp/merk afzonderlijk. De brongebonden afbakening, veilige vroege openbaarmakingsgrens en contractuele rode vlaggen staan in [PLATFORM_BOUNDARY_V01.md](./PLATFORM_BOUNDARY_V01.md).
 
+## Partnerpoort
+
+Luciform3D heeft op 10 september 2026 concrete belangstelling bevestigd om samen een snelle transparante prototyperoute te onderzoeken; letters en inlays op bepaalde dieptes zijn volgens de reactie mogelijk. Dit is partnerinteresse, geen technische validatie of offerte. Het geverifieerde feiten-/beslisdossier staat in [PARTNER_GATE_LUCIFORM3D.md](./PARTNER_GATE_LUCIFORM3D.md); het vervolgantwoord is nog uitsluitend een concept en niet verzonden.
+
 ## Huidige bewijsstatus
 
 `CONCEPT`
