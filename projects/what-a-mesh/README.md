@@ -57,9 +57,38 @@ Treat selection and affordability as separate gates. Do not accept participation
 Funding preparation order:
 
 1. check 2027 scholarship language;
-2. identify Dutch or regional professional-development support;
-3. calculate fee, VAT, travel and uncovered meals as one maximum exposure;
-4. proceed only if the uncovered amount is explicitly accepted.
+2. test WerktuigPPO eligibility and whether ScriptLab qualifies as professional development;
+3. identify a producer, client or other cultural-sector co-financier only after the project/role fit is clear;
+4. calculate fee, VAT, travel and uncovered meals as one maximum exposure;
+5. proceed only if the uncovered amount and upfront payer are explicitly accepted.
+
+#### Verified partial route: WerktuigPPO
+
+Official rules checked on 20 September 2026 indicate:
+
+- applicants must work or actively seek work in the Dutch cultural/creative sector and demonstrate a sector link;
+- professional-development activities can include education, coaching, learning networks and comparable pathways;
+- the activity must start between three months before and three months after the application date;
+- the contribution is up to one third of eligible cost, capped at €2,250 per twelve months;
+- necessary course costs may qualify, but travel and accommodation do not;
+- the applicant normally pays first and claims reimbursement after completion;
+- another party or the applicant must cover the remainder.
+
+Sources:
+
+- https://werktuigppo.nl/en/voorpagina/toewijzingscriteria/
+- https://werktuigppo.nl/en/spelregels/
+
+**Inference, not approval:** ScriptLab plausibly fits professional development, but WerktuigPPO has not assessed this project or applicant. Even if accepted, it is partial reimbursement and does not solve upfront cash flow or travel.
+
+#### Funding stack order
+
+1. TorinoFilmLab need-based scholarship or fee reduction, if offered in the 2027 call;
+2. WerktuigPPO contribution, if formally eligible;
+3. producer/client/sector-partner contribution that does not transfer unwanted IP or control;
+4. only an explicitly affordable uncovered remainder.
+
+No loan, personal debt, participation acceptance or fee payment is recommended. A written upfront-payer or fee-waiver solution is a hard gate.
 
 ### G4 — Rights and disclosure
 
@@ -87,13 +116,13 @@ When the 2027 call becomes public:
 2. compare every eligibility, material, format, fee, scholarship and schedule field with this baseline;
 3. label each item CONFIRMED, CHANGED, REMOVED or NEW;
 4. update the package before any upload;
-5. stop if director eligibility, rights, availability or affordability remains unresolved.
+5. stop if director eligibility, rights, availability, affordability or upfront payment remains unresolved.
 
 ## Success and stop conditions
 
-**Success:** a complete private draft package with verified credits/links, no invented requirement, and a bounded funding gap before submission approval.
+**Success:** a complete private draft package with verified credits/links, no invented requirement, and a bounded, pre-funded financing stack before submission approval.
 
-**Stop / redesign:** the formal 2027 criteria exclude the project; director evidence is unavailable and no suitable director is attached; rights cannot be shown; or the uncovered participation/travel cost remains unaffordable.
+**Stop / redesign:** the formal 2027 criteria exclude the project; director evidence is unavailable and no suitable director is attached; rights cannot be shown; or the uncovered/upfront participation and travel cost remains unaffordable.
 
 ## Decision queue
 
@@ -103,5 +132,9 @@ Before submission, Remco chooses whether to:
 
 - temporarily give WHAT A MESH a focused task slot; or
 - keep the current task allocation and complete only a minimal application package inside Steward.
+
+DQ-SCRIPTLAB-FUNDING-01 — PENDING_FORMAL_ELIGIBILITY
+
+Do not treat WerktuigPPO as secured funding. Confirm the 2027 fee/scholarship terms first; then verify PPO applicant/activity eligibility and an upfront payer before any commitment.
 
 No task rotation, external message, upload, payment or commitment is authorised by this file.
