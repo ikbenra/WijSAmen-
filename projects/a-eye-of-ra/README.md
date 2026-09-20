@@ -6,7 +6,7 @@
 - **Owner:** Remco
 - **Stewardship:** WijSAmen
 - **Project mechanism:** `BEDACHT`
-- **This seed artifact:** `VOORBEREID`, with repository readback still required
+- **This seed artifact:** `VOORBEREID`; repository readback verified under Portfolio Hunter capsule `PH-044-20260920-AEYE-VERIFIED-PROJECT-SEED`
 - **Prototype/codebase/live deployment:** `NOT_CREATED / NOT_EXECUTED`
 - **License:** `DECISION_PENDING` — open-source preference is preserved, but no license is selected yet
 
