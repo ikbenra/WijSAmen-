@@ -1,0 +1,185 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -euo pipefail
+
+APP_NAME="wijtranscribe"
+APP_HOME="${WIJTRANSCRIBE_HOME:-$HOME/.local/share/$APP_NAME}"
+CONFIG="$APP_HOME/config"
+DEFAULT_MODEL="base"
+
+if [ -f "$CONFIG" ]; then
+  # shellcheck disable=SC1090
+  . "$CONFIG"
+fi
+MODEL="${WIJTRANSCRIBE_MODEL:-$DEFAULT_MODEL}"
+CLI="$APP_HOME/whisper.cpp/build/bin/whisper-cli"
+MODEL_FILE="$APP_HOME/models/ggml-$MODEL.bin"
+
+say() { printf '[%s] %s\n' "$APP_NAME" "$*"; }
+die() { printf '[%s] FOUT: %s\n' "$APP_NAME" "$*" >&2; exit 1; }
+
+usage() {
+  cat <<'USAGE'
+WijSAmen offline transcriptie voor Termux
+
+Gebruik:
+  wijtranscribe <bestand-of-map> [--output MAP] [--lang TAAL] [--model MODEL]
+  wijtranscribe doctor
+  wijtranscribe model <tiny|base|small|medium|large-v3-turbo>
+  wijtranscribe update
+  wijtranscribe --version
+
+Voorbeelden:
+  wijtranscribe ~/storage/downloads/funghi
+  wijtranscribe interview.mp3 --lang nl
+  wijtranscribe ~/storage/downloads/audio --output ~/storage/downloads/tekst
+
+Standaard:
+  taal   : auto
+  model  : base
+  output : <bronmap>/transcripts
+
+Ondersteunde invoer via FFmpeg: mp3, m4a, mp4, wav, flac, ogg, opus, aac en webm.
+USAGE
+}
+
+version() {
+  if [ -f "$APP_HOME/VERSION" ]; then cat "$APP_HOME/VERSION"; else echo "0.1.0"; fi
+}
+
+doctor() {
+  local fail=0
+  say "controle"
+  for c in ffmpeg git cmake; do
+    if command -v "$c" >/dev/null 2>&1; then
+      printf '  OK   %s\n' "$c"
+    else
+      printf '  MIS  %s\n' "$c"
+      fail=1
+    fi
+  done
+  if [ -x "$CLI" ]; then printf '  OK   whisper-cli\n'; else printf '  MIS  whisper-cli\n'; fail=1; fi
+  if [ -f "$MODEL_FILE" ]; then printf '  OK   model %s\n' "$MODEL"; else printf '  MIS  model %s\n' "$MODEL"; fail=1; fi
+  if [ -d "$HOME/storage/shared" ]; then printf '  OK   Android-opslag\n'; else printf '  LET  Android-opslag niet gekoppeld; voer termux-setup-storage uit\n'; fi
+  if [ "$fail" -eq 0 ]; then
+    say "alles wat nodig is voor transcriptie is aanwezig"
+  else
+    die "installatie is onvolledig; voer de installer opnieuw uit."
+  fi
+}
+
+install_model() {
+  local wanted="$1"
+  local target="$APP_HOME/models/ggml-$wanted.bin"
+  [ -d "$APP_HOME/whisper.cpp/models" ] || die "whisper.cpp ontbreekt; voer de installer opnieuw uit."
+  mkdir -p "$APP_HOME/models"
+  if [ ! -f "$target" ]; then
+    sh "$APP_HOME/whisper.cpp/models/download-ggml-model.sh" "$wanted" "$APP_HOME/models"
+  fi
+  printf 'WIJTRANSCRIBE_MODEL=%s\n' "$wanted" > "$CONFIG"
+  say "standaardmodel is nu '$wanted'"
+}
+
+update_app() {
+  [ -d "$APP_HOME/whisper.cpp/.git" ] || die "installatie ontbreekt; voer install.sh opnieuw uit."
+  git -C "$APP_HOME/whisper.cpp" pull --ff-only
+  local n="$(nproc 2>/dev/null || echo 2)"
+  [ "$n" -gt 4 ] 2>/dev/null && n=4
+  cmake -S "$APP_HOME/whisper.cpp" -B "$APP_HOME/whisper.cpp/build" -DCMAKE_BUILD_TYPE=Release
+  cmake --build "$APP_HOME/whisper.cpp/build" -j "$n" --config Release
+  say "whisper.cpp bijgewerkt"
+}
+
+if [ $# -eq 0 ]; then usage; exit 0; fi
+case "$1" in
+  -h|--help) usage; exit 0 ;;
+  --version) version; exit 0 ;;
+  doctor) doctor; exit 0 ;;
+  model)
+    [ $# -ge 2 ] || die "geef een modelnaam op"
+    install_model "$2"
+    exit 0
+    ;;
+  update) update_app; exit 0 ;;
+esac
+
+INPUT="$1"; shift
+LANGUAGE="auto"
+OUTPUT=""
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --output|-o)
+      [ $# -ge 2 ] || die "--output mist een map"
+      OUTPUT="$2"; shift 2 ;;
+    --lang|-l)
+      [ $# -ge 2 ] || die "--lang mist een taalcode"
+      LANGUAGE="$2"; shift 2 ;;
+    --model|-m)
+      [ $# -ge 2 ] || die "--model mist een modelnaam"
+      MODEL="$2"
+      MODEL_FILE="$APP_HOME/models/ggml-$MODEL.bin"
+      shift 2 ;;
+    *) die "onbekende optie: $1" ;;
+  esac
+done
+
+[ -e "$INPUT" ] || die "bron bestaat niet: $INPUT"
+[ -x "$CLI" ] || die "whisper-cli ontbreekt; voer install.sh opnieuw uit"
+[ -f "$MODEL_FILE" ] || die "model '$MODEL' ontbreekt; gebruik: wijtranscribe model $MODEL"
+command -v ffmpeg >/dev/null 2>&1 || die "ffmpeg ontbreekt"
+
+if [ -z "$OUTPUT" ]; then
+  if [ -d "$INPUT" ]; then
+    OUTPUT="${INPUT%/}/transcripts"
+  else
+    OUTPUT="$(dirname -- "$INPUT")/transcripts"
+  fi
+fi
+mkdir -p "$OUTPUT" "$APP_HOME/tmp"
+
+TMP="$(mktemp -d "${TMPDIR:-$APP_HOME/tmp}/wijtranscribe.XXXXXX")"
+trap 'rm -rf "$TMP"' EXIT INT TERM
+
+FILES=()
+if [ -f "$INPUT" ]; then
+  FILES+=("$INPUT")
+else
+  while IFS= read -r -d '' f; do FILES+=("$f"); done < <(
+    find "$INPUT" -maxdepth 1 -type f \( \
+      -iname '*.mp3' -o -iname '*.m4a' -o -iname '*.mp4' -o -iname '*.wav' -o \
+      -iname '*.flac' -o -iname '*.ogg' -o -iname '*.opus' -o -iname '*.aac' -o \
+      -iname '*.webm' \
+    \) -print0 | sort -z
+  )
+fi
+
+[ "${#FILES[@]}" -gt 0 ] || die "geen ondersteunde audiobestanden gevonden"
+
+COMBINED="$OUTPUT/ALL_TRANSCRIPTS.txt"
+: > "$COMBINED"
+TOTAL="${#FILES[@]}"
+IDX=0
+
+for FILE in "${FILES[@]}"; do
+  IDX=$((IDX + 1))
+  NAME="$(basename -- "$FILE")"
+  STEM="${NAME%.*}"
+  SAFE_STEM="${STEM//\//_}"
+  WAV="$TMP/$IDX.wav"
+  OUTBASE="$OUTPUT/$SAFE_STEM"
+
+  say "[$IDX/$TOTAL] $NAME voorbereiden"
+  ffmpeg -hide_banner -loglevel error -y -i "$FILE" -ar 16000 -ac 1 -c:a pcm_s16le "$WAV"
+
+  say "[$IDX/$TOTAL] transcriberen (model=$MODEL, taal=$LANGUAGE)"
+  "$CLI" -m "$MODEL_FILE" -f "$WAV" -l "$LANGUAGE" -otxt -osrt -of "$OUTBASE"
+
+  {
+    printf '===== %s =====\n\n' "$NAME"
+    cat "$OUTBASE.txt"
+    printf '\n\n'
+  } >> "$COMBINED"
+done
+
+say "klaar: $TOTAL bestand(en)"
+say "gecombineerd: $COMBINED"
