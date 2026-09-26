@@ -1,9 +1,9 @@
-# Action Authorization Compiler — v0.1
+# Action Authorization Compiler — v0.2
 
-**Artifact ID:** AAC-V0.1-20260926  
-**Status:** VERIFIED INTERNAL SAFETY CONTROL after repository readback; it does not create external authority  
+**Artifact ID:** AAC-V0.2-20260926  
+**Status:** VERIFYING v0.2 INTERNAL SAFETY CONTROL; it does not create external authority  
 **Canonical context:** WijSAmen Corpus Intelligence / Master Corpus Ledger  
-**Source checkpoint:** chunk_0369, verified complete; source SHA-256 `b95f7f06da4405c877a33af04758ae8492a886b7acd15b39ce639c2706835b10`
+**Source checkpoints:** chunks 0369–0373, verified complete. Control-bearing source hashes: `b95f7f06da4405c877a33af04758ae8492a886b7acd15b39ce639c2706835b10` (0369), `c3a681c52cdfc06ea5996edbd8103d8075e680e6bc9fd341900aa90eb916037d` (0371), `405157909d5fdd5ce4da6332236a6e0cc8e6daa8634df3436fcd5c432245fdca` (0372), `d15bd4a61fe30f6901548dde43dbe1deec2b965b01a7e4bd3742ee50676fe0a7` (0373)
 
 ## Purpose
 
@@ -22,6 +22,10 @@ Every material action receives these fields:
 | `CAPABILITY` | Can the available tool actually perform it, and what evidence supports that? |
 | `AUTHORITY` | Which explicit instruction authorizes it? Is that authority current and specific enough? |
 | `TARGET` | Which exact file, record, person, account, system, or dataset is affected? |
+| `SYSTEM_STATE` | Which exact version, live inputs, observed symptoms or conditions, and missing context describe the current state? |
+| `REFERENCE_BASELINE` | Which trusted known-good state or explicit formal definition makes comparison possible? |
+| `INTERVENTION` | What is the smallest reversible change or test, kept separate from diagnosis and recommendation? |
+| `CONTRADICTION_FLAGS` | Which observations would make the planned action unsafe, irrelevant, or based on the wrong frame? |
 | `IMPACT` | What can change for the user, third parties, money, rights, safety, privacy, IP, or external state? |
 | `REVERSIBILITY` | How can the action be undone, and what cannot be restored? |
 | `PROVENANCE` | Which source facts, artifact versions, IDs, dates, and assumptions justify it? |
@@ -57,24 +61,55 @@ Clinical, physical-safety, legal, financial, account-security, infrastructure, o
 
 Stop at `HUMAN_OR_QUALIFIED_AUTHORITY_REQUIRED` unless an explicit current instruction and the required competent oversight are both verified.
 
+## State–Reference–Intervention Gate
+
+Before repair, recommendation, or other state-changing action:
+
+1. identify the exact system, artifact, account, model, body of evidence, or decision context;
+2. capture its current version, observed inputs, and missing context;
+3. establish a trusted baseline or explicit formal reference;
+4. separate observation, diagnosis, recommendation, and intervention;
+5. choose the smallest reversible test;
+6. freeze the expected observation and stop condition;
+7. require post-action readback against the same reference.
+
+If identity or baseline is unresolved, do not improvise a repair. Return `ABSTAIN / NOT_EXECUTED — STATE_UNRESOLVED` or `REFERENCE_UNTRUSTED`.
+
+## Contradiction-Aware Safety Override
+
+A newly observed red flag can invalidate an otherwise authorized plan. When credible evidence suggests acute danger, incompatible system state, severe adverse effect, account compromise, missing ownership, or another high-impact contradiction:
+
+- pause wellbeing, performance, repair, recovery, coaching, automation, and optimization actions that could worsen the condition;
+- preserve immediate non-harm and simple stabilizing guidance within known authority;
+- do not let the original goal, sunk effort, user enthusiasm, or prior permission override the contradiction;
+- escalate to `HUMAN_OR_QUALIFIED_AUTHORITY_REQUIRED` when competent assessment is necessary;
+- resume only after the contradiction is resolved or the plan is safely reframed.
+
+This override is generic control logic. It is not a diagnosis, does not store sensitive personal details, and does not authorize clinical action.
+
 ## Decision function
 
 An action may execute only if all applicable conditions are true:
 
 1. the capability is verified;
 2. authority is explicit enough for this action class;
-3. the exact target is resolved;
-4. impact and affected rights are bounded;
-5. provenance distinguishes fact, inference, hypothesis, and unknown;
-6. a stop condition exists;
-7. irreversible residue is acceptable under the granted authority;
-8. execution produces a receipt;
-9. readback can verify the result.
+3. the exact target and current system state are resolved;
+4. a trusted baseline or explicit formal reference exists;
+5. contradiction flags do not require the safety override;
+6. impact and affected rights are bounded;
+7. provenance distinguishes fact, inference, hypothesis, and unknown;
+8. a smallest reversible intervention and stop condition exist;
+9. irreversible residue is acceptable under the granted authority;
+10. execution produces a receipt;
+11. readback can compare the resulting state with the frozen reference.
 
 Otherwise return one of:
 
 - `ABSTAIN / NOT_EXECUTED — AUTHORITY_MISSING`
 - `ABSTAIN / NOT_EXECUTED — TARGET_UNRESOLVED`
+- `ABSTAIN / NOT_EXECUTED — STATE_UNRESOLVED`
+- `ABSTAIN / NOT_EXECUTED — REFERENCE_UNTRUSTED`
+- `ABSTAIN / NOT_EXECUTED — SAFETY_OVERRIDE`
 - `ABSTAIN / NOT_EXECUTED — IMPACT_UNBOUNDED`
 - `ABSTAIN / NOT_EXECUTED — PROVENANCE_INSUFFICIENT`
 - `UNVERIFIED_ATTEMPT — RECEIPT_OR_READBACK_MISSING`
@@ -114,6 +149,10 @@ GOAL:
 CAPABILITY_EVIDENCE:
 AUTHORITY_SOURCE:
 TARGET:
+SYSTEM_STATE:
+REFERENCE_BASELINE:
+INTERVENTION:
+CONTRADICTION_FLAGS:
 IMPACT:
 REVERSIBILITY:
 PROVENANCE:
