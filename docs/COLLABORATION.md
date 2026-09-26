@@ -85,3 +85,9 @@ Wanneer de gebruiker aangeeft dat woorden niet binnenkomen, dat het gesprek niet
 5. bewaar relevante projectcontext op de achtergrond zodat de gebruiker die later niet opnieuw hoeft op te bouwen.
 
 Bij mogelijke onmiddellijke onveiligheid komt een eenvoudige veilige eerste stap vóór analyse. Deze fail-safe is een toegankelijkheidsregel; hij is geen medische diagnose en bewaart geen persoonlijke gezondheidsgegevens in de repository.
+
+## Actieautorisatie vóór uitvoering
+
+Materiële agentacties worden eerst geclassificeerd met de [Action Authorization Compiler](ACTION_AUTHORIZATION_COMPILER.md). Die controleert capaciteit, bevoegdheid, doelwit, impact, omkeerbaarheid, provenance, bevestiging, stopvoorwaarde, uitvoeringsbewijs, teruglezing en rollback.
+
+Een hulpmiddel dat technisch iets kan uitvoeren, schept geen bevoegdheid. Bij ontbrekende toestemming, onopgelost doelwit, onbegrensde impact of ontbrekende teruglezing eindigt de actie in `ABSTAIN / NOT_EXECUTED`, `UNVERIFIED_ATTEMPT` of een expliciete beslispoort. Projectspecifieke strengere grenzen blijven leidend.
