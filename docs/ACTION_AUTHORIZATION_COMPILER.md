@@ -1,7 +1,7 @@
 # Action Authorization Compiler — v0.2
 
 **Artifact ID:** AAC-V0.2-20260926  
-**Status:** VERIFYING v0.2 INTERNAL SAFETY CONTROL; it does not create external authority  
+**Status:** VERIFIED v0.2 INTERNAL SAFETY CONTROL after repository readback; it does not create external authority  
 **Canonical context:** WijSAmen Corpus Intelligence / Master Corpus Ledger  
 **Source checkpoints:** chunks 0369–0373, verified complete. Control-bearing source hashes: `b95f7f06da4405c877a33af04758ae8492a886b7acd15b39ce639c2706835b10` (0369), `c3a681c52cdfc06ea5996edbd8103d8075e680e6bc9fd341900aa90eb916037d` (0371), `405157909d5fdd5ce4da6332236a6e0cc8e6daa8634df3436fcd5c432245fdca` (0372), `d15bd4a61fe30f6901548dde43dbe1deec2b965b01a7e4bd3742ee50676fe0a7` (0373)
 
