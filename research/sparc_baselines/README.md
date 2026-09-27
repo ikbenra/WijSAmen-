@@ -28,6 +28,9 @@ Dataset: Lelli, McGaugh & Schombert, SPARC mass models, DOI `10.5281/zenodo.1628
 
 ## Candidate admission
 
-Before evaluating any WijSAmen/0Veld correction, follow the [candidate admission gate](./CANDIDATE_ADMISSION_GATE.md). It requires a numerically distinct training-set prediction, at most two universal parameters, a commit-bound pre-evaluation freeze, one-shot procedural holdout, explicit disconfirmation criteria, and an external-constraint route.
+Before evaluating any WijSAmen/0Veld correction, follow both gates:
+
+1. [Novelty-delta table](./NOVELTY_DELTA_TABLE.md): identify the exact baseline, new axiom, derivation, dataset, parameter count, differing prediction and disconfirming result. A new name or interpretation is not a delta.
+2. [Candidate admission gate](./CANDIDATE_ADMISSION_GATE.md): require a numerically distinct training-set prediction, at most two universal parameters, a commit-bound pre-evaluation freeze, one-shot procedural holdout, explicit disconfirmation criteria, and an external-constraint route.
 
 The currently documented local 0Veld response is algebraically identical to the RAR baseline and is therefore classified `ALIAS_OF_RAR`, not as a separate candidate result.

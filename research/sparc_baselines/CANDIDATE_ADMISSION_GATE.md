@@ -2,7 +2,7 @@
 
 Status: **required before any WijSAmen/0Veld candidate evaluation**
 
-Canonical benchmark context: [README](./README.md) and private repository issue `#3`.
+Canonical benchmark context: [README](./README.md), [novelty-delta gate](./NOVELTY_DELTA_TABLE.md), and private repository issue `#3`.
 
 ## Why this gate exists
 
@@ -15,6 +15,8 @@ g_eff = g_bar / (1 - exp(-sqrt(g_bar / a0)))
 is numerically and algebraically identical to the RAR baseline already implemented in this benchmark. Its orientation/focusing interpretation may be a theoretical hypothesis, but running the same equation again under a different model name cannot provide an independent SPARC result.
 
 **Decision:** the current local 0Veld/RAR expression is **not admissible as a distinct SPARC candidate**. The existing RAR result is the correct measurement of that expression. This decision does not reject the wider 0Veld architecture; it prevents duplicate evidence.
+
+Before using this checklist, complete the [novelty-delta table](./NOVELTY_DELTA_TABLE.md). If the proposed branch has no derived observable that differs from an explicit baseline, stop as `ALIAS_OF_BASELINE` or `INTERPRETATION_ONLY`.
 
 ## Admission checklist
 
