@@ -1,0 +1,56 @@
+{
+  "schema": "instrumented-reality-notebook-v0.1",
+  "record_id": "IRN-EXAMPLE-0001",
+  "title": "Historical light-flash report — source recovery pending",
+  "provenance": {
+    "source_type": "later_reconstruction",
+    "source_locator": "Map2 chunk 0382 analytical finding; exact original passage not attached here",
+    "source_status": "SOURCE_PENDING"
+  },
+  "observation": {
+    "literal": "A flash was reported in connection with an earlier apparatus discussion.",
+    "interpretation": "Cause unresolved; ordinary electrical, optical, recording and memory explanations remain open.",
+    "missing_artifacts": ["exact original passage", "apparatus photographs", "instrument logs"]
+  },
+  "apparatus_identity": {
+    "status": "UNKNOWN",
+    "model_or_build_id": null,
+    "configuration_receipt": null
+  },
+  "energy_inventory": {
+    "state": "UNKNOWN_DO_NOT_ENERGIZE",
+    "sources": [],
+    "stored_energy_checked": false
+  },
+  "environment": {
+    "location_class": "unknown",
+    "lighting": "unknown",
+    "electrical_context": "unknown",
+    "possible_confounders": ["reflection", "camera artifact", "electrical transient", "memory reconstruction"]
+  },
+  "independent_observation": {
+    "status": "NONE_VERIFIED",
+    "observer_or_instrument": null
+  },
+  "controls": {
+    "comparator_or_sham": "Not designed; source and apparatus identity must be recovered first.",
+    "measurement_method": "Not selected.",
+    "raw_artifact_plan": "Preserve original media and metadata if recovered."
+  },
+  "prediction": {
+    "preferred_hypothesis": "UNSPECIFIED",
+    "measurable_prediction": "UNSPECIFIED",
+    "alternative_explanation": "Ordinary optical or electrical event.",
+    "disconfirming_outcome": "No reproducible signal under a later independently approved controlled design."
+  },
+  "stop_conditions": [
+    "Do not energize unknown apparatus.",
+    "Stop if any energy source, component identity or hazard remains unresolved."
+  ],
+  "authority": {
+    "physical_action_requested": false,
+    "owner_permission": "NOT_REQUESTED",
+    "competent_safety_review": "NOT_REQUESTED"
+  },
+  "evidence_state": "SOURCE_PENDING"
+}
