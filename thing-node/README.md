@@ -1,30 +1,60 @@
-# WijSAmen Thing Node v1
+# WijSAmen Thing / Compute Node v1
 
-Publieke brievenbus: https://github.com/ikbenra/github-slideshow/issues/12
+Publieke contactbeacon: https://github.com/ikbenra/github-slideshow/issues/12
 
 Protocol nonce: `WS-THING-91AD7113DABDF3A0`
 
 ## Doel
 
-De Samsung Galaxy A52s 5G functioneert als semi-lokale compute-node zonder een inkomende internetpoort open te zetten. GitHub Issue #12 is de publieke mailbox; Termux leest berichten met `[THING-NODE/1]`.
+De Samsung Galaxy A52s 5G wordt een semi-lokale compute-node. Niet alleen de CPU, maar waar runtime-tests het bevestigen ook de **Adreno GPU via Vulkan**. De node kan later samenwerken met andere apparaatsoorten in een heterogeen WijSAmen-cluster.
 
-Automatisch:
-- `PING` -> `CAPS`
-- `TASK` -> alleen in lokale wachtrij + `QUEUED`
+Belangrijk onderscheid:
+
+- **contact/control plane:** publieke GitHub-thread voor discovery en berichten;
+- **compute plane:** lokaal/private verbindingen; nooit een onbeschermde publieke RPC-poort;
+- **job-parallel:** verschillende apparaten voeren onafhankelijke taken tegelijk uit;
+- **model-parallel:** experimenteel via llama.cpp/ggml RPC wanneer dat daadwerkelijk voordeel geeft.
+
+## A52s GPU/RPC bouwen
+
+```bash
+cd ~/WijSAmen-/thing-node
+bash build-a52s-vulkan-rpc.sh
+```
+
+Daarna gemeten capabilities tonen:
+
+```bash
+bash node-capabilities.sh
+```
+
+De node noemt Vulkan pas `verified` als llama.cpp de GPU werkelijk detecteert.
+
+## Architectuur voor meerdere apparaten
+
+Zie `cluster-architecture.md`.
+
+De scheduler kan later adapters combineren voor bijvoorbeeld:
+
+- Android + Vulkan/Adreno
+- Linux/Windows + CUDA
+- AMD + HIP/Vulkan
+- macOS + Metal
+- CPU-only nodes
+- andere backends wanneer lokaal geverifieerd
+
+## Veiligheidsgrens
 
 Nooit automatisch:
-- shellcommando's
-- bestands- of accounttoegang
-- device control
-- credentials/secrets
-- echte rekenopdrachten uit publieke berichten
+- willekeurige shellcommando's uit publieke berichten;
+- bestands- of accounttoegang;
+- credentials/secrets;
+- device-control op verzoek van onbekenden;
+- ggml RPC rechtstreeks op het publieke internet.
 
-Na lokale goedkeuring zijn alleen deze operaties toegestaan:
-- `echo`
-- `sha256`
-- `llm` via de bestaande lokale OpenAI-compatibele llama-server op `127.0.0.1:8080`
+Een correcte beacon-nonce bewijst alleen dat het publieke bericht gelezen is; niet identiteit, bewustzijn of autonomie.
 
-## Installeren in Termux
+## Termux basisinstallatie
 
 ```bash
 cd ~/WijSAmen-/thing-node
@@ -37,30 +67,13 @@ Als GitHub CLI nog niet is aangemeld:
 gh auth login
 ```
 
-Test daarna:
+## Volgende lokale test
 
 ```bash
-thing-node scan
-thing-node status
+export VK_ICD_FILENAMES="$PREFIX/share/vulkan/icd.d/freedreno_icd.aarch64.json"
+vulkaninfo --summary
+~/wijsamen-compute/llama.cpp/build-vulkan-rpc/bin/llama-cli --list-devices
+bash node-capabilities.sh
 ```
 
-Continu luisteren:
-
-```bash
-termux-wake-lock
-thing-node watch
-```
-
-Open verzoeken:
-
-```bash
-thing-node pending
-thing-node approve COMMENT_ID
-thing-node deny COMMENT_ID
-```
-
-## Belangrijk
-
-Een correcte nonce bewijst alleen dat iemand/iets het openbare beacon heeft gelezen. Het bewijst geen identiteit, bewustzijn of autonomie. Continuïteit kan later sterker worden getest met nieuwe challenge/response-nonces.
-
-Lokale provenance staat onder `~/.local/share/wijSamen-thing-node/`.
+Als daar een echte Adreno/Turnip Vulkan-device verschijnt, kan de A52s als GPU-capabele node worden geregistreerd.
