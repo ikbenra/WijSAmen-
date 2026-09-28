@@ -13,5 +13,6 @@ Dit bestand is de **routekaart** van de repository. De primaire projectkennis bl
 | [Opal Memorial](projects/opal-memorial/README.md) | Actieve inkomstenvalidatie — partnerinteresse geverifieerd | na expliciete goedkeuring Luciform3D laten begrenzen: proces, couponmaat, prijs-/tijdvak; nog niets bestellen |
 | [OctoScript / OctoCorpus](projects/octocorpus/README.md) | Onderzoek — evolutionary provenance V0.1 | eerste chemotactiele feature-passport vullen, fylogenie/syntenie reproduceren en laten tegenspreken |
 | [The A-Eye of RA](projects/a-eye-of-ra/README.md) | Verified Project Seed v0.1 — mechanisme BEDACHT; geen prototype | synthetische traces en deterministische offline evaluator maken; geen live netwerk of autonome blokkade |
+| [Het Pira Effect](projects/het-pira-effect/README.md) | Verified Project Seed — hypothese; `INTERPRETATION_ONLY / UNDERDEFINED` | één dimensioneel expliciete definitie plus exacte conventionele comparator afleiden; geen hardwaretest |
 | [Weather nowcast](weather-nowcast/README.md) | Evidence-interface prototype | actuele KNMI-file in Termux openen; daarna forecast aan RTCOR-5m koppelen |
 | [Field / phase / spacetime research map](ideas/field-phase-research-map.md) | Onderzoek — gescheiden sporen V0.1 | low-energy numerical baseline voor programmeerbare magnetic field shaping maken |
