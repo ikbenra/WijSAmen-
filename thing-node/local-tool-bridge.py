@@ -3,6 +3,9 @@
 
 Loopback-only HTTP bridge exposing a very small read-only allowlist to local agents.
 No arbitrary command, path, package or argument is accepted from HTTP input.
+
+Port 8092 is used by default so the existing Autonoompje/OpenAI-compatible bridge can
+remain on 8091.
 """
 from __future__ import annotations
 
@@ -62,7 +65,6 @@ class Handler(BaseHTTPRequestHandler):
     server_version = "WijSAmenLocalToolBridge/0.1"
 
     def log_message(self, fmt, *args):
-        # Keep HTTP access log local and concise.
         print("bridge:", fmt % args)
 
     def send_json(self, status: int, obj: dict):
@@ -97,13 +99,12 @@ class Handler(BaseHTTPRequestHandler):
         return self.send_json(404, {"ok": False, "error": "not found"})
 
     def do_POST(self):
-        # There are intentionally no state-changing HTTP methods in v0.1.
         return self.send_json(405, {"ok": False, "error": "read-only bridge; POST disabled"})
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--port", type=int, default=int(os.environ.get("WIJSAMEN_TOOL_PORT", "8091")))
+    ap.add_argument("--port", type=int, default=int(os.environ.get("WIJSAMEN_TOOL_PORT", "8092")))
     args = ap.parse_args()
     host = "127.0.0.1"
     srv = ThreadingHTTPServer((host, args.port), Handler)
