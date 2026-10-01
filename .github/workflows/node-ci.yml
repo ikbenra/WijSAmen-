@@ -1,0 +1,55 @@
+name: WijSAmen node CI
+
+on:
+  push:
+    paths:
+      - 'thing-node/**'
+      - 'project-miner/**'
+      - '.github/workflows/node-ci.yml'
+  pull_request:
+    paths:
+      - 'thing-node/**'
+      - 'project-miner/**'
+      - '.github/workflows/node-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python syntax
+        run: python3 -m py_compile project-miner/mine_chats.py thing-node/thing-node.py
+      - name: Shell syntax
+        run: |
+          bash -n thing-node/*.sh
+      - name: ShellCheck
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y shellcheck
+          shellcheck -x thing-node/a52s-doctor.sh thing-node/rish-safe.sh thing-node/guardian.sh thing-node/collect-report.sh || true
+      - name: Project miner smoke test
+        run: |
+          cat > /tmp/sample.json <<'JSON'
+          [{
+            "id":"c1",
+            "title":"WijSAmen test",
+            "mapping":{
+              "m1":{"parent":null,"message":{"id":"m1","author":{"role":"user"},"content":{"parts":["Kunnen we een continuity prototype maken? Volgende stap: lokaal testen."]}}},
+              "m2":{"parent":"m1","message":{"id":"m2","author":{"role":"assistant"},"content":{"parts":["Besloten: geen externe actie zonder expliciete toestemming."]}}}
+            }
+          }]
+          JSON
+          python3 project-miner/mine_chats.py /tmp/sample.json --out /tmp/audit
+          test -s /tmp/audit/raw_messages.jsonl
+          test -s /tmp/audit/inventory.jsonl
+          test -s /tmp/audit/stats.json
+          python3 - <<'PY'
+          import json
+          s=json.load(open('/tmp/audit/stats.json'))
+          assert s['raw_messages'] == 2, s
+          assert s['relevant_items'] == 2, s
+          assert s['policy']['no_network'] is True
+          PY
