@@ -141,8 +141,10 @@ wijsamen-guardian once
 De guardian start standaard een read-only toolbridge op alleen:
 
 ```text
-http://127.0.0.1:8091
+http://127.0.0.1:8092
 ```
+
+Poort **8091 blijft vrij** voor de bestaande Autonoompje/OpenAI-compatible bridge.
 
 Voorbeelden:
 
