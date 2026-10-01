@@ -14,7 +14,8 @@ REQUIRE_HEALTH="${WIJSAMEN_REQUIRE_HEALTH:-1}"
 ENABLE_THING_WATCH="${WIJSAMEN_ENABLE_THING_WATCH:-0}"
 ENABLE_TOOLS="${WIJSAMEN_ENABLE_LOCAL_TOOLS:-1}"
 ENABLE_LLAMA="${WIJSAMEN_ENABLE_LLAMA:-0}"
-TOOL_PORT="${WIJSAMEN_TOOL_PORT:-8091}"
+# 8091 is kept free for the existing Autonoompje/OpenAI-compatible bridge.
+TOOL_PORT="${WIJSAMEN_TOOL_PORT:-8092}"
 LLAMA_PORT="${WIJSAMEN_LLAMA_PORT:-8080}"
 LLAMA_MODEL="${WIJSAMEN_MODEL:-}"
 LLAMA_BIN="${WIJSAMEN_LLAMA_SERVER:-$HOME/wijsamen-compute/llama.cpp/build-vulkan-rpc/bin/llama-server}"
@@ -87,17 +88,29 @@ stop_service(){
 }
 
 start_tools(){
-  [ "$ENABLE_TOOLS" = "1" ] || { stop_service tools; return 0; }
+  if [ "$ENABLE_TOOLS" != "1" ]; then
+    stop_service tools
+    return 0
+  fi
   alive tools && return 0
-  [ -f "$HERE/local-tool-bridge.py" ] || { log "local-tool-bridge.py unavailable"; return 0; }
+  if [ ! -f "$HERE/local-tool-bridge.py" ]; then
+    log "local-tool-bridge.py unavailable"
+    return 0
+  fi
   nohup python "$HERE/local-tool-bridge.py" --port "$TOOL_PORT" >>"$HOME_STATE/local-tools.log" 2>&1 &
   echo $! > "$(pidfile tools)"
   log "started read-only local tool bridge on 127.0.0.1:$TOOL_PORT pid=$!"
 }
 
 start_thing(){
-  [ "$ENABLE_THING_WATCH" = "1" ] || { stop_service thing; return 0; }
-  command -v thing-node >/dev/null 2>&1 || { log "thing-node unavailable"; return 0; }
+  if [ "$ENABLE_THING_WATCH" != "1" ]; then
+    stop_service thing
+    return 0
+  fi
+  if ! command -v thing-node >/dev/null 2>&1; then
+    log "thing-node unavailable"
+    return 0
+  fi
   alive thing && return 0
   nohup thing-node watch >>"$HOME_STATE/thing-watch.log" 2>&1 &
   echo $! > "$(pidfile thing)"
@@ -105,10 +118,22 @@ start_thing(){
 }
 
 start_llama(){
-  [ "$ENABLE_LLAMA" = "1" ] || { stop_service llama; return 0; }
-  [ -x "$LLAMA_BIN" ] || { log "llama-server unavailable: $LLAMA_BIN"; return 0; }
-  [ -n "$LLAMA_MODEL" ] && [ -f "$LLAMA_MODEL" ] || { log "WIJSAMEN_MODEL is missing or not a file; llama stays stopped"; return 0; }
-  healthy_for_compute || { stop_service llama; return 0; }
+  if [ "$ENABLE_LLAMA" != "1" ]; then
+    stop_service llama
+    return 0
+  fi
+  if [ ! -x "$LLAMA_BIN" ]; then
+    log "llama-server unavailable: $LLAMA_BIN"
+    return 0
+  fi
+  if [ -z "$LLAMA_MODEL" ] || [ ! -f "$LLAMA_MODEL" ]; then
+    log "WIJSAMEN_MODEL is missing or not a file; llama stays stopped"
+    return 0
+  fi
+  if ! healthy_for_compute; then
+    stop_service llama
+    return 0
+  fi
   alive llama && return 0
   # Bind only to loopback. Remote exposure requires a separate explicit private transport.
   nohup "$LLAMA_BIN" -m "$LLAMA_MODEL" --host 127.0.0.1 --port "$LLAMA_PORT" >>"$HOME_STATE/llama.log" 2>&1 &
@@ -128,7 +153,11 @@ status(){
 once(){
   start_tools
   start_thing
-  if healthy_for_compute; then start_llama; else stop_service llama; fi
+  if healthy_for_compute; then
+    start_llama
+  else
+    stop_service llama
+  fi
 }
 
 watch(){
