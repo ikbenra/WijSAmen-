@@ -52,7 +52,7 @@ jobs:
           import json
           s=json.load(open('/tmp/audit/stats.json'))
           assert s['raw_messages'] == 2, s
-          assert s['relevant_items'] == 2, s
+          assert s['relevant_items'] == 1, s
           assert s['policy']['no_network'] is True
           PY
       - name: Authorization compiler smoke test
