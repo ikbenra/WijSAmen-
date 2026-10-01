@@ -77,3 +77,71 @@ bash node-capabilities.sh
 ```
 
 Als daar een echte Adreno/Turnip Vulkan-device verschijnt, kan de A52s als GPU-capabele node worden geregistreerd.
+
+---
+
+## v2 lokale werklaag
+
+De scripts hieronder voegen geen extra externe bevoegdheid toe. Ze maken bestaande Termux/Shizuku/Vulkan-mogelijkheden meetbaar, herstelbaar en bruikbaar voor Continuity.
+
+### Privacy-preserving capability doctor
+
+```bash
+bash a52s-doctor.sh
+```
+
+Schrijft standaard:
+
+```text
+~/wijsamen-node/state/capabilities.json
+```
+
+Het rapport bevat o.a. Android/SoC/RAM, JDK/Python/Git, Shizuku/rish uid, beschikbare Vulkan-ICD's, `vulkaninfo`, llama.cpp device-detectie, RPC-binary-status en batterij/thermal-samenvatting. MAC- en IPv4-patronen worden vóór persistente opslag geredigeerd.
+
+### Shizuku als beperkte systeemarm
+
+```bash
+bash rish-safe.sh help
+bash rish-safe.sh battery
+bash rish-safe.sh thermal
+bash rish-safe.sh focus
+```
+
+`rish-safe.sh` heeft bewust **geen** `exec`, `raw` of willekeurige shellmodus. Daarmee kan een agent betrouwbare read-only observaties krijgen zonder dat een binnengekomen tekst automatisch shellcode kan worden.
+
+### Eén bestand om te delen
+
+```bash
+bash collect-report.sh
+```
+
+Levert één geredigeerd tekstbestand in:
+
+```text
+/sdcard/Download/WijSAmenReports/
+```
+
+Dit bundelt de relevante A52s/Termux/Shizuku/JDK/Vulkan-status zodat losse screenshots meestal niet meer nodig zijn.
+
+### Continuity guardian
+
+```bash
+bash guardian.sh status
+bash guardian.sh once
+bash guardian.sh watch
+```
+
+Standaard start de guardian **geen** compute- of GitHub-watchservice. Opt-in:
+
+```bash
+export WIJSAMEN_ENABLE_THING_WATCH=1
+export WIJSAMEN_ENABLE_LLAMA=1
+export WIJSAMEN_MODEL=/pad/model.gguf
+bash guardian.sh watch
+```
+
+De lokale llama-server bindt uitsluitend aan `127.0.0.1`. De guardian pauzeert compute bij de ingestelde batterij-/temperatuurgrenzen en kan lokaal services opnieuw starten. Publieke RPC blijft uitgeschakeld.
+
+### Projecthistorie benutten
+
+Zie `../project-miner/`. Die tool kan ChatGPT-exportbestanden lokaal omzetten in een provenance-behoudende raw-laag plus een aparte kandidaatindex voor beslissingen, grenzen, onafgemaakte stappen en ideeën. Zo wordt oude projectcontext herbruikbaar zonder haar stilzwijgend tot huidige waarheid te promoveren.
