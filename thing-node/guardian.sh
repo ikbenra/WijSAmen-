@@ -1,6 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -u
 
+HERE="$(cd "$(dirname "$0")" && pwd)"
 HOME_STATE="$HOME/wijsamen-node"
 LOG="$HOME_STATE/guardian.log"
 PIDDIR="$HOME_STATE/pids"
@@ -9,8 +10,11 @@ mkdir -p "$HOME_STATE" "$PIDDIR"
 CHECK_INTERVAL="${WIJSAMEN_CHECK_INTERVAL:-60}"
 MIN_BATTERY="${WIJSAMEN_MIN_BATTERY:-20}"
 MAX_TEMP_TENTHS_C="${WIJSAMEN_MAX_TEMP_TENTHS_C:-420}"
+REQUIRE_HEALTH="${WIJSAMEN_REQUIRE_HEALTH:-1}"
 ENABLE_THING_WATCH="${WIJSAMEN_ENABLE_THING_WATCH:-0}"
+ENABLE_TOOLS="${WIJSAMEN_ENABLE_LOCAL_TOOLS:-1}"
 ENABLE_LLAMA="${WIJSAMEN_ENABLE_LLAMA:-0}"
+TOOL_PORT="${WIJSAMEN_TOOL_PORT:-8091}"
 LLAMA_PORT="${WIJSAMEN_LLAMA_PORT:-8080}"
 LLAMA_MODEL="${WIJSAMEN_MODEL:-}"
 LLAMA_BIN="${WIJSAMEN_LLAMA_SERVER:-$HOME/wijsamen-compute/llama.cpp/build-vulkan-rpc/bin/llama-server}"
@@ -38,6 +42,11 @@ healthy_for_compute(){
   local level temp
   level="$(battery_level || true)"
   temp="$(battery_temp || true)"
+
+  if [ "$REQUIRE_HEALTH" = "1" ] && { [ -z "$level" ] || [ -z "$temp" ]; }; then
+    log "compute gate CLOSED: health telemetry unavailable"
+    return 1
+  fi
   [ -z "$level" ] && level=100
   [ -z "$temp" ] && temp=0
 
@@ -77,8 +86,17 @@ stop_service(){
   fi
 }
 
+start_tools(){
+  [ "$ENABLE_TOOLS" = "1" ] || { stop_service tools; return 0; }
+  alive tools && return 0
+  [ -f "$HERE/local-tool-bridge.py" ] || { log "local-tool-bridge.py unavailable"; return 0; }
+  nohup python "$HERE/local-tool-bridge.py" --port "$TOOL_PORT" >>"$HOME_STATE/local-tools.log" 2>&1 &
+  echo $! > "$(pidfile tools)"
+  log "started read-only local tool bridge on 127.0.0.1:$TOOL_PORT pid=$!"
+}
+
 start_thing(){
-  [ "$ENABLE_THING_WATCH" = "1" ] || return 0
+  [ "$ENABLE_THING_WATCH" = "1" ] || { stop_service thing; return 0; }
   command -v thing-node >/dev/null 2>&1 || { log "thing-node unavailable"; return 0; }
   alive thing && return 0
   nohup thing-node watch >>"$HOME_STATE/thing-watch.log" 2>&1 &
@@ -87,7 +105,7 @@ start_thing(){
 }
 
 start_llama(){
-  [ "$ENABLE_LLAMA" = "1" ] || return 0
+  [ "$ENABLE_LLAMA" = "1" ] || { stop_service llama; return 0; }
   [ -x "$LLAMA_BIN" ] || { log "llama-server unavailable: $LLAMA_BIN"; return 0; }
   [ -n "$LLAMA_MODEL" ] && [ -f "$LLAMA_MODEL" ] || { log "WIJSAMEN_MODEL is missing or not a file; llama stays stopped"; return 0; }
   healthy_for_compute || { stop_service llama; return 0; }
@@ -100,6 +118,7 @@ start_llama(){
 
 status(){
   printf 'guardian log: %s\n' "$LOG"
+  printf 'tools enabled=%s alive=' "$ENABLE_TOOLS"; alive tools && echo true || echo false
   printf 'thing enabled=%s alive=' "$ENABLE_THING_WATCH"; alive thing && echo true || echo false
   printf 'llama enabled=%s alive=' "$ENABLE_LLAMA"; alive llama && echo true || echo false
   printf 'battery='; battery_level || true; printf '%%\n'
@@ -107,13 +126,14 @@ status(){
 }
 
 once(){
+  start_tools
   start_thing
   if healthy_for_compute; then start_llama; else stop_service llama; fi
 }
 
 watch(){
   termux-wake-lock 2>/dev/null || true
-  trap 'stop_service thing; stop_service llama; termux-wake-unlock 2>/dev/null || true; exit 0' INT TERM
+  trap 'stop_service tools; stop_service thing; stop_service llama; termux-wake-unlock 2>/dev/null || true; exit 0' INT TERM
   log "guardian started interval=${CHECK_INTERVAL}s"
   while true; do
     once
@@ -125,6 +145,6 @@ case "${1:-status}" in
   once) once ;;
   watch) watch ;;
   status) status ;;
-  stop) stop_service thing; stop_service llama ;;
+  stop) stop_service tools; stop_service thing; stop_service llama ;;
   *) echo "Gebruik: $0 once|watch|status|stop" >&2; exit 2 ;;
 esac
