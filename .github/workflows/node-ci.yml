@@ -5,11 +5,13 @@ on:
     paths:
       - 'thing-node/**'
       - 'project-miner/**'
+      - 'authority/**'
       - '.github/workflows/node-ci.yml'
   pull_request:
     paths:
       - 'thing-node/**'
       - 'project-miner/**'
+      - 'authority/**'
       - '.github/workflows/node-ci.yml'
 
 permissions:
@@ -21,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Python syntax
-        run: python3 -m py_compile project-miner/mine_chats.py thing-node/thing-node.py
+        run: python3 -m py_compile project-miner/mine_chats.py authority/authorize.py thing-node/thing-node.py
       - name: Shell syntax
         run: |
           bash -n thing-node/*.sh
@@ -53,3 +55,33 @@ jobs:
           assert s['relevant_items'] == 2, s
           assert s['policy']['no_network'] is True
           PY
+      - name: Authorization compiler smoke test
+        run: |
+          cat > /tmp/read.json <<'JSON'
+          {
+            "id":"probe-1",
+            "kind":"probe",
+            "target":"local:a52s",
+            "impact":"read_only",
+            "reversible":true,
+            "provenance":["test"],
+            "stop_condition":"done",
+            "source_trust":"local"
+          }
+          JSON
+          python3 authority/authorize.py /tmp/read.json > /tmp/read.out
+          grep -q 'ALLOW_READ_ONLY' /tmp/read.out
+          cat > /tmp/payment.json <<'JSON'
+          {
+            "id":"pay-1",
+            "kind":"payment",
+            "target":"external",
+            "impact":"external",
+            "reversible":false,
+            "provenance":["test"],
+            "stop_condition":"not executed",
+            "source_trust":"local"
+          }
+          JSON
+          python3 authority/authorize.py /tmp/payment.json > /tmp/payment.out
+          grep -q 'HUMAN_GATE' /tmp/payment.out
