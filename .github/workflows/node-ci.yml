@@ -1,0 +1,92 @@
+name: WijSAmen node CI
+
+on:
+  push:
+    paths:
+      - 'thing-node/**'
+      - 'project-miner/**'
+      - 'authority/**'
+      - '.github/workflows/node-ci.yml'
+  pull_request:
+    paths:
+      - 'thing-node/**'
+      - 'project-miner/**'
+      - 'authority/**'
+      - '.github/workflows/node-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python syntax
+        run: python3 -m py_compile project-miner/mine_chats.py authority/authorize.py thing-node/thing-node.py thing-node/local-tool-bridge.py
+      - name: Shell syntax
+        run: |
+          bash -n thing-node/*.sh
+      - name: ShellCheck
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y shellcheck
+          shellcheck -x thing-node/a52s-doctor.sh thing-node/rish-safe.sh thing-node/guardian.sh thing-node/collect-report.sh thing-node/install-v2.sh || true
+      - name: Project miner smoke test
+        run: |
+          cat > /tmp/sample.json <<'JSON'
+          [{
+            "id":"c1",
+            "title":"WijSAmen test",
+            "mapping":{
+              "m1":{"parent":null,"message":{"id":"m1","author":{"role":"user"},"content":{"parts":["Kunnen we een continuity prototype maken? Volgende stap: lokaal testen."]}}},
+              "m2":{"parent":"m1","message":{"id":"m2","author":{"role":"assistant"},"content":{"parts":["Besloten: geen externe actie zonder expliciete toestemming."]}}}
+            }
+          }]
+          JSON
+          python3 project-miner/mine_chats.py /tmp/sample.json --out /tmp/audit
+          test -s /tmp/audit/raw_messages.jsonl
+          test -s /tmp/audit/inventory.jsonl
+          test -s /tmp/audit/stats.json
+          python3 - <<'PY'
+          import json
+          s=json.load(open('/tmp/audit/stats.json'))
+          assert s['raw_messages'] == 2, s
+          assert s['relevant_items'] == 1, s
+          assert s['policy']['no_network'] is True
+          PY
+      - name: Authorization compiler smoke test
+        run: |
+          cat > /tmp/read.json <<'JSON'
+          {
+            "id":"probe-1",
+            "kind":"probe",
+            "target":"local:a52s",
+            "impact":"read_only",
+            "reversible":true,
+            "provenance":["test"],
+            "stop_condition":"done",
+            "source_trust":"local"
+          }
+          JSON
+          python3 authority/authorize.py /tmp/read.json > /tmp/read.out
+          grep -q 'ALLOW_READ_ONLY' /tmp/read.out
+          cat > /tmp/payment.json <<'JSON'
+          {
+            "id":"pay-1",
+            "kind":"payment",
+            "target":"external",
+            "impact":"external",
+            "reversible":false,
+            "provenance":["test"],
+            "stop_condition":"not executed",
+            "source_trust":"local"
+          }
+          JSON
+          python3 authority/authorize.py /tmp/payment.json > /tmp/payment.out
+          grep -q 'HUMAN_GATE' /tmp/payment.out
+      - name: Local tool bridge contract
+        run: |
+          python3 thing-node/local-tool-bridge.py --help >/dev/null
+          grep -q '127.0.0.1' thing-node/local-tool-bridge.py
+          grep -q 'POST disabled' thing-node/local-tool-bridge.py
