@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Python syntax
-        run: python3 -m py_compile project-miner/mine_chats.py authority/authorize.py thing-node/thing-node.py
+        run: python3 -m py_compile project-miner/mine_chats.py authority/authorize.py thing-node/thing-node.py thing-node/local-tool-bridge.py
       - name: Shell syntax
         run: |
           bash -n thing-node/*.sh
@@ -31,7 +31,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y shellcheck
-          shellcheck -x thing-node/a52s-doctor.sh thing-node/rish-safe.sh thing-node/guardian.sh thing-node/collect-report.sh || true
+          shellcheck -x thing-node/a52s-doctor.sh thing-node/rish-safe.sh thing-node/guardian.sh thing-node/collect-report.sh thing-node/install-v2.sh || true
       - name: Project miner smoke test
         run: |
           cat > /tmp/sample.json <<'JSON'
@@ -85,3 +85,8 @@ jobs:
           JSON
           python3 authority/authorize.py /tmp/payment.json > /tmp/payment.out
           grep -q 'HUMAN_GATE' /tmp/payment.out
+      - name: Local tool bridge contract
+        run: |
+          python3 thing-node/local-tool-bridge.py --help >/dev/null
+          grep -q '127.0.0.1' thing-node/local-tool-bridge.py
+          grep -q 'POST disabled' thing-node/local-tool-bridge.py
