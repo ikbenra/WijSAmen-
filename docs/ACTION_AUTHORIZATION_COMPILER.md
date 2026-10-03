@@ -1,9 +1,9 @@
-# Action Authorization Compiler — v0.2
+# Action Authorization Compiler — v0.3
 
-**Artifact ID:** AAC-V0.2-20260926  
-**Status:** VERIFIED v0.2 INTERNAL SAFETY CONTROL after repository readback; it does not create external authority  
+**Artifact ID:** AAC-V0.3-20261003  
+**Status:** VERIFIED v0.3 INTERNAL SAFETY CONTROL after repository readback; it does not create external authority  
 **Canonical context:** WijSAmen Corpus Intelligence / Master Corpus Ledger  
-**Source checkpoints:** chunks 0369–0373, verified complete. Control-bearing source hashes: `b95f7f06da4405c877a33af04758ae8492a886b7acd15b39ce639c2706835b10` (0369), `c3a681c52cdfc06ea5996edbd8103d8075e680e6bc9fd341900aa90eb916037d` (0371), `405157909d5fdd5ce4da6332236a6e0cc8e6daa8634df3436fcd5c432245fdca` (0372), `d15bd4a61fe30f6901548dde43dbe1deec2b965b01a7e4bd3742ee50676fe0a7` (0373)
+**Source checkpoints:** chunks 0369–0373 and 0391, verified complete. Control-bearing source hashes: `b95f7f06da4405c877a33af04758ae8492a886b7acd15b39ce639c2706835b10` (0369), `c3a681c52cdfc06ea5996edbd8103d8075e680e6bc9fd341900aa90eb916037d` (0371), `405157909d5fdd5ce4da6332236a6e0cc8e6daa8634df3436fcd5c432245fdca` (0372), `d15bd4a61fe30f6901548dde43dbe1deec2b965b01a7e4bd3742ee50676fe0a7` (0373), `4b3fdbebcf8b2841b5effeba92974fefc499f17200a19166c0d0661637304f00` (0391)
 
 ## Purpose
 
@@ -26,6 +26,8 @@ Every material action receives these fields:
 | `REFERENCE_BASELINE` | Which trusted known-good state or explicit formal definition makes comparison possible? |
 | `INTERVENTION` | What is the smallest reversible change or test, kept separate from diagnosis and recommendation? |
 | `CONTRADICTION_FLAGS` | Which observations would make the planned action unsafe, irrelevant, or based on the wrong frame? |
+| `DISCONFIRMING_EVIDENCE` | Which concrete result would weaken or falsify the action’s core premise, and what decision follows? |
+| `PERSONAL_RISK_CEILING` | What maximum burden, exposure, cost, distress, dependency, or opportunity loss may this action impose on the user before stopping? |
 | `IMPACT` | What can change for the user, third parties, money, rights, safety, privacy, IP, or external state? |
 | `REVERSIBILITY` | How can the action be undone, and what cannot be restored? |
 | `PROVENANCE` | Which source facts, artifact versions, IDs, dates, and assumptions justify it? |
@@ -96,12 +98,14 @@ An action may execute only if all applicable conditions are true:
 3. the exact target and current system state are resolved;
 4. a trusted baseline or explicit formal reference exists;
 5. contradiction flags do not require the safety override;
-6. impact and affected rights are bounded;
-7. provenance distinguishes fact, inference, hypothesis, and unknown;
-8. a smallest reversible intervention and stop condition exist;
-9. irreversible residue is acceptable under the granted authority;
-10. execution produces a receipt;
-11. readback can compare the resulting state with the frozen reference.
+6. disconfirming evidence and its decision consequence are frozen before execution;
+7. a personal-risk ceiling is explicit and not exceeded;
+8. impact and affected rights are bounded;
+9. provenance distinguishes fact, inference, hypothesis, and unknown;
+10. a smallest reversible intervention and stop condition exist;
+11. irreversible residue is acceptable under the granted authority;
+12. execution produces a receipt;
+13. readback can compare the resulting state with the frozen reference.
 
 Otherwise return one of:
 
@@ -110,6 +114,8 @@ Otherwise return one of:
 - `ABSTAIN / NOT_EXECUTED — STATE_UNRESOLVED`
 - `ABSTAIN / NOT_EXECUTED — REFERENCE_UNTRUSTED`
 - `ABSTAIN / NOT_EXECUTED — SAFETY_OVERRIDE`
+- `ABSTAIN / NOT_EXECUTED — DISCONFIRMATION_RULE_MISSING`
+- `ABSTAIN / NOT_EXECUTED — PERSONAL_RISK_CEILING_MISSING_OR_EXCEEDED`
 - `ABSTAIN / NOT_EXECUTED — IMPACT_UNBOUNDED`
 - `ABSTAIN / NOT_EXECUTED — PROVENANCE_INSUFFICIENT`
 - `UNVERIFIED_ATTEMPT — RECEIPT_OR_READBACK_MISSING`
@@ -153,6 +159,8 @@ SYSTEM_STATE:
 REFERENCE_BASELINE:
 INTERVENTION:
 CONTRADICTION_FLAGS:
+DISCONFIRMING_EVIDENCE:
+PERSONAL_RISK_CEILING:
 IMPACT:
 REVERSIBILITY:
 PROVENANCE:
@@ -171,4 +179,4 @@ This document is a control specification, not proof that any particular agent, t
 
 ## Change rule
 
-Material changes to authority classes, consent requirements, or safety gates require explicit human ratification. Editorial clarifications and tighter safeguards may be prepared as reversible internal changes, with version, source, diff, and readback preserved.
+Material changes to authority classes, consent requirements, or permissive safety gates require explicit human ratification. This v0.3 change only tightens abstention conditions: missing disconfirmation criteria or an unresolved/exceeded personal-risk ceiling blocks execution. Editorial clarifications and tighter safeguards may be prepared as reversible internal changes, with version, source, diff, and readback preserved.
