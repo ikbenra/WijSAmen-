@@ -6,34 +6,39 @@ Canonical source: the WijSAmen corpus and project Google Docs. This repository f
 
 **PREPARE_NOW / EXTERNAL_SUBMISSION_GATED**
 
-Source-supported current facts:
+Confirmed current facts:
 
 - TorinoFilmLab’s project manager stated that WHAT A MESH sounds eligible for ScriptLab 2027.
-- The call is expected to open on 1 October 2026.
-- The stated deadline is 3 November 2026 at 16:00 CET and is strict/non-extendable.
+- The official ScriptLab 2027 call is open.
+- The strict deadline is Tuesday 3 November 2026 at 16:00 CET.
+- No application has been submitted and no fee, travel or participation commitment is authorised.
 
-No application has been submitted and no fee, travel or participation commitment is authorised.
+## Confirmed ScriptLab 2027 requirements
+
+Official call checked on 3 October 2026:
+
+- early-stage fiction feature film, original or adapted;
+- writer/director or a writer plus attached director; a writer without an attached director is ineligible;
+- at least one previous directing work;
+- no screenplay draft yet;
+- full availability for all residential and online modules and the TFL Meeting Event;
+- English working proficiency and English application/development materials;
+- one English PDF, maximum 10 MB, containing: project synopsis (maximum 2 pages), director’s intention note (maximum 3 pages), and CV (maximum 2 pages for each applicant), all in Courier New 12 and double spaced;
+- separate personal video message, maximum 2 minutes;
+- links to complete previous audiovisual works, kept accessible until the beginning of March; showreels are not accepted;
+- participation fee €3,000 plus VAT if due;
+- second participant fee €2,300 plus VAT if due;
+- training and accommodation with breakfast are included, plus lunches and some dinners during residential workshops; travel and remaining meals are borne by participants;
+- limited general scholarships may cover half of the participation fee for underrepresented groups, applicants from low-capacity countries, countries without relevant scholarships, or other proven need; the named Malta, Estonia and Switzerland partner scholarships do not create a Dutch entitlement;
+- residential modules: 19–25 April 2027 in Malta, 17–24 June 2027 in Tartu, and the second half of November 2027 in Torino; online modules: 6–10 September and 25–29 October 2027;
+- optional official Q&A: 14 October 2026 at 15:00 CEST;
+- preselected applicants are notified on 8–9 December 2026 and must submit a treatment of maximum 15 pages by 10 December 2026 at 16:00 CET. This creates a one-to-two-day response window, so the treatment reserve must exist before notification.
+
+Source: TorinoFilmLab, “ScriptLab 2027”, accessed 3 October 2026: https://www.torinofilmlab.it/labs/scriptlab---story-editing/scriptlab-2027
 
 ## Evidence boundary
 
-The 2027 call and form are not yet public. The checklist below uses the official ScriptLab 2026 page only as a **provisional historical baseline**. Every item must be compared with the 2027 call after it opens. A previous-round requirement must not be represented as a confirmed 2027 requirement.
-
-Official 2026 baseline included:
-
-- an early-stage fiction feature film, original or adapted;
-- a writer/director or a writer plus attached director; a writer without an attached director was ineligible;
-- at least one previous directing work;
-- no screenplay draft yet;
-- full availability for residential and online modules;
-- English working proficiency and English application/development materials;
-- one PDF containing a project synopsis (maximum 2 pages), director’s intention note (maximum 3 pages), and CV (maximum 2 pages);
-- a personal video message (maximum 2 minutes);
-- links to previous audiovisual work; showreels were not accepted;
-- for preselected projects, a treatment of up to 15 pages, with optional update video and moodboard;
-- a participation fee of €2,500 plus VAT if due, with an additional €2,000 for a selected second participant; travel and some meals were additional participant costs;
-- limited need-based or partner scholarships, with applicants encouraged to investigate national or regional support first.
-
-Source: TorinoFilmLab, “ScriptLab 2026”, accessed 19 September 2026: https://www.torinofilmlab.it/labs/scriptlab---story-editing/scriptlab-2026
+The official page confirms programme-level eligibility, materials, schedule, fees and scholarship language. It does not prove Remco’s directing eligibility, availability, rights, funding, selection chance or form completion. TorinoFilmLab’s earlier positive fit indication remains useful but is not formal admission.
 
 ## Admission gates to resolve
 
@@ -56,10 +61,10 @@ Treat selection and affordability as separate gates. Do not accept participation
 
 Funding preparation order:
 
-1. check 2027 scholarship language;
+1. use the confirmed 2027 need-based half-fee scholarship language as the first funding test;
 2. test WerktuigPPO eligibility and whether ScriptLab qualifies as professional development;
 3. identify a producer, client or other cultural-sector co-financier only after the project/role fit is clear;
-4. calculate fee, VAT, travel and uncovered meals as one maximum exposure;
+4. calculate the confirmed €3,000 fee, possible VAT, travel and uncovered meals as one maximum exposure;
 5. proceed only if the uncovered amount and upfront payer are explicitly accepted.
 
 #### Verified partial route: WerktuigPPO
@@ -83,7 +88,7 @@ Sources:
 
 #### Funding stack order
 
-1. TorinoFilmLab need-based scholarship or fee reduction, if offered in the 2027 call;
+1. TorinoFilmLab need-based half-fee scholarship, if the application can evidence qualifying need;
 2. WerktuigPPO contribution, if formally eligible;
 3. producer/client/sector-partner contribution that does not transfer unwanted IP or control;
 4. only an explicitly affordable uncovered remainder.
@@ -108,15 +113,9 @@ Work that is reusable even if the 2027 form changes:
 - availability and cost worksheet;
 - source-to-claim checklist so no biography, credit or right is invented.
 
-## Opening-day verification
+## Call verification completed
 
-When the 2027 call becomes public:
-
-1. archive the official call URL and access date;
-2. compare every eligibility, material, format, fee, scholarship and schedule field with this baseline;
-3. label each item CONFIRMED, CHANGED, REMOVED or NEW;
-4. update the package before any upload;
-5. stop if director eligibility, rights, availability, affordability or upfront payment remains unresolved.
+The programme-level 2027 call was verified on 3 October 2026. Before any upload, inspect the live application form for account-specific fields and declarations, then stop if director eligibility, rights, availability, affordability or upfront payment remains unresolved.
 
 ## Success and stop conditions
 
@@ -133,8 +132,12 @@ Before submission, Remco chooses whether to:
 - temporarily give WHAT A MESH a focused task slot; or
 - keep the current task allocation and complete only a minimal application package inside Steward.
 
+DQ-SCRIPTLAB-ELIGIBILITY-01 — HUMAN_EVIDENCE_REQUIRED
+
+Identify one qualifying previous directing work with a stable full-work link, or identify an attached director who has one. Without this, submission is ineligible.
+
 DQ-SCRIPTLAB-FUNDING-01 — PENDING_FORMAL_ELIGIBILITY
 
-Do not treat WerktuigPPO as secured funding. Confirm the 2027 fee/scholarship terms first; then verify PPO applicant/activity eligibility and an upfront payer before any commitment.
+Do not treat the limited half-fee TFL scholarship or WerktuigPPO as secured funding. Verify applicant/activity eligibility and an upfront payer before any commitment. At the confirmed €3,000 base fee, one-third would be €1,000 if PPO accepts the full course fee; travel and accommodation remain outside PPO.
 
 No task rotation, external message, upload, payment or commitment is authorised by this file.
