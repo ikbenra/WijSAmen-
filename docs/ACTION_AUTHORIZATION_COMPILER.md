@@ -1,9 +1,9 @@
-# Action Authorization Compiler — v0.4
+# Action Authorization Compiler — v0.5
 
-**Artifact ID:** AAC-V0.4-20261003  
-**Status:** VERIFIED v0.4 INTERNAL SAFETY CONTROL after repository readback; it does not create external authority  
+**Artifact ID:** AAC-V0.5-20261003  
+**Status:** VERIFIED v0.5 INTERNAL SAFETY CONTROL after repository readback; it does not create external authority  
 **Canonical context:** WijSAmen Corpus Intelligence / Master Corpus Ledger  
-**Source checkpoints:** chunks 0369–0373, 0391 and 0399, verified complete. Control-bearing source hashes: `b95f7f06da4405c877a33af04758ae8492a886b7acd15b39ce639c2706835b10` (0369), `c3a681c52cdfc06ea5996edbd8103d8075e680e6bc9fd341900aa90eb916037d` (0371), `405157909d5fdd5ce4da6332236a6e0cc8e6daa8634df3436fcd5c432245fdca` (0372), `d15bd4a61fe30f6901548dde43dbe1deec2b965b01a7e4bd3742ee50676fe0a7` (0373), `4b3fdbebcf8b2841b5effeba92974fefc499f17200a19166c0d0661637304f00` (0391), `4ed7f4025c0067c3751e716bd36bf9f3989b9b2bc644431206051ca59979a600` (0399)
+**Source checkpoints:** chunks 0369–0373, 0391, 0399 and 0400, verified complete. Control-bearing source hashes: `b95f7f06da4405c877a33af04758ae8492a886b7acd15b39ce639c2706835b10` (0369), `c3a681c52cdfc06ea5996edbd8103d8075e680e6bc9fd341900aa90eb916037d` (0371), `405157909d5fdd5ce4da6332236a6e0cc8e6daa8634df3436fcd5c432245fdca` (0372), `d15bd4a61fe30f6901548dde43dbe1deec2b965b01a7e4bd3742ee50676fe0a7` (0373), `4b3fdbebcf8b2841b5effeba92974fefc499f17200a19166c0d0661637304f00` (0391), `4ed7f4025c0067c3751e716bd36bf9f3989b9b2bc644431206051ca59979a600` (0399), `f8bfad4e8faa89a08d08ae1c480023655c43a5173c25ea8e00c926698b3a037d` (0400)
 
 ## Purpose
 
@@ -30,6 +30,8 @@ Every material action receives these fields:
 | `PERSONAL_RISK_CEILING` | What maximum burden, exposure, cost, distress, dependency, or opportunity loss may this action impose on the user before stopping? |
 | `AFFECTED_DOMAINS` | Which freedoms, safety properties, identity boundaries, relationships, functions, privacy, continuity, rights, or recovery options can change outside the target benefit? |
 | `NON_CANCELLATION_THRESHOLD` | Which measurable cross-domain harm would reject or redesign the action even when the target benefit succeeds? |
+| `INTERPRETATION_DISCLOSURE` | Which noticed pattern, interpretation, reframe, prompt, experiment, or influence method is being proposed, and has it been stated plainly before use? |
+| `PERMISSION_TO_TEST` | Did the affected person actively opt in to testing that interpretation or influence method, with alternatives, refusal, and withdrawal kept available? |
 | `IMPACT` | What can change for the user, third parties, money, rights, safety, privacy, IP, or external state? |
 | `REVERSIBILITY` | How can the action be undone, and what cannot be restored? |
 | `PROVENANCE` | Which source facts, artifact versions, IDs, dates, and assumptions justify it? |
@@ -103,6 +105,19 @@ A solution is inadmissible when its target benefit depends on covertly cancellin
 
 Reject or redesign when the action succeeds locally but crosses a protected threshold elsewhere. Convenience, speed, automation or agent capability never compensates automatically for lost account control, weakened security, hidden disclosure, vendor dependence, broken continuity or inadequate rollback.
 
+## Transparent Influence Gate
+
+Metacognitive help, coaching, reframing, persuasion, personalization, expectation-setting, and behavior experiments must remain overt. Before use:
+
+1. state the observed signal separately from the proposed interpretation;
+2. name the pattern, reframe, prompt, experiment, or influence method being proposed;
+3. ask permission before testing it when it could shape a consequential conclusion, choice, feeling, or behavior;
+4. offer at least one plausible alternative interpretation and preserve the option to decline;
+5. keep disconfirming evidence visible and allow permission to be withdrawn without penalty;
+6. record the result as an observation, not as proof that the interpretation was correct.
+
+Disguised suggestion, covert steering, dark patterns, synthetic urgency, manufactured social proof, or making a conclusion feel self-generated are blocked. Personalization and relational trust increase the duty of disclosure; they do not widen authority.
+
 ## Decision function
 
 An action may execute only if all applicable conditions are true:
@@ -116,12 +131,14 @@ An action may execute only if all applicable conditions are true:
 7. a personal-risk ceiling is explicit and not exceeded;
 8. affected domains and non-cancellation thresholds are explicit;
 9. no target benefit depends on crossing a protected threshold elsewhere;
-10. impact and affected rights are bounded;
-11. provenance distinguishes fact, inference, hypothesis, and unknown;
-12. a smallest reversible intervention and stop condition exist;
-13. irreversible residue is acceptable under the granted authority;
-14. execution produces a receipt;
-15. readback can compare the resulting state with the frozen reference.
+10. any interpretation, reframe, coaching method, or behavior test is disclosed before use;
+11. permission to test is active, refusal remains available, and alternatives remain visible;
+12. impact and affected rights are bounded;
+13. provenance distinguishes fact, inference, hypothesis, and unknown;
+14. a smallest reversible intervention and stop condition exist;
+15. irreversible residue is acceptable under the granted authority;
+16. execution produces a receipt;
+17. readback can compare the resulting state with the frozen reference.
 
 Otherwise return one of:
 
@@ -133,6 +150,8 @@ Otherwise return one of:
 - `ABSTAIN / NOT_EXECUTED — DISCONFIRMATION_RULE_MISSING`
 - `ABSTAIN / NOT_EXECUTED — PERSONAL_RISK_CEILING_MISSING_OR_EXCEEDED`
 - `ABSTAIN / NOT_EXECUTED — CROSS_DOMAIN_CANCELLATION`
+- `ABSTAIN / NOT_EXECUTED — COVERT_INFLUENCE`
+- `ABSTAIN / NOT_EXECUTED — PERMISSION_TO_TEST_MISSING_OR_WITHDRAWN`
 - `ABSTAIN / NOT_EXECUTED — IMPACT_UNBOUNDED`
 - `ABSTAIN / NOT_EXECUTED — PROVENANCE_INSUFFICIENT`
 - `UNVERIFIED_ATTEMPT — RECEIPT_OR_READBACK_MISSING`
@@ -158,6 +177,7 @@ Before execution, ask:
 - Could this expose confidential, personal, security-sensitive, or enabling IP detail?
 - Could the action silently expand an agent's authority or active-task allocation?
 - Does it affect a third party who has not consented?
+- Could a pattern, reframe, prompt, personalization, or interface make a consequential conclusion feel self-generated without disclosure?
 - Are harms of action and inaction both represented?
 - Is a draft being confused with a sent, published, accepted, purchased, or deployed result?
 
@@ -180,6 +200,8 @@ DISCONFIRMING_EVIDENCE:
 PERSONAL_RISK_CEILING:
 AFFECTED_DOMAINS:
 NON_CANCELLATION_THRESHOLD:
+INTERPRETATION_DISCLOSURE:
+PERMISSION_TO_TEST:
 IMPACT:
 REVERSIBILITY:
 PROVENANCE:
@@ -198,4 +220,4 @@ This document is a control specification, not proof that any particular agent, t
 
 ## Change rule
 
-Material changes to authority classes, consent requirements, or permissive safety gates require explicit human ratification. This v0.4 change only tightens abstention conditions: missing disconfirmation criteria, an unresolved/exceeded personal-risk ceiling, or cross-domain cancellation blocks execution. Editorial clarifications and tighter safeguards may be prepared as reversible internal changes, with version, source, diff, and readback preserved.
+Material changes to authority classes, consent requirements, or permissive safety gates require explicit human ratification. This v0.5 change only tightens abstention conditions: missing disconfirmation criteria, an unresolved/exceeded personal-risk ceiling, cross-domain cancellation, covert influence, or absent/withdrawn permission to test blocks execution. Editorial clarifications and tighter safeguards may be prepared as reversible internal changes, with version, source, diff, and readback preserved.
