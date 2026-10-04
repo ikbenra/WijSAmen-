@@ -68,6 +68,8 @@ gaia-listening-layer/
 ├── ARCHITECTURE.md
 ├── pyproject.toml
 ├── demo.py
+├── mobile_city_demo.py
+├── MATURE_TECHNOSPHERE_MOBILE_CITIES.md
 ├── gaia_layer/
 │   ├── __init__.py
 │   ├── models.py
@@ -75,6 +77,36 @@ gaia-listening-layer/
 └── tests/
     └── test_engine.py
 ```
+
+
+## Concrete mature-technosphere toepassing: mobiele drijvende steden
+
+De Gaia Listening Layer is ook bedoeld als waarnemings- en terugkoppellaag voor mobiele drijvende steden die hun ecologische belasting actief kunnen aanpassen.
+
+Zie:
+
+- [Mature Technosphere — mobiele drijvende steden](MATURE_TECHNOSPHERE_MOBILE_CITIES.md)
+- `mobile_city_demo.py` — minimale executable representatie van een mobiele stad gekoppeld aan een zeegebied.
+
+Daarin worden onder meer lichtdoorlaat, lokale ecologische toestand, mobiliteit en federatieve coördinatie als regelbare of waarneembare grootheden behandeld.
+
+De centrale ontwerpgedachte is:
+
+```text
+zee waarnemen
+    ↓
+systeemtoestand interpreteren
+    ↓
+stad + zee + andere steden gezamenlijk modelleren
+    ↓
+mogelijke aanpassing/verplaatsing simuleren
+    ↓
+pas daarna een transparant voorstel
+    ↓
+effect opnieuw meten
+```
+
+Zo wordt mobiliteit van infrastructuur een mechanisme waarmee een technosfeer ook fysiek ruimte kan geven aan ecologisch herstel.
 
 ## Volgende nuttige uitbreidingen
 
