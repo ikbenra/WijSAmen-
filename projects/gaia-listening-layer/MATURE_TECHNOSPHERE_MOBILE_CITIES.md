@@ -1,4 +1,10 @@
-# Mature Technosphere application — mobiele drijvende steden
+# Celestia — Mature Technosphere application met mobiele drijvende steden
+
+## Naam en schaal
+
+**Celestia** is de werknaam voor de toekomstige wereld/civilisatie waarin een volwassen technosfeer mens, natuur en technologie als één gekoppeld maar gedistribueerd systeem helpt samenwerken.
+
+**Oceanië** kan binnen Celestia gebruikt worden als naam voor de oceanische woonlaag: het netwerk van mobiele drijvende steden en mariene habitats. Zo blijft Celestia breder dan alleen de oceaan en kan het ook land, natuurgebieden, landbouw, luchtruim, energie, steden en andere systemen omvatten.
 
 ## Kernidee
 
