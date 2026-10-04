@@ -12,6 +12,7 @@
 
 ## Begin hier
 
+- [Ideeënatlas](docs/IDEAS_ATLAS.md) — publieksvriendelijk overzicht van de belangrijkste WijSAmen-richtingen
 - [Projectenoverzicht](PROJECTS.md) — actieve richtingen en hun status
 - [Ideeën-inbox](ideas/README.md) — nieuwe ingevingen eerst veilig vastleggen
 - [Samenwerkingswijze](docs/COLLABORATION.md) — hoe we besluiten en voortgang bewaren
