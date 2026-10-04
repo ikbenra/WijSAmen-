@@ -70,6 +70,7 @@ gaia-listening-layer/
 ├── demo.py
 ├── mobile_city_demo.py
 ├── MATURE_TECHNOSPHERE_MOBILE_CITIES.md
+├── OMEGA_HYPOTHESIS.md
 ├── gaia_layer/
 │   ├── __init__.py
 │   ├── models.py
@@ -107,6 +108,14 @@ effect opnieuw meten
 ```
 
 Zo wordt mobiliteit van infrastructuur een mechanisme waarmee een technosfeer ook fysiek ruimte kan geven aan ecologisch herstel.
+
+## Omega-onderzoeksspoor
+
+Naast Gaia en Celestia is er nu een afzonderlijk document voor de bredere **Omega-hypothese**:
+
+- [Omega-hypothese](OMEGA_HYPOTHESIS.md) — universumschaal intelligentie/bewustzijn als mogelijk emergent resultaat van doordachte configuraties van fysische "kwantumpointers", met de I Ching als voorgestelde combinatorische afleidingsmethode.
+
+Dit spoor blijft expliciet gescheiden van de empirisch directer toetsbare Gaia Listening Layer: symbolische structuur, fysische mapping, causaliteit, intelligentie en bewustzijn worden niet als hetzelfde behandeld.
 
 ## Volgende nuttige uitbreidingen
 
