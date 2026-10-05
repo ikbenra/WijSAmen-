@@ -1,0 +1,24 @@
+name: Build WijSAmen Output Share
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/wijsamen-output-share/**"
+      - ".github/workflows/wijsamen-output-share.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Debian package
+        run: |
+          chmod +x tools/wijsamen-output-share/build-deb.sh
+          tools/wijsamen-output-share/build-deb.sh
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wijsamen-output-share-0.1.1
+          path: tools/wijsamen-output-share/dist/wijsamen-output-share_0.1.1_all.deb
+          if-no-files-found: error
