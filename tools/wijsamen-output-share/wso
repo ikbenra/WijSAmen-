@@ -1,0 +1,190 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -Eeuo pipefail
+
+BASE="${WSO_BASE:-$HOME/ai/termux-output}"
+LOGDIR="$BASE/logs"
+SHAREDIR="$BASE/share"
+CURRENT="$BASE/current.log"
+mkdir -p "$LOGDIR" "$SHAREDIR"
+
+usage() {
+  cat <<'TXT'
+WijSAmen Output Share (wso)
+
+Gebruik:
+  wso session              start een gelogde Termux-shell
+  wso run <opdracht...>    voer 1 opdracht uit en log alles
+  wso latest               toon pad van nieuwste volledige log
+  wso export               maak raw + leesbare export
+  wso share                exporteer en open Android-deelvenster
+  wso default              deel naar Android-standaardontvanger indien ingesteld
+  wso chatgpt              exporteer en open deelvenster met ChatGPT-doel
+  wso show                 toon de leesbare laatste uitvoer
+  wso status               toon wat wso momenteel kan vinden
+
+De meest betrouwbare route naar deze ChatGPT-chat is momenteel:
+  wso chatgpt
+Daarna kies je ChatGPT in Android. Een gedocumenteerde Android-interface om
+rechtstreeks een specifiek bestaand ChatGPT-gesprek te adresseren is niet
+beschikbaar; daarom doet wso dat niet blind.
+TXT
+}
+
+latest_log() {
+  local p=""
+  if [ -L "$CURRENT" ] || [ -f "$CURRENT" ]; then
+    p="$(readlink -f "$CURRENT" 2>/dev/null || printf '%s' "$CURRENT")"
+    [ -f "$p" ] && { printf '%s\n' "$p"; return 0; }
+  fi
+  p="$(find "$LOGDIR" -maxdepth 1 -type f \( -name 'session_*.log' -o -name 'run_*.log' -o -name '*.log' \) -printf '%T@ %p\n' 2>/dev/null | sort -nr | head -n1 | cut -d' ' -f2- || true)"
+  [ -n "$p" ] && [ -f "$p" ] && { printf '%s\n' "$p"; return 0; }
+
+  p="$(find "$HOME/ai" -maxdepth 4 -type f \( -name 'server.log' -o -name 'events.jsonl' \) -printf '%T@ %p\n' 2>/dev/null | sort -nr | head -n1 | cut -d' ' -f2- || true)"
+  [ -n "$p" ] && [ -f "$p" ] && { printf '%s\n' "$p"; return 0; }
+  return 1
+}
+
+clean_file() {
+  local src="$1" dst="$2"
+  python - "$src" "$dst" <<'PY'
+import re, sys
+src, dst = sys.argv[1:3]
+raw = open(src, 'rb').read().decode('utf-8', 'replace')
+ansi = re.compile(r'(?:\x1B\][^\x07]*(?:\x07|\x1B\\)|\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~]))')
+text = ansi.sub('', raw).replace('\r\n', '\n').replace('\r', '\n')
+with open(dst, 'w', encoding='utf-8', newline='\n') as f:
+    f.write(text)
+PY
+}
+
+export_latest() {
+  local src stamp base raw clean dl
+  src="$(latest_log)" || {
+    echo "Geen gelogde uitvoer gevonden." >&2
+    echo "Start eerst: wso session" >&2
+    return 2
+  }
+  stamp="$(date +%Y%m%d_%H%M%S)"
+  base="$SHAREDIR/WijSAmen_Termux_output_$stamp"
+  raw="${base}_RAW.log"
+  clean="${base}.txt"
+  cp -f "$src" "$raw"
+  clean_file "$src" "$clean"
+
+  cp -f "$clean" "$SHAREDIR/LATEST.txt"
+  cp -f "$raw" "$SHAREDIR/LATEST_RAW.log"
+
+  if [ -d "$HOME/storage/downloads" ]; then
+    dl="$HOME/storage/downloads/WijSAmen_Termux_LATEST.txt"
+    cp -f "$clean" "$dl" || true
+  fi
+
+  printf '%s\n' "$clean"
+}
+
+share_file() {
+  local f="$1" mode="${2:-chooser}"
+  if command -v termux-share >/dev/null 2>&1; then
+    if [ "$mode" = default ]; then
+      if termux-share -a send -c text/plain -d -t "WijSAmen Termux uitvoer" "$f"; then
+        return 0
+      fi
+    else
+      if termux-share -a send -c text/plain -t "WijSAmen Termux uitvoer" "$f"; then
+        return 0
+      fi
+    fi
+  fi
+
+  if command -v termux-open >/dev/null 2>&1; then
+    if termux-open --send --chooser --content-type text/plain "$f"; then
+      return 0
+    fi
+  fi
+
+  echo "Kon Android delen niet openen." >&2
+  echo "Installeer zo nodig Termux:API + package termux-api, of gebruik:" >&2
+  echo "  termux-open --send --chooser '$f'" >&2
+  return 3
+}
+
+start_session() {
+  command -v script >/dev/null 2>&1 || {
+    echo "'script' ontbreekt. Installeer util-linux." >&2
+    return 4
+  }
+  local stamp log
+  stamp="$(date +%Y%m%d_%H%M%S)"
+  log="$LOGDIR/session_$stamp.log"
+  ln -sfn "$log" "$CURRENT"
+  echo "WijSAmen logging actief: $log"
+  echo "Typ exit om deze gelogde shell te verlaten."
+  echo
+  exec env WSO_LOGGING=1 script -q -f "$log"
+}
+
+run_logged() {
+  [ "$#" -gt 0 ] || { echo "Gebruik: wso run <opdracht...>" >&2; return 2; }
+  local stamp log rc
+  stamp="$(date +%Y%m%d_%H%M%S)"
+  log="$LOGDIR/run_$stamp.log"
+  ln -sfn "$log" "$CURRENT"
+  set +e
+  "$@" 2>&1 | tee "$log"
+  rc=${PIPESTATUS[0]}
+  set -e
+  printf '\n[exit=%s]\n' "$rc" | tee -a "$log"
+  return "$rc"
+}
+
+cmd="${1:-help}"
+[ "$#" -gt 0 ] && shift || true
+case "$cmd" in
+  help|-h|--help) usage ;;
+  session) start_session ;;
+  run) run_logged "$@" ;;
+  latest) latest_log || { echo "geen log gevonden" >&2; exit 2; } ;;
+  export)
+    f="$(export_latest)"
+    echo "Leesbare export: $f"
+    echo "Raw export:      $SHAREDIR/LATEST_RAW.log"
+    if [ -f "$HOME/storage/downloads/WijSAmen_Termux_LATEST.txt" ]; then
+      echo "Downloads-kopie: $HOME/storage/downloads/WijSAmen_Termux_LATEST.txt"
+    fi
+    ;;
+  share)
+    f="$(export_latest)"
+    echo "Delen: $f"
+    share_file "$f" chooser
+    ;;
+  default)
+    f="$(export_latest)"
+    echo "Delen via standaardontvanger: $f"
+    share_file "$f" default
+    ;;
+  chatgpt)
+    f="$(export_latest)"
+    echo "Klaar voor ChatGPT: $f"
+    echo "Android delen wordt geopend. Kies ChatGPT als doel."
+    share_file "$f" chooser
+    ;;
+  show)
+    f="$(export_latest)"
+    cat "$f"
+    ;;
+  status)
+    echo "BASE=$BASE"
+    if p="$(latest_log 2>/dev/null)"; then
+      echo "latest=$p"
+      echo "bytes=$(wc -c < "$p" | tr -d ' ')"
+    else
+      echo "latest=(geen)"
+    fi
+    echo "termux-share=$(command -v termux-share 2>/dev/null || echo ontbreekt)"
+    echo "termux-open=$(command -v termux-open 2>/dev/null || echo ontbreekt)"
+    if command -v rish >/dev/null 2>&1; then
+      echo "rish=$(command -v rish)"
+    fi
+    ;;
+  *) echo "Onbekend subcommando: $cmd" >&2; usage >&2; exit 2 ;;
+esac
