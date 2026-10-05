@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-VERSION="${VERSION:-0.1.1}"
+VERSION="${VERSION:-0.1.2}"
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 DIST="$ROOT/dist"
 STAGE="$ROOT/.build/wijsamen-output-share"
