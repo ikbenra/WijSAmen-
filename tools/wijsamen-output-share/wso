@@ -9,7 +9,7 @@ mkdir -p "$LOGDIR" "$SHAREDIR"
 
 usage() {
   cat <<'TXT'
-WijSAmen Output Share (wso)
+WijSAmen Output Share 0.1.2 (wso)
 
 Gebruik:
   wso session              start een gelogde Termux-shell
@@ -84,27 +84,33 @@ export_latest() {
 
 share_file() {
   local f="$1" mode="${2:-chooser}"
-  if command -v termux-share >/dev/null 2>&1; then
-    if [ "$mode" = default ]; then
-      if termux-share -a send -c text/plain -d -t "WijSAmen Termux uitvoer" "$f"; then
-        return 0
-      fi
-    else
-      if termux-share -a send -c text/plain -t "WijSAmen Termux uitvoer" "$f"; then
-        return 0
-      fi
-    fi
-  fi
 
+  # Gebruik eerst termux-open. Dit behoort tot termux-tools en opent direct
+  # Androids ACTION_SEND chooser. termux-share kan blijven hangen wanneer
+  # de Termux:API companion-app niet aanwezig of niet bereikbaar is.
   if command -v termux-open >/dev/null 2>&1; then
     if termux-open --send --chooser --content-type text/plain "$f"; then
       return 0
     fi
   fi
 
+  # Alleen als fallback termux-share gebruiken. Begrens dit zodat een kapotte
+  # Termux:API verbinding de shell niet onbeperkt vasthoudt.
+  if command -v termux-share >/dev/null 2>&1 && command -v timeout >/dev/null 2>&1; then
+    if [ "$mode" = default ]; then
+      timeout 5 termux-share -a send -c text/plain -d -t "WijSAmen Termux uitvoer" "$f" && return 0
+    else
+      timeout 5 termux-share -a send -c text/plain -t "WijSAmen Termux uitvoer" "$f" && return 0
+    fi
+  fi
+
   echo "Kon Android delen niet openen." >&2
-  echo "Installeer zo nodig Termux:API + package termux-api, of gebruik:" >&2
-  echo "  termux-open --send --chooser '$f'" >&2
+  echo "Het bestand staat wel klaar op:" >&2
+  echo "  $f" >&2
+  if [ -f "$HOME/storage/downloads/WijSAmen_Termux_LATEST.txt" ]; then
+    echo "En als vaste Downloads-kopie op:" >&2
+    echo "  $HOME/storage/downloads/WijSAmen_Termux_LATEST.txt" >&2
+  fi
   return 3
 }
 
