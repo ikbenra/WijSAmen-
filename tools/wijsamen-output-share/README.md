@@ -15,7 +15,7 @@ Build the Debian package:
 ```bash
 cd tools/wijsamen-output-share
 bash build-deb.sh
-pkg install -y ./dist/wijsamen-output-share_0.1.1_all.deb
+pkg install -y ./dist/wijsamen-output-share_0.1.2_all.deb
 ```
 
 GitHub Actions also builds the package and exposes it as a workflow artifact.
@@ -42,7 +42,7 @@ wso session
 wso chatgpt
 ```
 
-`wso chatgpt` exports the newest complete log, removes terminal escape sequences from the readable copy, preserves a raw copy, and opens Android's share chooser.
+`wso chatgpt` exports the newest complete log, removes terminal escape sequences from the readable copy, preserves a raw copy, and opens Android's share chooser. Version 0.1.2 prefers `termux-open` so sharing does not hang when the Termux:API companion is unavailable.
 
 The package deliberately does **not** attempt to guess or silently address a specific existing ChatGPT conversation. That final step can later be handled by Schoenbrug / Device Bridge with live scene validation.
 
