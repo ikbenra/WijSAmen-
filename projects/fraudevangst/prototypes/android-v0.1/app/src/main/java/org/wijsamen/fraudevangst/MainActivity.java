@@ -51,10 +51,10 @@ public class MainActivity extends Activity {
     private Shizuku.UserServiceArgs userServiceArgs() {
         return new Shizuku.UserServiceArgs(
                 new ComponentName(this, SpeakerTapUserService.class))
-                .daemon(false)
+                .daemon(true)
                 .processNameSuffix("speaker_tap")
                 .debuggable(true)
-                .version(1);
+                .version(2);
     }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
