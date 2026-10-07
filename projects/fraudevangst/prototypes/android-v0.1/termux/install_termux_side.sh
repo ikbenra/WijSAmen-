@@ -225,6 +225,54 @@ out.write_text(json.dumps(result, ensure_ascii=False, indent=2))
 EOS
 chmod 644 "$PREFIX/share/wijfraude/analyze.py"
 
+cat > "$PREFIX/share/wijfraude/opaalview.py" <<'EOS'
+import html, json, sys
+from pathlib import Path
+
+src = Path(sys.argv[1])
+out = Path(sys.argv[2])
+d = json.loads(src.read_text(errors="ignore")) if src.exists() else {"segments": [], "audio": {}}
+
+parts = []
+for s in d.get("segments", []):
+    purple = s.get("channel") == "purple"
+    cls = "purple" if purple else "white"
+    mark = "◇ " if purple else ""
+    title = html.escape(json.dumps(s.get("internal", {}), ensure_ascii=False), quote=True)
+    parts.append(
+        f'<div class="seg {cls}" title="{title}">'
+        f'<span class="mark">{mark}</span>{html.escape(s.get("text", ""))}</div>'
+    )
+
+a = d.get("audio", {})
+doc = f'''<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WijSAmen FraudeVangst — OpaalView</title>
+<style>
+body {{ margin:0; background:radial-gradient(circle at 20% 10%,#28153a,#0d0b13 55%,#060608);
+       color:#fff; font-family:system-ui,sans-serif; }}
+main {{ max-width:780px; margin:auto; padding:28px; }}
+h1 {{ font-size:1.5rem; margin-bottom:4px; }}
+.meta {{ opacity:.68; margin-bottom:24px; }}
+.seg {{ padding:11px 14px; margin:7px 0; border-radius:14px; line-height:1.45; }}
+.white {{ background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.10); }}
+.purple {{ background:linear-gradient(120deg,rgba(120,54,180,.20),rgba(196,110,255,.08));
+           color:#d9a8ff; border:1px solid rgba(191,118,255,.32);
+           box-shadow:0 0 16px rgba(155,78,220,.08); }}
+.mark {{ opacity:.8; }}
+.legend {{ margin-top:28px; font-size:.92rem; opacity:.75; }}
+</style>
+<main>
+<h1>FraudeVangst · OpaalView</h1>
+<div class="meta">max {a.get("max_db","?")} dB · mean {a.get("mean_db","?")} dB · akoestische steun {a.get("acoustic_support","?")}</div>
+{''.join(parts) if parts else '<div class="seg purple">◇ Geen modeltekst beschikbaar</div>'}
+<div class="legend">Wit = voldoende door audio gedragen · Paars = hallucinatiekanaal. Paarse tekst blijft bewaard, maar telt niet mee als bewijs of voor de fraude-score.</div>
+</main>'''
+out.write_text(doc)
+EOS
+chmod 644 "$PREFIX/share/wijfraude/opaalview.py"
+
 printf '\n✅ Termux-kant geïnstalleerd.\n'
 printf 'Commando: %s\n' "$PREFIX/bin/wijfraude-event"
 printf 'Cases: %s\n' "$HOME/storage/downloads/WijSAmenFraude"
