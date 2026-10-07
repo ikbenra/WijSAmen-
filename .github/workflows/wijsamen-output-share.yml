@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Run acceptance test
+        run: |
+          chmod +x tools/wijsamen-output-share/wso tools/wijsamen-output-share/test-wso.sh
+          tools/wijsamen-output-share/test-wso.sh
       - name: Build Debian package
         run: |
           chmod +x tools/wijsamen-output-share/build-deb.sh
