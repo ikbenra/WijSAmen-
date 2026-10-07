@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
                 new ComponentName(this, SpeakerTapUserService.class))
                 .daemon(false)
                 .processNameSuffix("speaker_tap")
-                .debuggable(BuildConfig.DEBUG)
+                .debuggable(true)
                 .version(1);
     }
 
