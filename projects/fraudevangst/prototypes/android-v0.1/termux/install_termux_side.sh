@@ -273,6 +273,46 @@ out.write_text(doc)
 EOS
 chmod 644 "$PREFIX/share/wijfraude/opaalview.py"
 
+cat > "$PREFIX/bin/wijfraude-reprocess" <<'EOS'
+#!/data/data/com.termux/files/usr/bin/bash
+set -euo pipefail
+
+ARG="${1:-latest}"
+ROOT="$HOME/storage/downloads/WijSAmenFraude"
+if [ "$ARG" = "latest" ]; then
+  DIR="$(ls -td "$ROOT"/*/ 2>/dev/null | head -1)"
+elif [ -d "$ARG" ]; then
+  DIR="$ARG"
+elif [ -d "$ROOT/$ARG" ]; then
+  DIR="$ROOT/$ARG"
+else
+  echo "Case niet gevonden: $ARG" >&2
+  exit 2
+fi
+
+AUDIO="$(find "$DIR" -maxdepth 1 -name 'fraude_*.m4a' | head -1)"
+TRANSCRIPT="$DIR/transcript.txt"
+[ -s "$AUDIO" ] || { echo "Geen audio in $DIR" >&2; exit 3; }
+
+ffmpeg -hide_banner -i "$AUDIO" -af volumedetect -f null - > "$DIR/audio-evidence.txt" 2>&1 || true
+
+if [ ! -s "$TRANSCRIPT" ]; then
+  WAV="$DIR/audio-16k-mono.wav"
+  ffmpeg -hide_banner -loglevel error -y -i "$AUDIO" -ar 16000 -ac 1 -c:a pcm_s16le "$WAV"
+  wijtranscribe --no-timestamps "$WAV" "$DIR/transcript" > "$DIR/transcribe.log" 2>&1 || true
+fi
+
+python "$PREFIX/share/wijfraude/analyze.py" "$TRANSCRIPT" "$DIR/analysis.json" "$DIR/audio-evidence.txt" "$DIR/transcript-channels.json"
+python "$PREFIX/share/wijfraude/opaalview.py" "$DIR/transcript-channels.json" "$DIR/transcript-opaal.html"
+
+echo "KLAAR"
+echo "Case: $DIR"
+echo "Analyse: $DIR/analysis.json"
+echo "Kanalen: $DIR/transcript-channels.json"
+echo "OpaalView: $DIR/transcript-opaal.html"
+EOS
+chmod 755 "$PREFIX/bin/wijfraude-reprocess"
+
 printf '\n✅ Termux-kant geïnstalleerd.\n'
 printf 'Commando: %s\n' "$PREFIX/bin/wijfraude-event"
 printf 'Cases: %s\n' "$HOME/storage/downloads/WijSAmenFraude"
