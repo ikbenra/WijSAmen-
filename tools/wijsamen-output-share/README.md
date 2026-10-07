@@ -20,6 +20,8 @@ pkg install -y ./dist/wijsamen-output-share_0.1.2_all.deb
 
 GitHub Actions also builds the package and exposes it as a workflow artifact.
 
+Before packaging, the workflow runs `test-wso.sh`. The acceptance test verifies raw-log preservation, ANSI-clean export, the Downloads mirror, the user-visible Android share invocation, and command exit-code propagation.
+
 ## Commands
 
 ```text
