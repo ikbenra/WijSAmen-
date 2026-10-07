@@ -9,7 +9,6 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.media.MediaRecorder;
 import android.net.ConnectivityManager;
@@ -19,6 +18,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 
@@ -43,7 +44,20 @@ public class CaptureService extends Service {
     private String sharedPath;
     private String caseId;
     private AudioManager audioManager;
-    private boolean oldSpeaker;
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    private final Runnable callModeGuard = new Runnable() {
+        @Override public void run() {
+            if (recorder == null || audioManager == null) return;
+            int mode = audioManager.getMode();
+            if (mode == AudioManager.MODE_IN_CALL || mode == AudioManager.MODE_IN_COMMUNICATION) {
+                sendTermuxEvent("capture_stopped:active_call_mode_" + mode);
+                notifyNow("Gesprek actief — microfoonopname veilig gestopt");
+                stopCapture();
+                return;
+            }
+            handler.postDelayed(this, 500);
+        }
+    };
 
     @Override
     public void onCreate() {
@@ -70,7 +84,17 @@ public class CaptureService extends Service {
         fileName = "fraude_" + caseId + ".m4a";
         sharedPath = "/storage/emulated/0/Music/WijSAmenFraude/" + fileName;
 
-        trySpeakerOn();
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int audioMode = audioManager == null ? AudioManager.MODE_NORMAL : audioManager.getMode();
+        if (audioMode == AudioManager.MODE_IN_CALL || audioMode == AudioManager.MODE_IN_COMMUNICATION) {
+            sendTermuxEvent("capture_blocked:active_call_mode_" + audioMode);
+            getSharedPreferences("state", MODE_PRIVATE).edit().putBoolean("running", false).apply();
+            notifyNow("Gesprek actief — FraudeVangst neemt de microfoon niet over");
+            stopForeground(STOP_FOREGROUND_REMOVE);
+            stopSelf();
+            return;
+        }
+
         try {
             ContentValues v = new ContentValues();
             v.put(MediaStore.Audio.Media.DISPLAY_NAME, fileName);
@@ -95,9 +119,11 @@ public class CaptureService extends Service {
             recorder.setOutputFile(pfd.getFileDescriptor());
             recorder.prepare();
             recorder.start();
-            notifyNow("CAPTURE ACTIEF — tik STOP wanneer klaar");
+            notifyNow("CAPTURE ACTIEF — wordt gestopt zodra een gesprek audiomodus overneemt");
             sendTermuxEvent("start");
             snapshotBridgeAndNetwork();
+            handler.removeCallbacks(callModeGuard);
+            handler.postDelayed(callModeGuard, 500);
         } catch (Exception e) {
             sendTermuxEvent("record_error:" + e.getClass().getSimpleName());
             stopCapture();
@@ -123,35 +149,11 @@ public class CaptureService extends Service {
                 getContentResolver().update(audioUri, done, null, null);
             } catch (Exception ignored) {}
         }
-        trySpeakerRestore();
+        handler.removeCallbacks(callModeGuard);
         getSharedPreferences("state", MODE_PRIVATE).edit().putBoolean("running", false).apply();
         if (hadRecorder) sendTermuxEvent("stop");
         stopForeground(STOP_FOREGROUND_REMOVE);
         stopSelf();
-    }
-
-    private void trySpeakerOn() {
-        try {
-            audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            oldSpeaker = audioManager.isSpeakerphoneOn();
-            if (Build.VERSION.SDK_INT >= 31) {
-                for (AudioDeviceInfo d : audioManager.getAvailableCommunicationDevices()) {
-                    if (d.getType() == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER) {
-                        audioManager.setCommunicationDevice(d);
-                        return;
-                    }
-                }
-            }
-            audioManager.setSpeakerphoneOn(true);
-        } catch (Exception ignored) {}
-    }
-
-    private void trySpeakerRestore() {
-        try {
-            if (audioManager == null) return;
-            if (Build.VERSION.SDK_INT >= 31) audioManager.clearCommunicationDevice();
-            audioManager.setSpeakerphoneOn(oldSpeaker);
-        } catch (Exception ignored) {}
     }
 
     private void createChannel() {
