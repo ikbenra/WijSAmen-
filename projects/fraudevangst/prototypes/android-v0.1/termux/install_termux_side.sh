@@ -2,6 +2,7 @@
 set -euo pipefail
 
 mkdir -p "$HOME/.termux" "$HOME/storage/downloads/WijSAmenFraude" "$PREFIX/bin"
+command -v ffmpeg >/dev/null 2>&1 || pkg install -y ffmpeg
 PROP="$HOME/.termux/termux.properties"
 touch "$PROP"
 if grep -q '^allow-external-apps=' "$PROP"; then
@@ -63,11 +64,31 @@ case "$EVENT" in
       cp -f "$AUDIO" "$DIR/$NAME" 2>/dev/null || true
       sha256sum "$AUDIO" > "$DIR/audio.sha256" 2>/dev/null || true
       OUTBASE="$DIR/transcript"
+      WAV="$DIR/audio-16k-mono.wav"
       if command -v wijtranscribe >/dev/null 2>&1; then
         (
-          wijtranscribe --no-timestamps "$AUDIO" "$OUTBASE" > "$DIR/transcribe.log" 2>&1 || true
+          if command -v ffmpeg >/dev/null 2>&1; then
+            if ffmpeg -hide_banner -loglevel error -y -i "$AUDIO" -ar 16000 -ac 1 -c:a pcm_s16le "$WAV" > "$DIR/ffmpeg.log" 2>&1; then
+              TRANSCRIBE_INPUT="$WAV"
+            else
+              printf '%s\n' "ffmpeg kon de M4A niet converteren; probeer bronbestand direct" >> "$DIR/errors.txt"
+              TRANSCRIBE_INPUT="$AUDIO"
+            fi
+          else
+            printf '%s\n' "ffmpeg ontbreekt; probeer bronbestand direct" >> "$DIR/errors.txt"
+            TRANSCRIBE_INPUT="$AUDIO"
+          fi
+
+          if wijtranscribe --no-timestamps "$TRANSCRIBE_INPUT" "$OUTBASE" > "$DIR/transcribe.log" 2>&1; then
+            :
+          else
+            printf '%s\n' "wijtranscribe gaf een fout; zie transcribe.log" >> "$DIR/errors.txt"
+          fi
+
           python "$PREFIX/share/wijfraude/analyze.py" "$OUTBASE.txt" "$DIR/analysis.json" > "$DIR/analyze.log" 2>&1 || true
         ) >/dev/null 2>&1 &
+      else
+        printf '%s\n' "wijtranscribe ontbreekt" >> "$DIR/errors.txt"
       fi
     else
       printf '%s\n' "Audiofile niet leesbaar via Termux: $AUDIO" >> "$DIR/errors.txt"
@@ -84,6 +105,18 @@ from pathlib import Path
 src = Path(sys.argv[1])
 out = Path(sys.argv[2])
 text = src.read_text(errors="ignore").lower() if src.exists() else ""
+if not text.strip():
+  result = {
+    "version": "0.1.3",
+    "status": "transcription_missing_or_empty",
+    "feature_groups_hit": None,
+    "features": {},
+    "assessment": "geen bruikbaar transcript; fraude-indicatoren niet beoordeeld",
+    "note": "Geen inhoudelijke score maken zonder transcript. Controleer ffmpeg.log en transcribe.log."
+  }
+  out.write_text(json.dumps(result, ensure_ascii=False, indent=2))
+  raise SystemExit(0)
+
 patterns = {
   "authority": [r"national police", r"politie", r"police", r"government", r"overheid", r"europol", r"interpol"],
   "legal_threat": [r"arrest warrant", r"arrestatiebevel", r"warrant", r"arrest", r"legal action", r"rechtszaak"],
@@ -94,7 +127,7 @@ patterns = {
 features = {k: [p for p in ps if re.search(p, text)] for k, ps in patterns.items()}
 score = sum(bool(v) for v in features.values())
 result = {
-  "version": "0.1",
+  "version": "0.1.3",
   "feature_groups_hit": score,
   "features": features,
   "assessment": "sterke fraude-indicatoren" if score >= 3 else "enkele fraude-indicatoren" if score >= 1 else "onvoldoende tekstsignalen",
