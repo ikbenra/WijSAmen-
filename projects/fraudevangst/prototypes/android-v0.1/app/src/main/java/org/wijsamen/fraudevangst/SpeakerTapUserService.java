@@ -18,8 +18,8 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SpeakerTapUserService extends ISpeakerTapService.Stub {
-    private static final int SAMPLE_RATE = 48000;
-    private static final int CHANNELS = 2;
+    private static final int SAMPLE_RATE = 16000;
+    private static final int CHANNELS = 1;
     private static final int BITS = 16;
 
     private final AtomicBoolean running = new AtomicBoolean(false);
@@ -53,7 +53,7 @@ public class SpeakerTapUserService extends ISpeakerTapService.Stub {
             AudioFormat mixFormat = new AudioFormat.Builder()
                     .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
                     .setSampleRate(SAMPLE_RATE)
-                    .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
+                    .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
                     .build();
 
             setupAudioPolicy(mixFormat);
