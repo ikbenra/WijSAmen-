@@ -4,6 +4,7 @@ Dit bestand is de **routekaart** van de repository. De primaire projectkennis bl
 
 | Project | Fase | Eerstvolgende bewijsstap |
 |---|---|---|
+| [FraudeVangst](projects/fraudevangst/README.md) | Prototype v0.1 — lokale capture/transcriptie voorbereiden | APK bouwen; onschuldig testgesprek voor audio + case-correlatie; geen live fraude-interactie nodig |
 | AquaLattice | Realisatie / validatie | actuele geometry/serviceability claim brongekoppeld toetsen |
 | WijSAmen Brugregisseur | Modellering / validatie | begrensde modelcyclus afronden en stop/go vastleggen |
 | CareCommons | PARKED_HEALTHY_WAIT | alleen herstarten bij materieel extern antwoord |
