@@ -5,7 +5,7 @@ Run marker: `PH-061-TASK-ALLOCATION-DRIFT-AND-MAP2-STALL`
 
 ## Durable-state status
 
-- GitHub preservation: **PENDING READBACK**
+- GitHub preservation: **VERIFIED BY READBACK**
 - Canonical Portfolio Hunter remains unchanged; its latest verified marker is `PH-058-OUTPUT-SHARE-ACCEPTANCE-GATE`.
 - Google Docs write access was not retried because the last verified attempt returned `403 PERMISSION_DENIED`; no permission or sharing change was authorized.
 
