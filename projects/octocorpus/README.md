@@ -91,6 +91,14 @@ Downgrade the proposed evolutionary story if:
 
 This phase is computational and literature-based. It authorizes no capture, invasive procedure, forced conditioning or welfare-sensitive experiment. Later behavioural work must preserve choice, withdrawal and species-appropriate welfare criteria.
 
+## Feature Passport 002 — neural regeneration
+
+A second research line now separates observed octopus neural repair from unsupported translation claims. It tracks wound sealing, immune/scar response, physical guidance, bidirectional regrowth, vascular support and functional recovery as distinct mechanism axes.
+
+- [Neural regeneration passport V0.1](research/feature-passport-002-neural-regeneration-v0.1.md)
+- Status: `ONDERZOEK / DESK-ONLY`
+- Next gate: fill the source-linked regeneration matrix and locate one molecular dataset capable of separating cephalopod-specific from conserved repair programs.
+
 ## Primary sources
 
 - Albertin et al., *The octopus genome and the evolution of cephalopod neural and morphological novelties*, Nature (2015), DOI: [10.1038/nature14668](https://doi.org/10.1038/nature14668)
