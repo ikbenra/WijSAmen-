@@ -97,7 +97,8 @@ A second research line now separates observed octopus neural repair from unsuppo
 
 - [Neural regeneration passport V0.1](research/feature-passport-002-neural-regeneration-v0.1.md)
 - Status: `ONDERZOEK / DESK-ONLY`
-- Next gate: fill the source-linked regeneration matrix and locate one molecular dataset capable of separating cephalopod-specific from conserved repair programs.
+- Enabling resource: a validated 2026 *O. vulgaris* hemocyte scRNA-seq protocol with public shallow data (`PRJNA1376517`) can support a baseline immune-cell map; it contains no injury contrast and is not regeneration evidence.
+- Next gate: fill the source-linked regeneration matrix, build the baseline hemocyte map and locate a regeneration-specific injury/time-course dataset capable of separating cephalopod-specific from conserved repair programs.
 
 ## Primary sources
 
