@@ -74,6 +74,41 @@ Primary source: Costa et al., *Scientific Reports* (published 10 April 2026), DO
 4. Pre-register a future comparison: uninjured versus injured, circulating versus lesion-associated cells, and multiple post-injury time points.
 5. Do not label any cluster “regenerative” without an injury contrast and independent validation.
 
+## Regeneration-specific molecular leads — evidence not yet reproducible
+
+### Pallial-nerve thesis lead (2017)
+
+`SOURCE-REPORTED_RESULT / THESIS / PARTIAL_TEXT_RECOVERY`
+
+Pamela Imperadore's doctoral work reports a preliminary gene-expression analysis during *O. vulgaris* pallial-nerve regeneration. The recovered thesis text says that 29 putative regeneration-associated or epigenetic-regulation genes were identified in the available octopus transcriptome, including histone lysine methyltransferase and demethylase families; the thesis then contains a gene-expression-change section. The author's institutional CV summarizes the work as preliminary evidence involving epigenetic-modification genes and regeneration-associated genes.
+
+This is closer to the injury mechanism than an uninjured baseline, but the currently recoverable text does not expose the complete 29-gene table, sample counts, time points, normalization, statistics or raw measurements. It cannot yet support a ranked mechanism claim. Candidate presence in a transcriptome is also not evidence of causal action during repair.
+
+Sources:
+
+- Imperadore, doctoral thesis, Università della Calabria (2017), [repository PDF](https://dspace.unical.it/bitstream/handle/10955/1299/TESI%20Imperadore.pdf?isAllowed=y&sequence=1).
+- [Institutional profile and research summary](https://szn.it/index.php/en/staff/list-of-personnel/290-imperadore-pamela/905-imperadore-pamela).
+
+### Arm-regeneration RT-qPCR lead (CIAC 2025)
+
+`SOURCE-REPORTED_RESULT / CONFERENCE_ABSTRACT / NO PUBLIC DATA LOCATED`
+
+A 2025 CIAC conference abstract, “Born to Regrow: Molecular and Cellular Pathways of Adult Plasticity and Regeneration,” reports that *O. vulgaris* arm tips have a distinct expression profile and that complementary RT-qPCR identified a set of genes upregulated in the arm tip and/or across healing, budding and re-growth stages.
+
+The abstract does not name the genes, report sample sizes, controls, effect sizes, uncertainty, full methods or a public accession. It shows that a regeneration-specific expression series apparently exists, but not that its claims are independently reproducible or that any reported gene is necessary or sufficient for regeneration.
+
+Primary source: CIAC 2025 Book of Abstracts, page 157, [conference PDF](https://www2.aeplan.co.jp/ciac2025/images/CIAC2025_Book_of_Abstracts_ZL7.pdf).
+
+### Evidence consequence
+
+The molecular gate is now `PARTIALLY_LOCATED / NOT REPRODUCIBLE`, rather than `NO REGENERATION-SPECIFIC EVIDENCE FOUND`. The next information-gain step is source recovery, not candidate-gene speculation:
+
+1. recover the complete thesis gene table and results pages losslessly;
+2. locate any paper, supplement or repository record underlying the CIAC 2025 RT-qPCR series;
+3. extract species, tissue, control, injury stage, biological replicates, normalization genes, effect sizes and statistics;
+4. map only reported genes to the hemocyte baseline and neural-tissue references;
+5. keep correlation, stage association and causal mechanism as separate evidence levels.
+
 ## Conventional baseline
 
 Mammalian peripheral nerves can regenerate to a limited degree, while long-distance, correctly targeted repair in the adult mammalian central nervous system is much more restricted. Differences in cell types, myelination, immune responses, extracellular matrix, lesion geometry and evolutionary history mean that an octopus result cannot be converted directly into a human treatment rule.
@@ -153,7 +188,8 @@ Advance from `ONDERZOEK` to `ONDERBOUWD` only after:
 
 - a complete evidence matrix for the three starting studies;
 - a baseline hemocyte map from the public 2026 single-cell resource;
-- at least one regeneration-specific molecular dataset with explicit cell/tissue, injury condition and time-point provenance;
+- lossless recovery of the 2017 thesis gene table/results and the underlying CIAC 2025 RT-qPCR evidence, or an equivalent regeneration-specific dataset;
+- explicit cell/tissue, injury condition, time-point, replicate, normalization and statistical provenance;
 - alternative-model comparison;
 - an independent overclaiming review;
 - a written mammal-translation boundary that survives contradiction.
