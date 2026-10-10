@@ -56,6 +56,24 @@ The 2019 pallial-nerve study observed more vessels and small capillaries in rege
 
 Primary source: Imperadore et al. (2019), DOI [10.1242/jeb.209965](https://doi.org/10.1242/jeb.209965).
 
+## Enabling molecular resource — not regeneration evidence
+
+`SOURCE_SUPPORTED_RESULT / ENABLING_RESOURCE / BASELINE_COMPARATOR`
+
+Costa et al. (2026) validated a single-cell RNA-sequencing preparation workflow for circulating hemocytes and white-body resident hemocytes in *Octopus vulgaris*. Modified anti-aggregation solution (MAS) maintained more than 90% viability for two hours; a reduced-EDTA variant was compatible with the 10x Genomics workflow; shallow sequencing resolved distinct hemocyte clusters. The raw shallow dataset is public under BioProject `PRJNA1376517`, including run `SRR36345357`.
+
+This resource does **not** contain a nerve-injury condition, regeneration time course or lesion-site spatial context. It therefore cannot identify regeneration-specific cell states or establish that an immune program causes successful neural repair. Its value is narrower and practical: it makes a baseline octopus immune-cell map and a future injury-versus-control design technically more credible.
+
+Primary source: Costa et al., *Scientific Reports* (published 10 April 2026), DOI [10.1038/s41598-026-47700-6](https://doi.org/10.1038/s41598-026-47700-6). Public data: NCBI BioProject [PRJNA1376517](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1376517), run [SRR36345357](https://www.ncbi.nlm.nih.gov/sra/SRR36345357).
+
+### Smallest reversible data test
+
+1. Inspect sample metadata, library composition and quality-control fields.
+2. Derive a baseline hemocyte cluster-and-marker map only.
+3. Cross-reference candidate markers from the 2017 pallial-nerve histology and earlier bulk immune transcriptomes, explicitly separating cell identity from injury response.
+4. Pre-register a future comparison: uninjured versus injured, circulating versus lesion-associated cells, and multiple post-injury time points.
+5. Do not label any cluster “regenerative” without an injury contrast and independent validation.
+
 ## Conventional baseline
 
 Mammalian peripheral nerves can regenerate to a limited degree, while long-distance, correctly targeted repair in the adult mammalian central nervous system is much more restricted. Differences in cell types, myelination, immune responses, extracellular matrix, lesion geometry and evolutionary history mean that an octopus result cannot be converted directly into a human treatment rule.
@@ -111,7 +129,7 @@ Start with the three primary studies above. Add only claims that can be traced t
 2. a broadly conserved repair program expressed in a different lesion environment;
 3. multiple local mechanisms whose apparent unity is a reconstruction artefact.
 
-Advance only if at least one molecular or single-cell/spatial dataset can distinguish these models.
+The 2026 hemocyte dataset satisfies baseline resource availability, but not the injury/time-point contrast needed to distinguish these models. Advance only when at least one regeneration-specific molecular or single-cell/spatial dataset can separate them.
 
 ## Disconfirming evidence
 
@@ -134,7 +152,8 @@ This passport authorizes literature analysis and public-data comparison only. It
 Advance from `ONDERZOEK` to `ONDERBOUWD` only after:
 
 - a complete evidence matrix for the three starting studies;
-- at least one molecular dataset with explicit cell/tissue and time-point provenance;
+- a baseline hemocyte map from the public 2026 single-cell resource;
+- at least one regeneration-specific molecular dataset with explicit cell/tissue, injury condition and time-point provenance;
 - alternative-model comparison;
 - an independent overclaiming review;
 - a written mammal-translation boundary that survives contradiction.
