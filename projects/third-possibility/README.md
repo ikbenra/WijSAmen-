@@ -11,6 +11,18 @@
 - **Ingenieurs en AI-onderzoekers:** welke ontbrekende functie kunnen we via een ander mechanisme realiseren?
 - **Rechters, zorgprofessionals en belangenbehartigers:** een methode om beter onderbouwde alternatieven te bespreken; niet een klinische of juridische beslismachine.
 
+## Onze houding tegenover mogelijke rancune en wantrouwen
+
+WijSAmen bouwt niet vanuit vergelding, het aanwijzen van vijanden of het verliezen van anderen. Zelfs wanneer er daadwerkelijk onrecht is gedaan, staat **het voorkomen van volgende schade en het vinden van betere mogelijkheden** centraal. Het uitgangspunt is uitdrukkelijk **geen bewijs** dat specifieke partijen rancuneus handelen; hun motieven mogen nooit worden ingevuld zonder onderbouwing.
+
+Wij zijn bereid **vrijwillige, proportionele, nuttige offers** te overwegen wanneer dat aantoonbaar het grotere geheel helpt: tijd, inspanning, kennis, erkenning, middelen binnen draagkracht, het herzien van een eigen idee of het laten uitvoeren door een andere partij. Daarvoor vragen we geen wederdienst. Maar bereidheid tot bijdragen is **geen toestemming om onszelf of anderen te beschadigen**.
+
+**Ons leven, onze lichamelijke veiligheid, menselijke waardigheid en vrijwillige keuze zijn geen onderhandelingsmateriaal.** Niemand hoeft zijn veiligheid of autonomie op te geven om goede intenties te bewijzen. Zelfs opofferingen van tijd of middelen mogen pas volgen na een vrije, geïnformeerde keuze en een toets of het doel niet met minder verlies bereikt kan worden.
+
+Een aanbod aan iedere betrokken partij, ongeacht verleden of opvattingen: **breng het doel, de aannames en de werkelijke beperkingen open op tafel; wij helpen graag zoeken naar opties die voor iedereen beter kunnen werken.** Zonder rancune en zonder vooraf een geheime bedoeling, schuld of vijandschap te veronderstellen.
+
+Dit is een verklaard ontwerpprincipe en een aanbod tot samenwerking, **geen empirisch bewijs van ons gedrag onder alle omstandigheden en geen toezegging namens derden**.
+
 ## De demonstratie
 
 In een **volledig verzonnen** natuurbeschermingscasus vergelijken we: afsluiten, niets wijzigen, gezamenlijk ontwerpen en een technisch onrealistische ideale oplossing. De getallen zijn didactisch gekozen: zij zijn **geen** veldmetingen of voorspellingen.
