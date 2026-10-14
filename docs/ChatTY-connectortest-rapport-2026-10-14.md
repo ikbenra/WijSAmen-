@@ -16,11 +16,12 @@ Veilig vaststellen welke GitHub-handelingen via de ChatGPT-koppeling daadwerkeli
 - [x] Branch zoeken.
 - [x] Bestand lezen.
 - [x] Nieuw bestand schrijven.
-- [ ] Bestaand bestand bijwerken.
-- [ ] Commitverschil vergelijken.
+- [x] Bestaand bestand bijwerken (deze commit).
+- [x] Commitverschil vergelijken (`main` was 2 commits achter testbranch vóór deze update).
 - [ ] Draft pull request openen.
 - [ ] Pull-request-inhoud en comments lezen.
-- [ ] Issue registreren en sluiten.
+- [x] Issue aanmaken (testissue #11).
+- [ ] Issue uitlezen en sluiten.
 - [ ] Statuschecks uitlezen.
 
 Dit is een bewuste technische proef, geen automatisch besluit om code op `main` te plaatsen.
