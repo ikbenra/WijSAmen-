@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "source": {
+    "provider": "OpenAI",
+    "requested_at": "2026-10-19T02:36:00+02:00",
+    "completion_signal_at": "2026-10-19T08:00:00+02:00",
+    "acquired_at": "2026-10-19T08:05:00+02:00"
+  },
+  "artifact": {
+    "filename": "chatgpt-export-2026-10-19.zip",
+    "byte_size": 123456,
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "private_storage": {
+    "reference": "PRIVATE_ARCHIVE_REFERENCE",
+    "readback_byte_size": 123456,
+    "readback_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "intake": {
+    "state": "READBACK_VERIFIED",
+    "content_sensitivity": "PRIVATE",
+    "immutable_original": true
+  }
+}
