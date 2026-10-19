@@ -55,6 +55,10 @@ class ZipPreflightTests(unittest.TestCase):
         result = self.result([("folder/file.txt", b"one"), ("folder/file.txt", b"two")])
         self.assertIn("DUPLICATE_PATH", {item.code for item in result.findings})
 
+    def test_file_directory_target_collision_blocks(self):
+        result = self.result([("node", b"file"), ("node/", b"")])
+        self.assertIn("DUPLICATE_PATH", {item.code for item in result.findings})
+
     def test_case_collision_blocks(self):
         result = self.result([("Data.json", b"one"), ("data.json", b"two")])
         self.assertIn("CASE_COLLISION", {item.code for item in result.findings})
