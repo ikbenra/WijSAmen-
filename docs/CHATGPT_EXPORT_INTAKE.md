@@ -79,3 +79,9 @@ Never skip a state silently. Errors and timeouts retain the last verified state.
 The [Export Intake Validator](../tools/export-intake-validator/README.md) checks a private manifest for required timestamps, ZIP metadata, SHA-256 and byte-size readback agreement, private sensitivity and forbidden secret/content fields. The repository contains only a synthetic example.
 
 A passing result proves internal manifest consistency, not source authenticity, archive completeness, private sharing status or safe import. Keep the real manifest and every private locator outside this public repository.
+
+## Passive ZIP preflight
+
+After private storage readback and manifest validation—but before extraction—run the [Export ZIP Preflight](../tools/export-zip-preflight/README.md). It reads central-directory metadata only and blocks traversal paths, absolute paths, duplicate or case-colliding names, links and special files, encryption, configured size ceilings, extreme compression ratios and malformed ZIP structures.
+
+A `PASS` is an extraction-safety precondition, not permission to publish, execute or import archive content. It does not replace SHA-256 verification, private sharing checks, content review or a fresh bounded extraction directory.
