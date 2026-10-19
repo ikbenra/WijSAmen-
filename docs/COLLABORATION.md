@@ -91,3 +91,8 @@ Bij mogelijke onmiddellijke onveiligheid komt een eenvoudige veilige eerste stap
 Materiële agentacties worden eerst geclassificeerd met de [Action Authorization Compiler](ACTION_AUTHORIZATION_COMPILER.md). Die controleert capaciteit, bevoegdheid, doelwit, impact, omkeerbaarheid, provenance, bevestiging, stopvoorwaarde, uitvoeringsbewijs, teruglezing en rollback.
 
 Een hulpmiddel dat technisch iets kan uitvoeren, schept geen bevoegdheid. Bij ontbrekende toestemming, onopgelost doelwit, onbegrensde impact of ontbrekende teruglezing eindigt de actie in `ABSTAIN / NOT_EXECUTED`, `UNVERIFIED_ATTEMPT` of een expliciete beslispoort. Projectspecifieke strengere grenzen blijven leidend.
+
+
+## Relaties tussen projecten toetsen
+
+Gebruik bij een voorgestelde directe, indirecte of netwerkverbinding het [Evidence / Relation Passport](EVIDENCE_RELATION_PASSPORT.md). Het houdt bronstatus, privacy-oppervlak, mechanistische reden, gewone vergelijking, tegenbewijs, één omkeerbare pass/fail-test en teruglezing bij elkaar. Een woordovereenkomst of aantrekkelijk verhaal geldt niet als bewijs voor de relatie.
