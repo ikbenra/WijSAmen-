@@ -164,3 +164,8 @@ Het doel is daarom niet een digitale kopie van een persoon, maar een **veilige d
 ## v0.2 succescriterium
 
 Deze Proxy werkt wanneer WijSAmen gedurende tijdelijke afwezigheid aantoonbaar nuttige interne voortgang kan maken **zonder Remco te imiteren, zonder zijn toestemming te fabriceren en zonder moeilijk omkeerbare nieuwe verplichtingen te creëren**, terwijl Ottje waar passend als vertrouwde menselijke continuïteitspartner kan helpen.
+
+
+## Officiële gegevensexport als continuïteitsbron
+
+Een nieuwe ChatGPT-export doorloopt eerst de [ChatGPT Export Intake Gate](CHATGPT_EXPORT_INTAKE.md). De originele ZIP blijft privé en ongewijzigd; een aanvraagbevestiging telt niet als gereedmelding. Alleen opslag plus SHA-256-readback rechtvaardigt `SECURED`. Openbare commits bevatten nooit downloadlinks, tokens, archiefinhoud of identificeerbare chatgegevens.
