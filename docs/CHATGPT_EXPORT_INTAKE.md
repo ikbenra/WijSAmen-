@@ -73,3 +73,9 @@ For `SECURED`, retain one private completion marker with source time, size, dige
 `REQUESTED -> COMPLETION_SIGNAL_VERIFIED -> ACQUIRED -> HASHED -> STORED_PRIVATE -> READBACK_VERIFIED -> INTAKE_READY`
 
 Never skip a state silently. Errors and timeouts retain the last verified state.
+
+## Reproducible manifest check
+
+The [Export Intake Validator](../tools/export-intake-validator/README.md) checks a private manifest for required timestamps, ZIP metadata, SHA-256 and byte-size readback agreement, private sensitivity and forbidden secret/content fields. The repository contains only a synthetic example.
+
+A passing result proves internal manifest consistency, not source authenticity, archive completeness, private sharing status or safe import. Keep the real manifest and every private locator outside this public repository.
