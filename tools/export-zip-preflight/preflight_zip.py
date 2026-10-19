@@ -36,7 +36,7 @@ class Result:
     findings: tuple[Finding, ...]
 
 
-def _normalized_name(raw: str) -> tuple[str | None, list[Finding]]:
+def normalized_entry_name(raw: str) -> tuple[str | None, list[Finding]]:
     findings: list[Finding] = []
     if "\x00" in raw:
         findings.append(Finding("NUL_IN_NAME", raw, "entry name contains a NUL byte"))
@@ -109,28 +109,29 @@ def inspect_zip(
             for info in infos:
                 total_uncompressed += info.file_size
                 total_compressed += info.compress_size
-                normalized, path_findings = _normalized_name(info.filename)
+                normalized, path_findings = normalized_entry_name(info.filename)
                 findings.extend(path_findings)
 
                 if normalized is not None:
-                    if normalized in seen_exact:
+                    target_key = normalized.rstrip("/")
+                    if target_key in seen_exact:
                         findings.append(
-                            Finding("DUPLICATE_PATH", info.filename, f"duplicate normalized path {normalized!r}")
+                            Finding("DUPLICATE_PATH", info.filename, f"duplicate extraction target {target_key!r}")
                         )
-                    seen_exact.add(normalized)
+                    seen_exact.add(target_key)
 
-                    folded = normalized.casefold()
+                    folded = target_key.casefold()
                     prior = seen_folded.get(folded)
-                    if prior is not None and prior != normalized:
+                    if prior is not None and prior != target_key:
                         findings.append(
                             Finding(
                                 "CASE_COLLISION",
                                 info.filename,
-                                f"{normalized!r} collides with {prior!r} on case-insensitive filesystems",
+                                f"{target_key!r} collides with {prior!r} on case-insensitive filesystems",
                             )
                         )
                     else:
-                        seen_folded[folded] = normalized
+                        seen_folded[folded] = target_key
 
                 kind = _entry_type(info)
                 if kind not in {"regular", "directory"}:
