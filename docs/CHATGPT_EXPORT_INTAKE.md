@@ -85,3 +85,11 @@ A passing result proves internal manifest consistency, not source authenticity, 
 After private storage readback and manifest validation—but before extraction—run the [Export ZIP Preflight](../tools/export-zip-preflight/README.md). It reads central-directory metadata only and blocks traversal paths, absolute paths, duplicate or case-colliding names, links and special files, encryption, configured size ceilings, extreme compression ratios and malformed ZIP structures.
 
 A `PASS` is an extraction-safety precondition, not permission to publish, execute or import archive content. It does not replace SHA-256 verification, private sharing checks, content review or a fresh bounded extraction directory.
+
+## Bounded extraction gate
+
+Only after the original readback, private-manifest validation and passive preflight all pass may the same toolset's `safe_extract_zip.py` be called with an explicitly chosen private parent and a destination that does not yet exist.
+
+It writes regular files with non-executable owner-only permissions into a temporary sibling directory, checks CRC and actual byte counts while streaming, computes a SHA-256 inventory, and publishes the destination only after complete success. An error removes only the generated partial directory. Existing destinations are never merged or overwritten.
+
+Extraction is not import. Archived HTML or scripts remain inert, the inventory remains private, and a separate schema/content review is required before any continuity system consumes the extracted source layer.
