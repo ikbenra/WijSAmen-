@@ -35,3 +35,15 @@ python -m py_compile preflight_zip.py test_preflight_zip.py
 ```
 
 A `PASS` is only an extraction-safety precondition. It does not prove source authenticity, archive completeness, benign file contents, matching SHA-256, private sharing state or successful continuity import. Keep every real archive, manifest, filename inventory and private storage locator outside this public repository.
+
+## Bounded extraction
+
+Only after the original ZIP readback, private-manifest validation and preflight all pass:
+
+```sh
+python safe_extract_zip.py /private/path/chatgpt-export.zip /private/path/new-import-directory
+```
+
+The destination and its parent must be explicitly chosen; the parent must already exist and the destination must not. Extraction happens in a private staging directory and is renamed only after every regular file has been streamed, CRC-checked, size-checked and SHA-256 inventoried. On an error, the generated partial directory is removed. Archived executable permissions and timestamps are not restored.
+
+Default output contains only counts. `--json` prints paths and digests and must remain private. The tool never executes extracted content and never imports it into a continuity system.
