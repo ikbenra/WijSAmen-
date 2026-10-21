@@ -8,7 +8,7 @@ Dit is een gedateerde, niet-canonieke momentopname. De actuele taakstatus wordt 
 
 | Taak | Status | Grens |
 |---|---|---|
-| Map2 Corpus Review | ACTIEF | Hervat vanaf private Ledger-readback COMPLETE 437/511; alleen Map2 verwerkt volgende chunks en ruwe privé-inhoud blijft buiten GitHub |
+| Map2 Corpus Review | ACTIEF — Ledger-rollover geverifieerd | Private Ledger-keten staat op COMPLETE 438/511; vervolgdocument begint bij chunk 0438 en NEXT is chunk_0439.jsonl; alleen Map2 verwerkt volgende chunks en ruwe privé-inhoud blijft buiten GitHub |
 | WijSAmen Intelligence & Steward | ACTIEF | Portfolio-intelligence, continuïteit en kleine omkeerbare interne verbeteringen |
 | What a Mesh Film Lab | ACTIEF | Fictie blijft strikt gescheiden van echte privébrondata |
 | HypnoTTS volgende stap | ACTIEF | Wekelijkse begrensde bouw-/teststap |
