@@ -2,22 +2,22 @@
 
 Dit bestand is de **openbare routekaart** van de repository. De primaire projectkennis blijft in de aangewezen projectmap en in de canonieke private Google Docs/corpusbron.
 
-## Operationele taakverdeling — geverifieerde momentopname 20 oktober 2026
+## Operationele taakverdeling — geverifieerde momentopname 21 oktober 2026
 
 Dit is een gedateerde, niet-canonieke momentopname. De actuele taakstatus wordt bepaald door de automation-readback en de private Portfolio Hunter; historische run-capsules blijven hun toenmalige toestand beschrijven en mogen niet als actuele taakverdeling worden gelezen.
 
 | Taak | Status | Grens |
 |---|---|---|
-| Map2 Corpus Review | ACTIEF | Alleen Map2 verschuift de sequentiële corpusgrens; ruwe privé-inhoud blijft buiten GitHub |
+| Map2 Corpus Review | TIJDELIJK GEPAUZEERD | Alleen Map2 verschuift de sequentiële corpusgrens; hervatten pas na geslaagde private continuïteitscontrole en teruglezing |
 | WijSAmen Intelligence & Steward | ACTIEF | Portfolio-intelligence, continuïteit en kleine omkeerbare interne verbeteringen |
 | What a Mesh Film Lab | ACTIEF | Fictie blijft strikt gescheiden van echte privébrondata |
 | HypnoTTS volgende stap | ACTIEF | Wekelijkse begrensde bouw-/teststap |
-| ChatGPT-exportbewaker | ACTIEF, tijdelijk | Alleen de specifieke exportaanvraag volgen; na geverifieerde veilige opslag beëindigen |
+| ChatGPT-exportbewaker | UITGESCHAKELD NA EINDVENSTER | Eenmalige bewaking is beëindigd; privé-exportstatus en bronbestanden blijven buiten GitHub |
 | AquaLattice Bouwregisseur | GEPAUZEERD MET BEWAARDE HISTORIE | Niet herstarten zonder nieuw besluit |
 | Arty Opportunity Radar | GEPAUZEERD MET BEWAARDE HISTORIE | Niet herstarten zonder nieuw besluit |
 | WijSAmen PC & Inkomsten | GEPAUZEERD MET BEWAARDE HISTORIE | Niet herstarten zonder nieuw besluit |
 
-De limiet is vijf actieve taken. Deze momentopname bevestigt vijf actieve taken; zij maakt geen zesde taak aan en verandert geen automatisering.
+De limiet is vijf actieve taken. Deze momentopname toont drie ingeschakelde taken, één tijdelijk gepauzeerde kerntaak en een beëindigde tijdelijke bewaker; zij verandert geen automatisering.
 
 ## Projectroutekaart
 
