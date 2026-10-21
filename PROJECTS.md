@@ -8,7 +8,7 @@ Dit is een gedateerde, niet-canonieke momentopname. De actuele taakstatus wordt 
 
 | Taak | Status | Grens |
 |---|---|---|
-| Map2 Corpus Review | TIJDELIJK GEPAUZEERD | Alleen Map2 verschuift de sequentiële corpusgrens; hervatten pas na geslaagde private continuïteitscontrole en teruglezing |
+| Map2 Corpus Review | ACTIEF | Hervat vanaf private Ledger-readback COMPLETE 437/511; alleen Map2 verwerkt volgende chunks en ruwe privé-inhoud blijft buiten GitHub |
 | WijSAmen Intelligence & Steward | ACTIEF | Portfolio-intelligence, continuïteit en kleine omkeerbare interne verbeteringen |
 | What a Mesh Film Lab | ACTIEF | Fictie blijft strikt gescheiden van echte privébrondata |
 | HypnoTTS volgende stap | ACTIEF | Wekelijkse begrensde bouw-/teststap |
@@ -17,7 +17,7 @@ Dit is een gedateerde, niet-canonieke momentopname. De actuele taakstatus wordt 
 | Arty Opportunity Radar | GEPAUZEERD MET BEWAARDE HISTORIE | Niet herstarten zonder nieuw besluit |
 | WijSAmen PC & Inkomsten | GEPAUZEERD MET BEWAARDE HISTORIE | Niet herstarten zonder nieuw besluit |
 
-De limiet is vijf actieve taken. Deze momentopname toont drie ingeschakelde taken, één tijdelijk gepauzeerde kerntaak en een beëindigde tijdelijke bewaker; zij verandert geen automatisering.
+De limiet is vijf actieve taken. Deze momentopname toont vier ingeschakelde kerntaken en één vrije plaats; de tijdelijke exportbewaker is beëindigd.
 
 ## Projectroutekaart
 
