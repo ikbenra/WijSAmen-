@@ -17,6 +17,7 @@
 - [Samenwerkingswijze](docs/COLLABORATION.md) — hoe we besluiten en voortgang bewaren
 - [Continuity Proxy](docs/CONTINUITY_PROXY.md) — veilige projectcontinuïteit wanneer Remco tijdelijk niet beschikbaar is
 - [Veiligheid](SECURITY.md) — geen geheimen of gevoelige persoonsgegevens committen
+- [Wondera AI-muziekgenerator](resources/music-tools/WONDERA.md) — externe muziekgenerator met transparant aangeduide referrallink
 
 ## Eenvoudige workflow
 
