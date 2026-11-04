@@ -69,3 +69,30 @@ berichtformaat vast met velden voor basis, geheel deel, prefix en repetend.
 
 Bijdragen kan met een tegenvoorbeeld en de verwachte breuk, of met een
 kleine patch en een herhaalbare test. Python 3.10+ volstaat.
+
+## Weekproef 02 · twee lezers, één breukbericht
+
+Een UTF-8 JSON-object draagt vier velden over. `base` is een geheel getal.
+`integer`, `prefix` en `repetend` zijn digitreeksen. Een lege string
+betekent dat de prefix of repetend ontbreekt.
+
+```json
+{"base":16,"integer":"0","prefix":"3","repetend":"D37A6F4DE9B"}
+```
+
+`neumann.message.encode_message` schrijft de vier velden.
+`neumann.message.decode_message` levert exact `Fraction(11, 46)`
+voor bovenstaand bericht. De proef schrijft de bytes één keer weg en start
+twee aparte Python-processen die beide het bestand lezen. Beide moeten
+`11/46` opleveren. Dubbele, ontbrekende en verkeerd getypeerde velden worden
+geweigerd.
+
+```sh
+python -m unittest discover -s tests -p 'test_message.py' -v
+```
+
+**Hervatpunt** — gebruik de afzonderlijke Steward-hashketenproef als bron voor
+één snapshot-plus-tail-test. Toets dat een staart met een verkeerde vorige hash
+de laatst geverifieerde toestand ongemoeid laat. De berichtproef dekt
+procesonafhankelijk lezen met dezelfde decoder. Netwerktransport, identiteit
+van de afzender en opslagherstel vallen buiten deze proef.
