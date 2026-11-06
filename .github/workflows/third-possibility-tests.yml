@@ -1,0 +1,26 @@
+name: Third Possibility — reproducible tests
+on:
+  push:
+    paths:
+      - 'projects/third-possibility/**'
+      - '.github/workflows/third-possibility-tests.yml'
+  pull_request:
+    paths:
+      - 'projects/third-possibility/**'
+      - '.github/workflows/third-possibility-tests.yml'
+permissions:
+  contents: read
+jobs:
+  validate-fictional-model:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run independent gates and sensitivity tests
+        working-directory: projects/third-possibility
+        run: python -m unittest -v test_third_possibility.py
+      - name: Show demo result (fictional data only)
+        working-directory: projects/third-possibility
+        run: python third_possibility.py scenario_fictional.json
