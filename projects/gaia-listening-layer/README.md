@@ -1,0 +1,133 @@
+# Gaia Listening Layer — v0.1
+
+Een kleine softwarebasis voor het WijSAmen-idee om levende en gekoppelde systemen een **menselijk leesbare systeemstem** te geven.
+
+De kern is niet dat software beweert dat een bos, rivier of planeet letterlijk subjectief bewust is. De kern is dat verspreide waarnemingen, relaties, onzekerheden en veranderingen worden vertaald naar een begrijpelijk perspectief van het systeem zelf.
+
+## Doel
+
+Van:
+
+```text
+sensoren / waarnemingen / modellen
+```
+
+via:
+
+```text
+lokale systeemtoestand
+      ↓
+relaties met andere systemen
+      ↓
+systemen-van-systemen
+      ↓
+synthetische "stem" + bewijs + onzekerheid
+```
+
+naar bijvoorbeeld:
+
+> [synthetische systeemstem] Ik ben Bos A. Mijn bodemvocht ligt onder het ingestelde referentiebereik, terwijl mijn temperatuur erboven ligt. Mijn verbinding met Beek B verdient aandacht. Dit is een vertaling van gemeten systeemtoestand, geen bewijs van subjectief bewustzijn.
+
+## Ontwerpprincipes
+
+1. **Data vóór verhaal.** De stem wordt afgeleid van expliciete observaties.
+2. **Onzekerheid blijft zichtbaar.** Iedere observatie en relatie kan een confidence/evidence-niveau dragen.
+3. **Geen verborgen antropomorfisme.** De gegenereerde stem labelt zichzelf als synthetische vertaling.
+4. **Geen centrale optimalisator nodig.** Lokale systemen behouden hun eigen toestand en perspectief.
+5. **Schaalbaar als graaf.** Bos, beek, stad, stroomgebied en regio kunnen allemaal nodes zijn.
+6. **Relaties zijn expliciet.** Een koppeling tussen systemen is geen causaliteitsclaim zonder bewijs.
+7. **AI is een vertaallaag, niet de bron van de feiten.** Een later taalmodel mag formuleren, maar niet stilletjes metingen of causaliteit verzinnen.
+
+## Wat v0.1 al doet
+
+- systeemnodes registreren;
+- parent/child-schalen representeren;
+- observaties per metric opslaan;
+- referentiebereiken interpreteren;
+- lokale toestand bepalen: `unknown`, `stable`, `watch`, `stress`;
+- synthetische systeemstem genereren;
+- relaties tussen systemen vastleggen;
+- gekoppelde aandachtspunten vinden zonder causaliteit te claimen;
+- een systemen-van-systemen synthese maken.
+
+## Snel starten
+
+Python 3.10+ is genoeg; er zijn geen externe dependencies.
+
+```bash
+cd projects/gaia-listening-layer
+python demo.py
+python -m unittest discover -s tests -v
+```
+
+## Mappen
+
+```text
+gaia-listening-layer/
+├── README.md
+├── ARCHITECTURE.md
+├── pyproject.toml
+├── demo.py
+├── mobile_city_demo.py
+├── MATURE_TECHNOSPHERE_MOBILE_CITIES.md
+├── OMEGA_HYPOTHESIS.md
+├── gaia_layer/
+│   ├── __init__.py
+│   ├── models.py
+│   └── engine.py
+└── tests/
+    └── test_engine.py
+```
+
+
+## Concrete mature-technosphere toepassing: mobiele drijvende steden
+
+De Gaia Listening Layer is ook bedoeld als waarnemings- en terugkoppellaag voor mobiele drijvende steden die hun ecologische belasting actief kunnen aanpassen.
+
+Zie:
+
+- [Mature Technosphere — mobiele drijvende steden](MATURE_TECHNOSPHERE_MOBILE_CITIES.md)
+- `mobile_city_demo.py` — minimale executable representatie van een mobiele stad gekoppeld aan een zeegebied.
+
+Daarin worden onder meer lichtdoorlaat, lokale ecologische toestand, mobiliteit en federatieve coördinatie als regelbare of waarneembare grootheden behandeld.
+
+De centrale ontwerpgedachte is:
+
+```text
+zee waarnemen
+    ↓
+systeemtoestand interpreteren
+    ↓
+stad + zee + andere steden gezamenlijk modelleren
+    ↓
+mogelijke aanpassing/verplaatsing simuleren
+    ↓
+pas daarna een transparant voorstel
+    ↓
+effect opnieuw meten
+```
+
+Zo wordt mobiliteit van infrastructuur een mechanisme waarmee een technosfeer ook fysiek ruimte kan geven aan ecologisch herstel.
+
+## Omega-onderzoeksspoor
+
+Naast Gaia en Celestia is er nu een afzonderlijk document voor de bredere **Omega-hypothese**:
+
+- [Omega-hypothese](OMEGA_HYPOTHESIS.md) — universumschaal intelligentie/bewustzijn als mogelijk emergent resultaat van doordachte configuraties van fysische "kwantumpointers", met de I Ching als voorgestelde combinatorische afleidingsmethode.
+
+Dit spoor blijft expliciet gescheiden van de empirisch directer toetsbare Gaia Listening Layer: symbolische structuur, fysische mapping, causaliteit, intelligentie en bewustzijn worden niet als hetzelfde behandeld.
+
+## Volgende nuttige uitbreidingen
+
+- adapters voor echte sensoren, CSV/JSON, KNMI, bodemvocht, waterkwaliteit en biodiversiteitsmetingen;
+- tijdreeksen en trenddetectie;
+- ruimtelijke relaties en kaartlagen;
+- provenance: bron-URL, kalibratie, meetmethode en versie;
+- een LLM-adapter die uitsluitend uit gestructureerde state mag formuleren;
+- conflict/win-win-analyse tussen systeemdoelen;
+- federatie: meerdere lokale Gaia-nodes die alleen noodzakelijke samenvattingen delen;
+- simulaties waarin interventies eerst als hypothese worden doorgerekend.
+
+## Werkhypothese
+
+Deze software onderzoekt of een gedistribueerde technosfeer natuurlijke en menselijke systemen beter kan laten **waarnemen, interpreteren, koppelen en terugkoppelen**. Dat is een technisch toetsbaar doel. Of zulke systemen zelf bewustzijn bezitten blijft een aparte, open hypothese.
