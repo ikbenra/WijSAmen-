@@ -1,0 +1,37 @@
+name: Neumann exact arithmetic
+
+on:
+  pull_request:
+    paths:
+      - 'projects/neumann-bin-dec-hex/**'
+      - '.github/workflows/neumann-python.yml'
+  push:
+    branches:
+      - feature/neumann-bin-dec-hex-v02
+    paths:
+      - 'projects/neumann-bin-dec-hex/**'
+      - '.github/workflows/neumann-python.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-arithmetic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out candidate
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Test Bin-Dec-Hex candidate
+        run: python3 -m unittest discover -s projects/neumann-bin-dec-hex -p 'test_*.py' -v
+      - name: Check out mission-core reference
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 41a2926962c3fb9f99d614db0d06efbd47d830f5
+          path: mission-reference
+          persist-credentials: false
+      - name: Test fixed mission-core reference
+        working-directory: mission-reference/projects/neumann-mission-core
+        run: python3 -m unittest discover -s tests -v
