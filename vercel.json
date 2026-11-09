@@ -1,0 +1,7 @@
+{
+  "git": {
+    "deploymentEnabled": {
+      "feature/neumann-bin-dec-hex-v02": false
+    }
+  }
+}

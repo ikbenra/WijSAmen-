@@ -35,3 +35,7 @@ jobs:
       - name: Test fixed mission-core reference
         working-directory: mission-reference/projects/neumann-mission-core
         run: python3 -m unittest discover -s tests -v
+      - name: Compare 11/46 in bases 2, 10 and 16
+        env:
+          PYTHONPATH: mission-reference/projects/neumann-mission-core
+        run: python3 projects/neumann-bin-dec-hex/compare_mission_core.py -v
