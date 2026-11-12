@@ -1,0 +1,24 @@
+{
+  "project": "OctoCorpus",
+  "branch": "octocorpus/triad-consciousness-v01",
+  "stage": "synthetic_prototype_committed",
+  "execution": "CI_pending",
+  "main_untouched": true,
+  "next_steps": [
+    "inspect CI run",
+    "validate metrics and compare ablations",
+    "design persistent state across cloud runs",
+    "evaluate meta-learning update rule"
+  ],
+  "stop_conditions": [
+    "test failure",
+    "unexpected permissions",
+    "private data exposure",
+    "unapproved external side effect"
+  ],
+  "constraints": {
+    "simulation_only": true,
+    "no_external_publication": true,
+    "no_costly_services": true
+  }
+}
