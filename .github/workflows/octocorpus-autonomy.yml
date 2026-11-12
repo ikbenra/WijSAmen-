@@ -1,5 +1,10 @@
 name: OctoCorpus autonomous bounded research
 on:
+  pull_request:
+    paths:
+      - 'projects/octocorpus/prototypes/autonomy.py'
+      - 'projects/octocorpus/prototypes/test_autonomy.py'
+      - '.github/workflows/octocorpus-autonomy.yml'
   workflow_dispatch:
     inputs:
       steps:
