@@ -1,0 +1,33 @@
+{
+  "project": "OctoCorpus",
+  "branch": "octocorpus/triad-consciousness-v01",
+  "stage": "postselection_robustness_audit",
+  "execution": "cloud_verified",
+  "prior_head": "f51dd09c2394e1763b2d04acf88bf8d4948c8027",
+  "verified_prior_runs": [
+    43289216109,
+    43289216205
+  ],
+  "artifact_verified": 14048137413,
+  "local_evaluation": {
+    "cases": 5120,
+    "seeds": 20,
+    "SiC_N_mean_delta": 0.3779296875,
+    "selection_feedback": false
+  },
+  "hypothesis": "frozen policy robustness to synthetic amplitude jitter",
+  "resume": "versioned temporary overlay with action-level rollback, then fresh context-shift suite",
+  "limitations": [
+    "same eight latent patterns",
+    "N and head not operationally ablated by optimizer",
+    "energy unknown"
+  ],
+  "owner": "OctoCorpus development task",
+  "tested_code_commit": "f31b271708a30e8a14f8fa1c531a4066ff104c49",
+  "verified_current_runs": [
+    43446884634,
+    43446884585
+  ],
+  "artifact_sha256": "ba624508302d323deea8b1c974078487f11b120e260d28d6ed4ea11270ff730a",
+  "artifact_evaluation_matches_local": true
+}

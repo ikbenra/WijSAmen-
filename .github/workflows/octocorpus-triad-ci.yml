@@ -1,0 +1,28 @@
+name: OctoCorpus triad synthetic CI
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'projects/octocorpus/architecture/**'
+      - 'projects/octocorpus/prototypes/**'
+      - '.github/workflows/octocorpus-triad-ci.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify deterministic model
+        run: python -m unittest discover -s projects/octocorpus/prototypes -p 'test_triad_engine.py' -v
+      - name: Create trace
+        run: python projects/octocorpus/prototypes/triad_engine.py > octocorpus-triad-trace.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: octocorpus-triad-trace
+          path: octocorpus-triad-trace.json
+          retention-days: 14
