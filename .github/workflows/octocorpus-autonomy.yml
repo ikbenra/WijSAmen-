@@ -4,6 +4,8 @@ on:
     paths:
       - 'projects/octocorpus/prototypes/autonomy.py'
       - 'projects/octocorpus/prototypes/test_autonomy.py'
+      - 'projects/octocorpus/prototypes/evaluate_autonomy.py'
+      - 'projects/octocorpus/prototypes/test_autonomy_evaluation.py'
       - '.github/workflows/octocorpus-autonomy.yml'
   workflow_dispatch:
     inputs:
@@ -32,10 +34,14 @@ jobs:
           key: octocorpus-state-${{ github.ref_name }}-${{ github.run_id }}
           restore-keys: |
             octocorpus-state-${{ github.ref_name }}-
-      - name: Test independent evaluator
-        run: python -m unittest discover -s projects/octocorpus/prototypes -p 'test_autonomy.py' -v
+      - name: Verify checkpoint and evaluation contracts
+        run: python -m unittest discover -s projects/octocorpus/prototypes -p 'test_autonomy*.py' -v
       - name: Continue bounded optimization
-        run: python projects/octocorpus/prototypes/autonomy.py --state octocorpus-state.json --steps ${{ inputs.steps || '24' }}
+        env:
+          STEP_BUDGET: ${{ inputs.steps || '24' }}
+        run: python projects/octocorpus/prototypes/autonomy.py --state octocorpus-state.json --steps "$STEP_BUDGET"
+      - name: Audit frozen policies on independent post-selection cases
+        run: python projects/octocorpus/prototypes/evaluate_autonomy.py --state octocorpus-state.json --output octocorpus-evaluation.json
       - name: Save next checkpoint
         uses: actions/cache/save@v4
         with:
@@ -45,5 +51,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: octocorpus-autonomy-state
-          path: octocorpus-state.json
+          path: |
+            octocorpus-state.json
+            octocorpus-evaluation.json
           retention-days: 30
+
