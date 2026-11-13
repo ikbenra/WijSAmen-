@@ -5,7 +5,7 @@ This is a **bounded deterministic software optimization experiment**, not a gene
 The C, Si and SiC+N subsystems have separate small policies. A shared evaluator proposes one-step policy variations, selects improvements on a synthetic training split and rejects holdout regressions. Each accepted change is logged; the stable baseline remains available in source code. The head/nodule is represented by the evaluator and shared checkpoint.
 
 ## Cloud execution
-Run the **OctoCorpus autonomous bounded research** workflow on branch `octocorpus/triad-consciousness-v01` via GitHub Actions > Run workflow. The workflow restores the most recent branch-scoped checkpoint through GitHub Actions cache, runs six unit tests, continues bounded optimization, and saves a new checkpoint to cache and an inspectable artifact.
+Run the **OctoCorpus autonomous bounded research** workflow on branch `octocorpus/triad-consciousness-v01` via GitHub Actions > Run workflow. The workflow restores the most recent branch-scoped checkpoint through GitHub Actions cache, runs the optimizer and evaluation tests, continues bounded optimization, and saves a new checkpoint to cache and an inspectable artifact.
 
 Important: cache eviction can reset state. Artifacts are retained for 30 days. This is **best-effort persistence**, not an archival database. There is no paid external model, no secrets, no remote publishing, no automatic merge, no unattended physical control, and no scheduled continuous execution. Each run has a 15-minute ceiling and stops early at convergence.
 

@@ -45,3 +45,15 @@ context-shift evaluation before testing head/N removal and permanent updates.
 The legacy two-point gate remains training validation. Preserve both biological
 passports. Cloud execution of this commit requires actual run and artifact
 readback; local test results alone do not establish it.
+
+## Verified cloud follow-up
+Code commit f31b271708a30e8a14f8fa1c531a4066ff104c49 triggered actual PR workflows.
+Run 43446884634 completed successfully (14 optimizer/audit tests and evaluation).
+Run 43446884585 completed successfully (scripted triad CI, 6 tests).
+Artifact 14048137413 contains state and evaluation. Downloaded ZIP digest:
+ba624508302d323deea8b1c974078487f11b120e260d28d6ed4ea11270ff730a.
+The downloaded evaluation exactly equals the local JSON, including all 20 rows.
+The state remains generation 2, with unchanged state hash.
+Main readback remains fa51cc566369e177e26368788829bbd9832c87dd.
+Steward handoff: this verified checkpoint is the implementation owner's resume
+source; the older workboard card and PR initial description must not reset work.
