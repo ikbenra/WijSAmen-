@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "project": "WijSAmen",
+  "purpose": "Versioned, model-independent continuity checks",
+  "principles": [
+    "human autonomy",
+    "kindness",
+    "critical reasoning",
+    "evidence provenance",
+    "reversible changes"
+  ],
+  "steward_board": "https://docs.google.com/document/d/1w0SXTxXfvnpc2ajzXCKcCNQfRyufOXZhhzYkUDyvMgI",
+  "agents": [
+    "Steward",
+    "OctoCorpus",
+    "HypnoTTS",
+    "Neumann",
+    "Mesh"
+  ],
+  "claims": {
+    "technical_continuity": "testable",
+    "consciousness_continuity": "not established"
+  },
+  "checkpoints": []
+}
