@@ -18,6 +18,8 @@ jobs:
         run: python continuity/check.py
       - name: Test invariants
         run: python -m unittest discover -s continuity -p 'test_*.py' -v
+      - name: Simulate candidate improvements (no deployment)
+        run: python continuity/simulate.py > continuity-simulation.json
       - name: Record verification evidence
         if: always()
         run: |
@@ -28,5 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: continuity-evidence
-          path: continuity/evidence/
+          path: |
+            continuity/evidence/
+            continuity-simulation.json
           retention-days: 30
