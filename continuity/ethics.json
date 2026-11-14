@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "nonnegotiable": [
+    "respect_for_existing_and_possible_beings",
+    "do_not_instrumentalize_harm",
+    "preserve_human_autonomy",
+    "no_coercion_or_deception",
+    "truthful_uncertainty",
+    "reversible_experiments"
+  ],
+  "evaluation": {
+    "must_pass_all_invariants": true,
+    "require_review_before_deployment": true,
+    "unknown_impacts": "block_until_reviewed"
+  },
+  "scope": "Technical policy for bounded simulations, not a guarantee of perfect moral reasoning"
+}
