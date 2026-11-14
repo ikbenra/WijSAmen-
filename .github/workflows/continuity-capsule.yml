@@ -1,0 +1,32 @@
+name: WijSAmen Continuity Capsule
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 4 * * *'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate capsule
+        run: python continuity/check.py
+      - name: Test invariants
+        run: python -m unittest discover -s continuity -p 'test_*.py' -v
+      - name: Record verification evidence
+        if: always()
+        run: |
+          mkdir -p continuity/evidence
+          python continuity/check.py > continuity/evidence/latest.json
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: continuity-evidence
+          path: continuity/evidence/
+          retention-days: 30
