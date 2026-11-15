@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="nl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WijSAmen · Neumann retourproef</title>
+<style>
+:root{color-scheme:light dark;font:100%/1.6 system-ui}
+body{margin:0 auto;max-width:54rem;padding:2rem 1rem 4rem}
+h1{line-height:1.12;font-size:clamp(2rem,7vw,3.5rem);margin:.4rem 0 1rem}
+.kicker{font-weight:700;letter-spacing:.06em}
+details{border:1px solid GrayText;border-radius:.5rem;padding:.7rem;margin:1rem 0;overflow:auto}
+summary{font-weight:700;cursor:pointer}
+table{border-collapse:collapse;width:100%;margin-top:.8rem}
+th,td{text-align:left;padding:.45rem;border-bottom:1px solid GrayText;vertical-align:top}
+code{overflow-wrap:anywhere}
+</style>
+<main>
+<p class="kicker">WijSAmen · Neumann missie software uitwerking · Weekproef 01</p>
+<h1>Drie grondtallen, één breuk</h1>
+<p>Open een breuk en volg de route van binair via decimaal en hexadecimaal terug naar binair.
+Haakjes markeren het herhalende deel. De tabel toont uitvoer van de geteste Python-kern.</p>
+<details open><summary>Breuk 11/46</summary><table><thead><tr><th>Stap</th><th>Weergave</th><th>Teruggelezen waarde</th></tr></thead><tbody><tr><th scope="row">Binair</th><td><code>0.0(01111010011)</code></td><td>11/46</td></tr><tr><th scope="row">Decimaal</th><td><code>0.2(3913043478260869565217)</code></td><td>11/46</td></tr><tr><th scope="row">Hexadecimaal</th><td><code>0.3(D37A6F4DE9B)</code></td><td>11/46</td></tr><tr><th scope="row">Terug in binair</th><td><code>0.0(01111010011)</code></td><td>11/46</td></tr></tbody></table></details>
+<details><summary>Breuk 1/7</summary><table><thead><tr><th>Stap</th><th>Weergave</th><th>Teruggelezen waarde</th></tr></thead><tbody><tr><th scope="row">Binair</th><td><code>0.(001)</code></td><td>1/7</td></tr><tr><th scope="row">Decimaal</th><td><code>0.(142857)</code></td><td>1/7</td></tr><tr><th scope="row">Hexadecimaal</th><td><code>0.(249)</code></td><td>1/7</td></tr><tr><th scope="row">Terug in binair</th><td><code>0.(001)</code></td><td>1/7</td></tr></tbody></table></details>
+<details><summary>Breuk 5/8</summary><table><thead><tr><th>Stap</th><th>Weergave</th><th>Teruggelezen waarde</th></tr></thead><tbody><tr><th scope="row">Binair</th><td><code>0.101</code></td><td>5/8</td></tr><tr><th scope="row">Decimaal</th><td><code>0.625</code></td><td>5/8</td></tr><tr><th scope="row">Hexadecimaal</th><td><code>0.A</code></td><td>5/8</td></tr><tr><th scope="row">Terug in binair</th><td><code>0.101</code></td><td>5/8</td></tr></tbody></table></details>
+<details><summary>Breuk 17/6</summary><table><thead><tr><th>Stap</th><th>Weergave</th><th>Teruggelezen waarde</th></tr></thead><tbody><tr><th scope="row">Binair</th><td><code>10.1(10)</code></td><td>17/6</td></tr><tr><th scope="row">Decimaal</th><td><code>2.8(3)</code></td><td>17/6</td></tr><tr><th scope="row">Hexadecimaal</th><td><code>2.D(5)</code></td><td>17/6</td></tr><tr><th scope="row">Terug in binair</th><td><code>10.1(10)</code></td><td>17/6</td></tr></tbody></table></details>
+<p>De proef toont verliesvrije omzetting. De volgende stap test of twee gesimuleerde sondes
+een opgeslagen breukbericht onafhankelijk hetzelfde teruglezen.</p>
+<p><a href="https://github.com/ikbenra/WijSAmen-/tree/feature/neumann-exact-radix/projects/neumann-mission-core">Broncode en testinstructies op GitHub</a></p>
+</main>
+</html>
