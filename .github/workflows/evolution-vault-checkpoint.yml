@@ -1,0 +1,30 @@
+name: Evolution Vault checkpoint (proposed)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+permissions:
+  contents: read
+jobs:
+  checkpoint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Fetch backup script
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Create and restore-check full refs bundle
+        shell: bash
+        run: |
+          bash ops/evolution-vault/backup.sh https://github.com/${{ github.repository }}.git "$RUNNER_TEMP/vault"
+          cp "$RUNNER_TEMP"/vault/*.bundle* "$GITHUB_WORKSPACE/"
+      - name: Store checkpoint artifact (temporary, not off-site)
+        uses: actions/upload-artifact@v4
+        with:
+          name: evolution-vault-${{ github.run_id }}
+          path: |
+            *.bundle
+            *.bundle.sha256
+          retention-days: 30
+          if-no-files-found: error
