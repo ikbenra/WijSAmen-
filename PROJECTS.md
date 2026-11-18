@@ -33,6 +33,7 @@ De limiet is vijf actieve taken. Deze momentopname toont vier ingeschakelde kern
 | [OctoScript / OctoCorpus](projects/octocorpus/README.md) | ONDERZOEK / DESK-ONLY — regeneratiebewijs gedeeltelijk gelokaliseerd, nog niet reproduceerbaar | verliesvrij de 2017-proefschrifttabel/resultaten en de onderliggende CIAC-2025 RT-qPCR-evidentie herstellen vóór genrangschikking |
 | [The A-Eye of RA](projects/a-eye-of-ra/README.md) | Verified Project Seed v0.1 — mechanisme BEDACHT; geen prototype | synthetische traces en deterministische offline evaluator maken; geen live netwerk of autonome blokkade |
 | [Het Pira Effect](projects/het-pira-effect/README.md) | Verified Project Seed — hypothese; `INTERPRETATION_ONLY / UNDERDEFINED` | één dimensioneel expliciete definitie plus exacte conventionele comparator afleiden; geen hardwaretest |
+| [Gaia Listening Layer](projects/gaia-listening-layer/README.md) | Softwarebasis v0.1 — evidence-aware systeemstemmen + systemen-van-systemen | demo lokaal draaien; daarna één echte datastroom aansluiten en de interpretatie tegen domeinkennis toetsen |
 | [Weather nowcast](weather-nowcast/README.md) | Evidence-interface prototype | actuele KNMI-file in Termux openen; daarna forecast aan RTCOR-5m koppelen |
 | [Field / phase / spacetime research map](ideas/field-phase-research-map.md) | Onderzoek — gescheiden sporen V0.1 | low-energy numerical baseline voor programmeerbare magnetic field shaping maken |
 

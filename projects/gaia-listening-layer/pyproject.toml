@@ -1,0 +1,9 @@
+[project]
+name = "wijsamen-gaia-listening-layer"
+version = "0.1.0"
+description = "Evidence-aware system voices and systems-of-systems synthesis for WijSAmen"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.unittest]
+start-directory = "tests"
