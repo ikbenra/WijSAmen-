@@ -1,0 +1,16 @@
+{
+  "project": "OctoCorpus",
+  "date": "2026-11-20",
+  "branch": "octocorpus/triad-consciousness-v01",
+  "parent_commit": "5d31dfc18c4dce0de71a18ba662c6f2645e48c85",
+  "previous_state": "WORK_STATE_V01.json",
+  "current_run": "AUTONOMY_RUN_003.md",
+  "protocol": "OVERLAY_PROTOCOL_V01.md",
+  "scope": "temporary context overlays and behavioral rollback",
+  "execution": "28 local tests passed; cloud readback pending in a new verification record",
+  "local_pilot": {"seeds": 20, "test_observations_per_seed": 128, "rollback_checks_passed": 60},
+  "energy_joules": null,
+  "next_gate": "one arm-nodule-arm version transfer with propagated retirement",
+  "next_falsifier": "retired derived effect still reachable through second arm",
+  "constraints": ["new files only", "simulation only", "fresh evaluation before further selection"]
+}

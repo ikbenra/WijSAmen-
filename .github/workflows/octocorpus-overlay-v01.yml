@@ -1,0 +1,31 @@
+name: OctoCorpus context overlay v01
+on:
+  pull_request:
+    paths:
+      - 'projects/octocorpus/prototypes/context_overlay_v01.py'
+      - 'projects/octocorpus/prototypes/overlay_probe_v01.py'
+      - 'projects/octocorpus/prototypes/test_context_overlay_v01.py'
+      - 'projects/octocorpus/architecture/OVERLAY_*V01*'
+      - '.github/workflows/octocorpus-overlay-v01.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  overlay-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test existing contracts and overlay lifecycle
+        run: python -m unittest discover -s projects/octocorpus/prototypes -v
+      - name: Frozen calibration and context-shift evaluation
+        run: python projects/octocorpus/prototypes/overlay_probe_v01.py --state projects/octocorpus/architecture/OVERLAY_INPUT_V01.json --output octocorpus-overlay-probe.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: octocorpus-overlay-v01
+          path: octocorpus-overlay-probe.json
+          if-no-files-found: error
+          retention-days: 30
