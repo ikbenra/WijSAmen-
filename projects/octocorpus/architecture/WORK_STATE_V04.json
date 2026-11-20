@@ -1,0 +1,54 @@
+{
+  "project": "OctoCorpus",
+  "date": "2026-11-20",
+  "stage": "context_overlay_behavior_verified",
+  "branch": "octocorpus/triad-consciousness-v01",
+  "previous_state": "WORK_STATE_V03.json",
+  "protocol": "OVERLAY_PROTOCOL_V01.md",
+  "run_record": "AUTONOMY_RUN_003.md",
+  "tested_commit": "3695b26f71f881bc26677b94bd603718cb4f18a2",
+  "local_tests_passed": 28,
+  "cloud": {
+    "overlay_run": 44756456183,
+    "overlay_job": 136357349160,
+    "tests_passed": 28,
+    "triad_run": 44756457997,
+    "legacy_autonomy_run": 44756456107,
+    "status": "completed/success"
+  },
+  "artifact": {
+    "id": 14638985744,
+    "name": "octocorpus-overlay-v01",
+    "zip_sha256": "23efd2929b7c0815ac19540b11e49b5274dfee973cc3374206a62345c8550c37",
+    "report_sha256": "a8fb36568d4bf291a49efe43aea2457bee3a1eb9ef537446ecf8e233c28c425d",
+    "downloaded": true,
+    "exact_json_match_local": true,
+    "expires": "2026-12-20"
+  },
+  "input_checkpoint_artifact": 14048326890,
+  "results": {
+    "seeds": 20,
+    "final_cases_per_seed": 128,
+    "group_checks": 60,
+    "behavioral_rollback_failures": 0,
+    "overlay_B_accuracy": 0.87578125,
+    "SiC_N_fixed_B_accuracy": 0.12734375,
+    "SiC_N_A_return_overlay": 0.87265625,
+    "SiC_N_A_return_permanent": 0.12421875,
+    "shuffled_calibration_B_accuracy": 0.5765625
+  },
+  "limits": [
+    "engineered binary reversal and explicit context IDs",
+    "same eight latent patterns",
+    "fresh final observations only; not externally blind",
+    "adaptation has higher compute than fixed control",
+    "energy unknown",
+    "global revocation through other agents not tested",
+    "head/N/arm-count effects not causally ablated"
+  ],
+  "main_readback_before_verification": "0b2f3a172649414139f6699f3c8a39a4c16f9301",
+  "handoff_for_steward": "OctoCorpus owns PR15. PR17 remains with its existing owner. Additive-only result and next gate are available in this record.",
+  "next_gate": "one arm -> nodule -> second arm transfer preserving source version; compare local versus propagated retirement on fresh cases",
+  "falsifier": "retired derived effect remains reachable through second arm",
+  "evidence": "SYNTHETIC_SIMULATION_AND_CI"
+}
