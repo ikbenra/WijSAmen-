@@ -1,0 +1,32 @@
+{
+  "consciousness_proven": false,
+  "evidence": "SYNTHETIC_POLICY_OPTIMIZATION",
+  "generation": 2,
+  "head": {
+    "meta_learning": "holdout_gated",
+    "shared_nodule": true
+  },
+  "last_log": [],
+  "mode": "six_arms",
+  "n_modules": 4,
+  "policies": {
+    "C": [
+      0,
+      2,
+      0
+    ],
+    "Si": [
+      2,
+      0,
+      0
+    ],
+    "SiC_N": [
+      1,
+      2,
+      1
+    ]
+  },
+  "schema": "octocorpus.autonomy.v1",
+  "state_hash": "ccede089c5c48c9f020001c1786564f5fcfdfdb6204a68fda1f5e6132269d188",
+  "stop_reason": "no_training_improvement"
+}

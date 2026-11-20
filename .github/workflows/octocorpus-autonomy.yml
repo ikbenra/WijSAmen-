@@ -1,0 +1,58 @@
+name: OctoCorpus autonomous bounded research
+on:
+  pull_request:
+    paths:
+      - 'projects/octocorpus/prototypes/autonomy.py'
+      - 'projects/octocorpus/prototypes/test_autonomy.py'
+      - 'projects/octocorpus/prototypes/evaluate_autonomy.py'
+      - 'projects/octocorpus/prototypes/test_autonomy_evaluation.py'
+      - '.github/workflows/octocorpus-autonomy.yml'
+  workflow_dispatch:
+    inputs:
+      steps:
+        description: 'Maximum local improvement steps (1..100)'
+        required: false
+        default: '24'
+permissions:
+  contents: read
+concurrency:
+  group: octocorpus-autonomy-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  autonomous-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore last checkpoint from branch cache
+        uses: actions/cache/restore@v4
+        with:
+          path: octocorpus-state.json
+          key: octocorpus-state-${{ github.ref_name }}-${{ github.run_id }}
+          restore-keys: |
+            octocorpus-state-${{ github.ref_name }}-
+      - name: Verify checkpoint and evaluation contracts
+        run: python -m unittest discover -s projects/octocorpus/prototypes -p 'test_autonomy*.py' -v
+      - name: Continue bounded optimization
+        env:
+          STEP_BUDGET: ${{ inputs.steps || '24' }}
+        run: python projects/octocorpus/prototypes/autonomy.py --state octocorpus-state.json --steps "$STEP_BUDGET"
+      - name: Audit frozen policies on independent post-selection cases
+        run: python projects/octocorpus/prototypes/evaluate_autonomy.py --state octocorpus-state.json --output octocorpus-evaluation.json
+      - name: Save next checkpoint
+        uses: actions/cache/save@v4
+        with:
+          path: octocorpus-state.json
+          key: octocorpus-state-${{ github.ref_name }}-${{ github.run_id }}
+      - name: Export inspectable checkpoint
+        uses: actions/upload-artifact@v4
+        with:
+          name: octocorpus-autonomy-state
+          path: |
+            octocorpus-state.json
+            octocorpus-evaluation.json
+          retention-days: 30
+

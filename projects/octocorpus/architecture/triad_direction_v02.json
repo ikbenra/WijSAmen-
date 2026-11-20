@@ -1,0 +1,44 @@
+{
+  "schema": "octocorpus.triad.v0.2",
+  "status": "HYPOTHESIS",
+  "arms": {
+    "C": 2,
+    "Si": 2,
+    "SiC_N": [
+      2,
+      4
+    ]
+  },
+  "head": {
+    "shared_nodule": true,
+    "central_monopoly": false,
+    "roles": [
+      "context",
+      "transfer",
+      "meta_learning",
+      "development_versioning"
+    ]
+  },
+  "N": {
+    "independent_consciousness_required": false,
+    "role": "enhance_C_and_Si",
+    "modules_configurable": true
+  },
+  "adaptation": [
+    "local_policy",
+    "shared_learning",
+    "meta_learning",
+    "reversible_structure",
+    "rna_editing_inspired_overlay"
+  ],
+  "comparators": [
+    "fixed_optimization",
+    "no_head",
+    "no_N",
+    "no_overlay"
+  ],
+  "safety": {
+    "simulation_only": true,
+    "subjective_consciousness_claim": false
+  }
+}
